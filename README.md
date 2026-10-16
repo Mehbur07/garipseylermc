@@ -4,7 +4,7 @@
 
 Stranger Things temalı bir Minecraft Java modu: Nether kırmızı **Ters Dünya**'ya, End **En Derin Dünya**'ya dönüşür; Demogorgon, Demodog, Demobat, Vecna ve Mind Flayer gelir.
 
-> Durum: **Faz 4 tamamlandı** (atmosfer, kırmızı şimşek, mob dönüşümleri, portal sarmaşığı). Özellik fazları için bkz. [ROADMAP.md](ROADMAP.md).
+> Durum: **Faz 5 tamamlandı** (atmosfer, kırmızı şimşek, mob dönüşümleri, portal sarmaşığı, Ters Dünya Taşı ve dikit renkli En Derin Dünya). Özellik fazları için bkz. [ROADMAP.md](ROADMAP.md).
 
 ## Gereksinimler
 | | Sürüm |
@@ -60,7 +60,11 @@ src/client/java/dev/mehbur/garipseyler/client/   sadece istemci
 | `end` | `titleOnEnter` | `true` | Girişte "En Derin Dünya" başlığı |
 | | `fogColor` / `ambientLightColor` / `skyLightColor` | `"#14070a"` / `"#3a1f22"` / `"#8a2a3a"` | En Derin Dünya renkleri ¹ |
 | | `ashProbability` | `0.004` | Düşen kül partikülü yoğunluğu ¹ |
+| | `upsideDownStoneSpikes` | `true` | Yeni üretilen End kuleleri obsidyen yerine Ters Dünya Taşı'ndan |
+| | `dripstoneBlocks` | `true` | End'de End taşı hariç blokları dikit renginde çiz ² ³ |
+| | `keepOriginalTexture` | `[]` | End'de kendi dokusunu koruyacak ek bloklar, ör. `["minecraft:torch"]` ² ³ |
 | `demobat` | `disableOverworldPhantoms` | `true` | Overworld'de uykusuzluk Phantom/Demobat spawn'ını kapatır |
+| | `netherOnly` | `true` | Demobat (Phantom + Ghast) yalnızca Nether'da: Overworld/End'e giren veya orada doğan silinir |
 | | `netherSpawnWeight` | `10` | Nether biyomlarında doğal spawn ağırlığı (0 = kapalı) ¹ |
 | | `netherMinGroup` / `netherMaxGroup` | `1` / `2` | Grup boyutu ¹ |
 | `vine` | `growOnLitPortals` / `growOnGeneratedPortals` | `true` / `true` | Oyuncunun yaktığı / oyunun karşı tarafta ürettiği portallarda büyüsün |
@@ -80,6 +84,7 @@ src/client/java/dev/mehbur/garipseyler/client/   sadece istemci
 
 ¹ Biyom verisine yazıldığı için dünya/sunucu **yeniden başlatılınca** geçerli olur (`/garipseyler reload` yetmez).
 ² İstemci ayarı: her oyuncunun kendi `config/garipseylermc.json` dosyasından okunur. Flaş ayrıca vanilla **Erişilebilirlik → "Şimşek Flaşlarını Gizle"** seçeneğine uyar.
+³ Doku yüklemede uygulanır: değiştirdikten sonra oyunda **F3+T** (ya da yeniden başlat).
 Renkler `#RRGGBB` biçiminde; hatalı renk yazılırsa varsayılan kullanılır.
 
 > Not: Ayarların bir kısmı ilgili faz tamamlandıkça etkin hale gelir.
@@ -109,10 +114,11 @@ Yalnızca **görünüm** değişir; davranış, can, AI, loot ve vuruş kutular�
 | Hoglin | **Alfa Demodog** | ×1.35, kırmızımsı |
 | Zoglin | **Çürümüş Alfa Demodog** | ×1.35, yeşilimsi-kırmızı |
 | Phantom | **Demobat** | yarasa kanatlı, yaprak ağızlı |
+| Ghast | **Dev Demobat** | ×2.75 Demobat, koyu kırmızı; ateş topu hazırlarken ağzı açılır (Happy Ghast değişmez) |
 
 - Bebekler yarım boyda çizilir. Demodog'ların ağız yaprakları saldırırken açılır.
 - İsimler, çağırma yumurtaları, ölüm mesajları ve altyazılar yeni adları kullanır (TR + EN). Sesler kendi ses olaylarımıza yönlendirilir.
-- **Demobat** yalnızca Nether'da doğal spawn olur; Overworld'deki uykusuzluk spawn'ı kapalıdır. Nether tavanı yüzünden takılmasınlar diye, tavanı olan boyutlarda dönme noktaları mağara tavanının altında tutulur.
+- **Demobat** ve **Dev Demobat** yalnızca Nether'da bulunur: Overworld'deki uykusuzluk spawn'ı kapalıdır; Overworld'e ya da End'e herhangi bir yolla (portal, komut, eski dünya) gelen Phantom/Ghast bir sonraki tick'te silinir. Bu yüzden "Huzursuz İttifak" başarımı alınamaz. Nether tavanı yüzünden takılmasınlar diye, tavanı olan boyutlarda dönme noktaları mağara tavanının altında tutulur.
 
 ### Faz 4 — Ters Dünya sarmaşığı ✅
 - Nether portalı **yakıldığında** ve oyun karşı tarafta **portal ürettiğinde** çerçevenin obsidyenlerine **Ters Dünya Sarmaşığı** büyür.
@@ -122,6 +128,12 @@ Yalnızca **görünüm** değişir; davranış, can, AI, loot ve vuruş kutular�
 - **Karşı hamle:** sarmaşıklar kırılabilir (hiçbir şey düşürmez). Bir portalın tüm sarmaşıkları kırılınca o portalın laneti kalkar.
 - Yönetici komutu: `/garipseyler vine <oyuncu>` → sayaç, sarmaşıklı portal sayısı, en yakın mesafe.
 
+### Faz 5 — Ters Dünya Taşı ve En Derin Dünya renkleri ✅
+- **Ters Dünya Taşı** (`garipseylermc:upside_down_stone`): dikit tonunda, obsidyenle aynı dayanıklılık — sertlik 50, patlama direnci 1200, elmas ve üstü kazma gerekir, pistonla itilmez, ejderha kıramaz. Yaratıcı modda *Doğal Bloklar* sekmesinde, ağlayan obsidyenin yanında.
+- **End kuleleri** artık bu taştan üretilir (yalnızca **yeni üretilen** End; ejderha yeniden çağrılınca kurulan kuleler de). Eski dünyalardaki kuleler obsidyen kalır.
+- **En Derin Dünya'da End taşı hariç her blok dikit renginde görünür** (purpur, End taşı tuğlası, obsidyen, koro bitkisi, End çubuğu, oyuncunun koyduğu bloklar…). Sandıklar ve blok-varlıklı bloklar (varil, fırın, demlik, shulker kutusu, yatak, tabela…) ile çalışma masaları, örsler, kazanlar, ateş ve portal kendi görünüşünü korur.
+  - Tamamen **görsel / istemci tarafı**: dünya verisi değişmez, Overworld ve Nether vanilla görünür. Kopyalar oyun açılırken her `textures/block` dokusundan üretilir (kaynak paketleri ve diğer modlar dahil), mod içinde Mojang dokusu yoktur.
+
 ## Placeholder dosyaları (değiştirmek için)
 Aynı isimle üzerine yaz, `gradlew build` / `run.bat` ile yeniden derle.
 
@@ -130,6 +142,8 @@ Aynı isimle üzerine yaz, `gradlew build` / `run.bat` ile yeniden derle.
 | `src/main/resources/assets/garipseylermc/textures/entity/demogorgon/demogorgon.png` | Demogorgon dokusu | 64×64 |
 | `src/main/resources/assets/garipseylermc/textures/entity/demodog/demodog*.png` | 5 Demodog varyantı (`demodog`, `_brute`, `_rotten`, `_alpha`, `_alpha_rotten`) | 64×64, aynı UV düzeni |
 | `src/main/resources/assets/garipseylermc/textures/entity/demobat/demobat.png` | Demobat dokusu | 64×64 |
+| `src/main/resources/assets/garipseylermc/textures/entity/demobat/demobat_giant.png` | Dev Demobat (Ghast) dokusu | 64×64, Demobat ile aynı UV düzeni |
+| `src/main/resources/assets/garipseylermc/textures/block/upside_down_stone.png` | Ters Dünya Taşı | 16×16 |
 | `src/client/java/dev/mehbur/garipseyler/client/render/*/…Model.java` → `createBodyLayer()` | Mob modelleri | Blockbench → *File → Export → Export Java Entity* (Mojang mappings); kutuları `createBodyLayer()` içine taşı, **parça isimlerini koru** (`head`, `body`, `petal_holder_N`…) |
 | `src/main/resources/assets/garipseylermc/textures/particle/upside_down_spore_0..2.png` | Ters Dünya spor partikülü | Şeffaf PNG, 8×8 veya 16×16; kare sayısı `particles/upside_down_spore.json`'da |
 | `src/main/resources/assets/minecraft/textures/environment/end_sky.png` | En Derin Dünya gökyüzü | Oyun bu dokuyu ~%16 parlaklıkla çarpar → **parlak** çiz, döşenebilir (tileable) olsun |

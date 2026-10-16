@@ -358,5 +358,45 @@
 			}
 		],
 		"subtitle": "subtitles.entity.phantom.death"
+	},
+	"entity.ghast.ambient": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demobat_giant.ambient",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.ghast.ambient"
+	},
+	"entity.ghast.warn": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demobat_giant.warn",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.ghast.warn"
+	},
+	"entity.ghast.hurt": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demobat_giant.hurt",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.ghast.hurt"
+	},
+	"entity.ghast.death": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demobat_giant.death",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.ghast.death"
 	}
 }

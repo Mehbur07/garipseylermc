@@ -2,7 +2,9 @@
 	"required": true,
 	"package": "dev.mehbur.garipseyler.client.mixin",
 	"compatibilityLevel": "JAVA_25",
-	"client": [],
+	"client": [
+		"SpriteContentsAccessor"
+	],
 	"injectors": {
 		"defaultRequire": 1
 	},

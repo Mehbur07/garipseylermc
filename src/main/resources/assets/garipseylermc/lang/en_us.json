@@ -80,5 +80,16 @@
 	"message.garipseylermc.vine.drained": "The Upside Down vine drained your life!",
 	"subtitles.garipseylermc.block.upside_down_vine.warning": "Clock tolls",
 	"subtitles.garipseylermc.block.upside_down_vine.drain": "Vines drain life",
-	"commands.garipseylermc.vine.status": "%s: vine timer %s/%s s, vined portals in Nether: %s, nearest: %s blocks"
+	"commands.garipseylermc.vine.status": "%s: vine timer %s/%s s, vined portals in Nether: %s, nearest: %s blocks",
+	"block.garipseylermc.upside_down_stone": "Upside Down Stone",
+	"entity.minecraft.ghast": "Giant Demobat",
+	"item.minecraft.ghast_spawn_egg": "Giant Demobat Spawn Egg",
+	"subtitles.entity.ghast.ambient": "Giant Demobat shrieks",
+	"subtitles.entity.ghast.death": "Giant Demobat dies",
+	"subtitles.entity.ghast.hurt": "Giant Demobat hurts",
+	"subtitles.entity.ghast.shoot": "Giant Demobat shoots",
+	"subtitles.entity.ghast.warn": "Giant Demobat screeches",
+	"advancements.adventure.spyglass_at_ghast.description": "Look at a Giant Demobat through a Spyglass",
+	"advancements.nether.return_to_sender.description": "Destroy a Giant Demobat with a fireball",
+	"item.minecraft.ghast_tear": "Giant Demobat Tear"
 }

@@ -60,6 +60,7 @@ Stranger Things temalı Minecraft modu (telif nedeniyle adı **Garip Şeyler MC*
 | Hoglin | **Demodog** | büyük boy, kahverengi-gri ton |
 | Zombie Piglin | **Demodog** | normal boy, soluk/çürük yeşilimsi ton |
 | Phantom | **Demobat** | Overworld'de uykusuzluk spawn'ı **kapalı**, sadece Ters Dünya'da doğal spawn |
+| Ghast | **Dev Demobat** | Faz 5'te eklendi; Demobat'lar Overworld ve End'de hiç bulunmaz |
 
 Yalnızca renderer değişir → eski dünyalar bozulmaz.
 
@@ -73,9 +74,12 @@ Yalnızca renderer değişir → eski dünyalar bozulmaz.
 
 **Test:** Portal yakınca sarmaşık + efekt; yarıçap içi/dışı ayrımı; zamanlayıcı (testte config ile kısaltılarak).
 
-## Faz 5 — Ters Dünya Taşı ve End kuleleri
+## Faz 5 — Ters Dünya Taşı ve End kuleleri ✅ (tamamlandı; + Ghast → Dev Demobat, End'de dikit renkli bloklar)
 - Yeni blok **Ters Dünya Taşı**: obsidyen dayanıklılığı (sertlik 50, patlama direnci 1200, elmas+ kazma), dikit (dripstone) tonunda.
 - End'deki obsidyen kuleler bu bloktan üretilir (yalnızca **yeni üretilen** End'de).
+
+- Ek: End'de End taşı hariç her blok (sandıklar/işlevsel bloklar hariç) istemcide dikit renginde çizilir.
+- Ek: Ghast → **Dev Demobat** görünümü; Demobat'lar (Phantom + Ghast) Overworld ve End'de bulunmaz.
 
 **Test:** Yeni dünyada kuleler yeni bloktan; kazma/patlama dayanıklılığı obsidyenle aynı.
 

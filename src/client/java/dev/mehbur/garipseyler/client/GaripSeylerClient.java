@@ -6,6 +6,7 @@ import dev.mehbur.garipseyler.client.render.MobReskins;
 import dev.mehbur.garipseyler.client.render.ModModelLayers;
 import dev.mehbur.garipseyler.client.render.RedLightningRenderer;
 import dev.mehbur.garipseyler.client.render.UpsideDownSporeParticle;
+import dev.mehbur.garipseyler.client.render.endtint.EndTint;
 import dev.mehbur.garipseyler.effect.ModParticles;
 import dev.mehbur.garipseyler.entity.ModEntities;
 import net.fabricmc.api.ClientModInitializer;
@@ -24,6 +25,7 @@ public class GaripSeylerClient implements ClientModInitializer {
 		MobReskins.register();
 		RedFlashOverlay.register();
 		RedLightningClient.register();
+		EndTint.register();
 
 		GaripSeylerMod.LOGGER.info("Garip Şeyler MC client initialized.");
 	}

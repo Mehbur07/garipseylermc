@@ -80,5 +80,16 @@
 	"message.garipseylermc.vine.drained": "Ters Dünya sarmaşığı canını emdi!",
 	"subtitles.garipseylermc.block.upside_down_vine.warning": "Saat çalıyor",
 	"subtitles.garipseylermc.block.upside_down_vine.drain": "Sarmaşık can emiyor",
-	"commands.garipseylermc.vine.status": "%s: sarmaşık sayacı %s/%s sn, Nether'daki sarmaşıklı portal: %s, en yakın: %s blok"
+	"commands.garipseylermc.vine.status": "%s: sarmaşık sayacı %s/%s sn, Nether'daki sarmaşıklı portal: %s, en yakın: %s blok",
+	"block.garipseylermc.upside_down_stone": "Ters Dünya Taşı",
+	"entity.minecraft.ghast": "Dev Demobat",
+	"item.minecraft.ghast_spawn_egg": "Dev Demobat Çağırma Yumurtası",
+	"subtitles.entity.ghast.ambient": "Dev Demobat çığlık atıyor",
+	"subtitles.entity.ghast.death": "Dev Demobat öldü",
+	"subtitles.entity.ghast.hurt": "Dev Demobat hasar aldı",
+	"subtitles.entity.ghast.shoot": "Dev Demobat ateş topu fırlattı",
+	"subtitles.entity.ghast.warn": "Dev Demobat saldırıya hazırlanıyor",
+	"advancements.adventure.spyglass_at_ghast.description": "Dürbünle bir Dev Demobat’a bakın",
+	"advancements.nether.return_to_sender.description": "Bir Dev Demobat’ı ateş topuyla öldürün",
+	"item.minecraft.ghast_tear": "Dev Demobat Gözyaşı"
 }

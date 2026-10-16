@@ -1,5 +1,8 @@
 package dev.mehbur.garipseyler.config;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Every tunable number of the mod. Serialized as {@code config/garipseylermc.json}.
  * Field defaults are the shipped values; {@link #validate()} clamps hand-edited values into a safe range.
@@ -42,12 +45,20 @@ public class ModConfig {
 		public String skyLightColor = "#8a2a3a";
 		/** Chance per ambient particle tick that falling ash spawns. */
 		public double ashProbability = 0.004;
+		/** Build newly generated End spikes from Upside Down stone instead of obsidian. */
+		public boolean upsideDownStoneSpikes = true;
+		/** Client-side: every block except End stone is drawn in dripstone colors while in the End (F3+T to apply). */
+		public boolean dripstoneBlocks = true;
+		/** Client-side: extra block ids (e.g. "minecraft:crafting_table") that keep their own texture in the End. */
+		public List<String> keepOriginalTexture = new ArrayList<>();
 	}
 
 	/** Demobat (re-skinned Phantom) spawning. Spawn weights apply on world/server start. */
 	public static class Demobat {
 		/** Disables the vanilla insomnia spawner, so Phantoms never appear in the Overworld. */
 		public boolean disableOverworldPhantoms = true;
+		/** Demobats (Phantoms and Ghasts) only exist in the Nether: any that appear in the Overworld or the End are removed. */
+		public boolean netherOnly = true;
 		/** Natural spawn weight in every Nether biome (vanilla Nether Wastes: zombified piglin 100, ghast 50). */
 		public int netherSpawnWeight = 10;
 		public int netherMinGroup = 1;
@@ -123,6 +134,7 @@ public class ModConfig {
 		end.ambientLightColor = validColor(end.ambientLightColor, endDefaults.ambientLightColor);
 		end.skyLightColor = validColor(end.skyLightColor, endDefaults.skyLightColor);
 		end.ashProbability = clamp(end.ashProbability, 0.0, 1.0);
+		if (end.keepOriginalTexture == null) end.keepOriginalTexture = new ArrayList<>();
 
 		demobat.netherSpawnWeight = clamp(demobat.netherSpawnWeight, 0, 1000);
 		demobat.netherMinGroup = clamp(demobat.netherMinGroup, 1, 16);

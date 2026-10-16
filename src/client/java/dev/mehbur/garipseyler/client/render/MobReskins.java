@@ -1,6 +1,7 @@
 package dev.mehbur.garipseyler.client.render;
 
 import dev.mehbur.garipseyler.client.render.demobat.DemobatRenderer;
+import dev.mehbur.garipseyler.client.render.demobat.GiantDemobatRenderer;
 import dev.mehbur.garipseyler.client.render.demodog.DemodogRenderer;
 import dev.mehbur.garipseyler.client.render.demodog.DemodogVariant;
 import dev.mehbur.garipseyler.client.render.demogorgon.DemogorgonRenderer;
@@ -25,5 +26,6 @@ public final class MobReskins {
 		EntityRenderers.register(EntityTypes.ZOGLIN, context -> new DemodogRenderer<>(context, DemodogVariant.ZOGLIN));
 
 		EntityRenderers.register(EntityTypes.PHANTOM, DemobatRenderer::new);
+		EntityRenderers.register(EntityTypes.GHAST, GiantDemobatRenderer::new);
 	}
 }

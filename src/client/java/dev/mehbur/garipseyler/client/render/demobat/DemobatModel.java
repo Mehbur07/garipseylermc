@@ -104,6 +104,9 @@ public class DemobatModel extends EntityModel<PhantomRenderState> {
 
 		// The petal mouth snaps open and shut every few seconds.
 		float snap = Mth.clamp(Mth.sin(state.ageInTicks * 0.12F) * 3.0F - 2.0F, 0.0F, 1.0F);
+		if (state instanceof GiantDemobatRenderState giant && giant.charging) {
+			snap = 1.0F;
+		}
 		for (ModelPart petal : this.petals) {
 			petal.xRot = Mth.lerp(snap, 0.3F, -0.8F);
 		}

@@ -13,6 +13,7 @@ import dev.mehbur.garipseyler.effect.ModSounds;
 import dev.mehbur.garipseyler.effect.VineDrain;
 import dev.mehbur.garipseyler.entity.DemobatSpawns;
 import dev.mehbur.garipseyler.entity.ModEntities;
+import dev.mehbur.garipseyler.item.ModItems;
 import dev.mehbur.garipseyler.network.ModNetworking;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.resources.Identifier;
@@ -32,6 +33,7 @@ public class GaripSeylerMod implements ModInitializer {
 		ModSounds.init();
 		ModParticles.init();
 		ModBlocks.init();
+		ModItems.init();
 		ModAttachments.init();
 		ModEntities.init();
 		DemobatSpawns.register();
