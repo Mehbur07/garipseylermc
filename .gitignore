@@ -1,0 +1,41 @@
+# gradle
+.gradle/
+build/
+out/
+classes/
+
+# ide
+.idea/
+*.iml
+*.ipr
+*.iws
+.settings/
+.vscode/
+bin/
+.classpath
+.project
+*.launch
+
+# fabric dev run directory (worlds, logs, options)
+run/
+
+# os
+*.DS_Store
+Thumbs.db
+
+# java crash / profiling dumps
+hs_err_*.log
+replay_*.log
+*.hprof
+*.jfr
+
+# secrets — never commit
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.jks
+*.keystore
+secrets.*
+local.properties
