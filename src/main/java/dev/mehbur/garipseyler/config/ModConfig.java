@@ -23,7 +23,14 @@ public class ModConfig {
 		public double sporeProbability = 0.03;
 		public boolean redLightningEnabled = true;
 		public int redLightningIntervalSeconds = 7;
+		/** Horizontal distance range (blocks) from a player where a bolt strikes. */
+		public int redLightningMinDistance = 16;
+		public int redLightningMaxDistance = 48;
+		/** Client-side: thunder sound and red screen flash (flash also obeys the vanilla "Hide Lightning Flashes" option). */
 		public boolean redLightningSound = true;
+		public boolean redLightningFlash = true;
+		/** Peak opacity of the red screen flash, 0–1. */
+		public double redLightningFlashIntensity = 0.35;
 	}
 
 	/** Deepest World (End) atmosphere. Colors apply on world/server start. */
@@ -86,6 +93,9 @@ public class ModConfig {
 		nether.fogEndDistance = clamp(nether.fogEndDistance, 1.0, 1024.0);
 		nether.sporeProbability = clamp(nether.sporeProbability, 0.0, 1.0);
 		nether.redLightningIntervalSeconds = clamp(nether.redLightningIntervalSeconds, 1, 3600);
+		nether.redLightningMinDistance = clamp(nether.redLightningMinDistance, 0, 128);
+		nether.redLightningMaxDistance = clamp(nether.redLightningMaxDistance, nether.redLightningMinDistance + 1, 160);
+		nether.redLightningFlashIntensity = clamp(nether.redLightningFlashIntensity, 0.0, 1.0);
 
 		End endDefaults = new End();
 		end.fogColor = validColor(end.fogColor, endDefaults.fogColor);

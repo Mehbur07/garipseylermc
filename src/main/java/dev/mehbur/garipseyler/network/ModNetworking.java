@@ -1,0 +1,15 @@
+package dev.mehbur.garipseyler.network;
+
+import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
+
+/**
+ * Registers all custom payload types (both sides).
+ */
+public final class ModNetworking {
+	private ModNetworking() {
+	}
+
+	public static void register() {
+		PayloadTypeRegistry.clientboundPlay().register(RedLightningPayload.TYPE, RedLightningPayload.CODEC);
+	}
+}

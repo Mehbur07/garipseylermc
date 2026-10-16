@@ -17,6 +17,7 @@ public final class ModSounds {
 	public static final Holder.Reference<SoundEvent> UPSIDE_DOWN_MUSIC = register("music.upside_down");
 	public static final Holder.Reference<SoundEvent> DEEPEST_WORLD_LOOP = register("ambient.deepest_world.loop");
 	public static final Holder.Reference<SoundEvent> DEEPEST_WORLD_MOOD = register("ambient.deepest_world.mood");
+	public static final Holder.Reference<SoundEvent> RED_LIGHTNING_THUNDER = register("weather.red_lightning.thunder");
 
 	private ModSounds() {
 	}

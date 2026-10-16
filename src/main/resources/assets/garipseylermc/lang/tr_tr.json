@@ -15,5 +15,8 @@
 	"advancements.story.enter_the_nether.title": "Ters Dünya'ya Giriş",
 	"advancements.end.root.title": "En Derin Dünya",
 	"advancements.end.root.description": "Ters Dünya'nın da altında",
-	"advancements.story.enter_the_end.title": "Daha da Derine mi?"
+	"advancements.story.enter_the_end.title": "Daha da Derine mi?",
+
+	"subtitles.garipseylermc.weather.red_lightning.thunder": "Kırmızı şimşek çakıyor",
+	"entity.garipseylermc.red_lightning": "Kırmızı Şimşek"
 }

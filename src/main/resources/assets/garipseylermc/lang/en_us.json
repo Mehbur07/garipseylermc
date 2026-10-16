@@ -15,5 +15,8 @@
 	"advancements.story.enter_the_nether.title": "Into the Upside Down",
 	"advancements.end.root.title": "The Deepest World",
 	"advancements.end.root.description": "Beneath even the Upside Down",
-	"advancements.story.enter_the_end.title": "Deeper Still?"
+	"advancements.story.enter_the_end.title": "Deeper Still?",
+
+	"subtitles.garipseylermc.weather.red_lightning.thunder": "Red lightning cracks",
+	"entity.garipseylermc.red_lightning": "Red Lightning"
 }

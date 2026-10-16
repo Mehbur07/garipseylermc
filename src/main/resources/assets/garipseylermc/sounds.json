@@ -1,50 +1,133 @@
 {
 	"ambient.upside_down.loop": {
 		"sounds": [
-			{ "name": "minecraft:ambient/nether/soulsand_valley/ambience", "stream": true, "pitch": 0.8 }
+			{
+				"name": "minecraft:ambient/nether/soulsand_valley/ambience",
+				"stream": true,
+				"pitch": 0.8
+			}
 		]
 	},
 	"ambient.upside_down.mood": {
 		"sounds": [
-			{ "name": "minecraft:ambient/nether/soulsand_valley/mood1", "pitch": 0.7 },
-			{ "name": "minecraft:ambient/nether/soulsand_valley/mood2", "pitch": 0.7 },
-			{ "name": "minecraft:ambient/nether/soulsand_valley/mood3", "pitch": 0.7 },
-			{ "name": "minecraft:ambient/nether/soulsand_valley/mood4", "pitch": 0.7 }
+			{
+				"name": "minecraft:ambient/nether/soulsand_valley/mood1",
+				"pitch": 0.7
+			},
+			{
+				"name": "minecraft:ambient/nether/soulsand_valley/mood2",
+				"pitch": 0.7
+			},
+			{
+				"name": "minecraft:ambient/nether/soulsand_valley/mood3",
+				"pitch": 0.7
+			},
+			{
+				"name": "minecraft:ambient/nether/soulsand_valley/mood4",
+				"pitch": 0.7
+			}
 		],
 		"subtitle": "subtitles.garipseylermc.ambient.upside_down.mood"
 	},
 	"ambient.upside_down.additions": {
 		"sounds": [
-			{ "name": "minecraft:ambient/nether/soulsand_valley/whisper1", "volume": 0.6 },
-			{ "name": "minecraft:ambient/nether/soulsand_valley/whisper2", "volume": 0.6 },
-			{ "name": "minecraft:ambient/nether/soulsand_valley/whisper3", "volume": 0.6 },
-			{ "name": "minecraft:ambient/nether/soulsand_valley/whisper4", "volume": 0.6 },
-			{ "name": "minecraft:ambient/nether/soulsand_valley/wind1", "volume": 0.5 },
-			{ "name": "minecraft:ambient/nether/soulsand_valley/wind2", "volume": 0.5 },
-			{ "name": "minecraft:ambient/nether/soulsand_valley/wind3", "volume": 0.5 },
-			{ "name": "minecraft:ambient/nether/soulsand_valley/wind4", "volume": 0.5 }
+			{
+				"name": "minecraft:ambient/nether/soulsand_valley/whisper1",
+				"volume": 0.6
+			},
+			{
+				"name": "minecraft:ambient/nether/soulsand_valley/whisper2",
+				"volume": 0.6
+			},
+			{
+				"name": "minecraft:ambient/nether/soulsand_valley/whisper3",
+				"volume": 0.6
+			},
+			{
+				"name": "minecraft:ambient/nether/soulsand_valley/whisper4",
+				"volume": 0.6
+			},
+			{
+				"name": "minecraft:ambient/nether/soulsand_valley/wind1",
+				"volume": 0.5
+			},
+			{
+				"name": "minecraft:ambient/nether/soulsand_valley/wind2",
+				"volume": 0.5
+			},
+			{
+				"name": "minecraft:ambient/nether/soulsand_valley/wind3",
+				"volume": 0.5
+			},
+			{
+				"name": "minecraft:ambient/nether/soulsand_valley/wind4",
+				"volume": 0.5
+			}
 		],
 		"subtitle": "subtitles.garipseylermc.ambient.upside_down.additions"
 	},
 	"music.upside_down": {
 		"sounds": [
-			{ "name": "minecraft:music/game/nether/soulsand_valley/so_below", "stream": true },
-			{ "name": "minecraft:music/game/nether/nether_wastes/rubedo", "stream": true },
-			{ "name": "minecraft:music/game/nether/dead_voxel", "stream": true }
+			{
+				"name": "minecraft:music/game/nether/soulsand_valley/so_below",
+				"stream": true
+			},
+			{
+				"name": "minecraft:music/game/nether/nether_wastes/rubedo",
+				"stream": true
+			},
+			{
+				"name": "minecraft:music/game/nether/dead_voxel",
+				"stream": true
+			}
 		]
 	},
 	"ambient.deepest_world.loop": {
 		"sounds": [
-			{ "name": "minecraft:ambient/nether/basalt_deltas/ambience", "stream": true, "pitch": 0.5, "volume": 0.7 }
+			{
+				"name": "minecraft:ambient/nether/basalt_deltas/ambience",
+				"stream": true,
+				"pitch": 0.5,
+				"volume": 0.7
+			}
 		]
 	},
 	"ambient.deepest_world.mood": {
 		"sounds": [
-			{ "name": "minecraft:ambient/cave/cave13", "pitch": 0.6 },
-			{ "name": "minecraft:ambient/cave/cave14", "pitch": 0.6 },
-			{ "name": "minecraft:ambient/cave/cave18", "pitch": 0.6 },
-			{ "name": "minecraft:ambient/cave/cave21", "pitch": 0.6 }
+			{
+				"name": "minecraft:ambient/cave/cave13",
+				"pitch": 0.6
+			},
+			{
+				"name": "minecraft:ambient/cave/cave14",
+				"pitch": 0.6
+			},
+			{
+				"name": "minecraft:ambient/cave/cave18",
+				"pitch": 0.6
+			},
+			{
+				"name": "minecraft:ambient/cave/cave21",
+				"pitch": 0.6
+			}
 		],
 		"subtitle": "subtitles.garipseylermc.ambient.deepest_world.mood"
+	},
+	"weather.red_lightning.thunder": {
+		"sounds": [
+			{
+				"name": "minecraft:ambient/weather/thunder1",
+				"pitch": 0.7
+			},
+			{
+				"name": "minecraft:ambient/weather/thunder2",
+				"pitch": 0.7
+			},
+			{
+				"name": "minecraft:ambient/weather/thunder3",
+				"pitch": 0.7
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.weather.red_lightning.thunder"
 	}
 }

@@ -4,7 +4,7 @@
 
 Stranger Things temalı bir Minecraft Java modu: Nether kırmızı **Ters Dünya**'ya, End **En Derin Dünya**'ya dönüşür; Demogorgon, Demodog, Demobat, Vecna ve Mind Flayer gelir.
 
-> Durum: **Faz 1 tamamlandı** (Ters Dünya / En Derin Dünya atmosferi). Özellik fazları için bkz. [ROADMAP.md](ROADMAP.md).
+> Durum: **Faz 2 tamamlandı** (atmosfer + kırmızı şimşek). Özellik fazları için bkz. [ROADMAP.md](ROADMAP.md).
 
 ## Gereksinimler
 | | Sürüm |
@@ -54,7 +54,9 @@ src/client/java/dev/mehbur/garipseyler/client/   sadece istemci
 | | `sporeProbability` | `0.03` | Spor partikülü yoğunluğu (0–1) ¹ |
 | | `redLightningEnabled` | `true` | Kırmızı şimşek açık/kapalı |
 | | `redLightningIntervalSeconds` | `7` | Şimşek aralığı (sn) |
-| | `redLightningSound` | `true` | Şimşek sesi |
+| | `redLightningMinDistance` / `redLightningMaxDistance` | `16` / `48` | Oyuncudan yatay çakma mesafesi (blok) |
+| | `redLightningSound` | `true` | Gök gürültüsü sesi ² |
+| | `redLightningFlash` / `redLightningFlashIntensity` | `true` / `0.35` | Kırmızı ekran flaşı ve en yüksek opaklığı (0–1) ² |
 | `end` | `titleOnEnter` | `true` | Girişte "En Derin Dünya" başlığı |
 | | `fogColor` / `ambientLightColor` / `skyLightColor` | `"#14070a"` / `"#3a1f22"` / `"#8a2a3a"` | En Derin Dünya renkleri ¹ |
 | | `ashProbability` | `0.004` | Düşen kül partikülü yoğunluğu ¹ |
@@ -71,6 +73,7 @@ src/client/java/dev/mehbur/garipseyler/client/   sadece istemci
 | `glove` | `range` / `cooldownSeconds` / `throwStrength` | `20` / `5` / `2.0` | Telekinezi ayarları |
 
 ¹ Biyom verisine yazıldığı için dünya/sunucu **yeniden başlatılınca** geçerli olur (`/garipseyler reload` yetmez).
+² İstemci ayarı: her oyuncunun kendi `config/garipseylermc.json` dosyasından okunur. Flaş ayrıca vanilla **Erişilebilirlik → "Şimşek Flaşlarını Gizle"** seçeneğine uyar.
 Renkler `#RRGGBB` biçiminde; hatalı renk yazılırsa varsayılan kullanılır.
 
 > Not: Ayarların bir kısmı ilgili faz tamamlandıkça etkin hale gelir.
@@ -83,6 +86,11 @@ Ayrıntılı liste ve durum: [ROADMAP.md](ROADMAP.md).
 - End **En Derin Dünya** olur: kan kırmızısı-siyah gökyüzü, kırmızı ışık tonu, düşen kül, alçak uğultu ambiyansı.
 - Boyuta girerken başlık kartı ("Ters Dünya" / "En Derin Dünya"), ilgili başarım adları değişir (TR + EN).
 
+### Faz 2 — Kırmızı şimşek ✅
+- Ters Dünya'da her **7 sn**'de bir, her oyuncu grubunun yakınında kırmızı şimşek çakar: mağara zemininden tavana uzanan kırmızı yıldırım, kırmızı ekran flaşı, gök gürültüsü.
+- **Tamamen görsel:** şimşek yalnızca istemcide oluşturulur; sunucuda varlık yoktur → hasar, yangın, mob dönüşümü (domuz→piglin vb.) **olamaz**.
+- Çok oyunculuda yakındaki herkes aynı şimşeği görür.
+
 ## Placeholder dosyaları (değiştirmek için)
 Aynı isimle üzerine yaz, `gradlew build` / `run.bat` ile yeniden derle.
 
@@ -90,4 +98,4 @@ Aynı isimle üzerine yaz, `gradlew build` / `run.bat` ile yeniden derle.
 |---|---|---|
 | `src/main/resources/assets/garipseylermc/textures/particle/upside_down_spore_0..2.png` | Ters Dünya spor partikülü | Şeffaf PNG, 8×8 veya 16×16; kare sayısı `particles/upside_down_spore.json`'da |
 | `src/main/resources/assets/minecraft/textures/environment/end_sky.png` | En Derin Dünya gökyüzü | Oyun bu dokuyu ~%16 parlaklıkla çarpar → **parlak** çiz, döşenebilir (tileable) olsun |
-| `src/main/resources/assets/garipseylermc/sounds.json` | Ambiyans/müzik sesleri | Şu an vanilla seslerine bağlı. Kendi sesin için `.ogg` dosyasını `assets/garipseylermc/sounds/` altına koy ve `"name"`i `"garipseylermc:<dosya_adı>"` yap (uzantısız) |
+| `src/main/resources/assets/garipseylermc/sounds.json` | Ambiyans/müzik/şimşek sesleri | Şu an vanilla seslerine bağlı. Kendi sesin için `.ogg` dosyasını `assets/garipseylermc/sounds/` altına koy ve `"name"`i `"garipseylermc:<dosya_adı>"` yap (uzantısız) |

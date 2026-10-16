@@ -1,10 +1,14 @@
 package dev.mehbur.garipseyler.client;
 
 import dev.mehbur.garipseyler.GaripSeylerMod;
+import dev.mehbur.garipseyler.client.hud.RedFlashOverlay;
+import dev.mehbur.garipseyler.client.render.RedLightningRenderer;
 import dev.mehbur.garipseyler.client.render.UpsideDownSporeParticle;
 import dev.mehbur.garipseyler.effect.ModParticles;
+import dev.mehbur.garipseyler.entity.ModEntities;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.particle.v1.ParticleProviderRegistry;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 
 /**
  * Client-only entrypoint: renderers, sky/fog, HUD and key bindings are registered from here.
@@ -13,6 +17,9 @@ public class GaripSeylerClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		ParticleProviderRegistry.getInstance().register(ModParticles.UPSIDE_DOWN_SPORE, UpsideDownSporeParticle.Provider::new);
+		EntityRenderers.register(ModEntities.RED_LIGHTNING, RedLightningRenderer::new);
+		RedFlashOverlay.register();
+		RedLightningClient.register();
 
 		GaripSeylerMod.LOGGER.info("Garip Şeyler MC client initialized.");
 	}

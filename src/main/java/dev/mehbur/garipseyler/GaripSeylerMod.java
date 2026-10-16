@@ -4,8 +4,11 @@ import dev.mehbur.garipseyler.command.ModCommands;
 import dev.mehbur.garipseyler.config.ConfigManager;
 import dev.mehbur.garipseyler.dimension.DimensionAtmosphere;
 import dev.mehbur.garipseyler.dimension.DimensionTitles;
+import dev.mehbur.garipseyler.dimension.RedLightningScheduler;
 import dev.mehbur.garipseyler.effect.ModParticles;
 import dev.mehbur.garipseyler.effect.ModSounds;
+import dev.mehbur.garipseyler.entity.ModEntities;
+import dev.mehbur.garipseyler.network.ModNetworking;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
@@ -23,8 +26,11 @@ public class GaripSeylerMod implements ModInitializer {
 		ConfigManager.load();
 		ModSounds.init();
 		ModParticles.init();
+		ModEntities.init();
+		ModNetworking.register();
 		DimensionAtmosphere.register();
 		DimensionTitles.register();
+		RedLightningScheduler.register();
 		ModCommands.register();
 
 		LOGGER.info("Garip Şeyler MC initialized — welcome to the Upside Down.");

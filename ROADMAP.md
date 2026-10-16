@@ -46,7 +46,7 @@ Stranger Things temalı Minecraft modu (telif nedeniyle adı **Garip Şeyler MC*
 
 **Test:** Nether'ın her biyomunda (Crimson, Warped, Soul Sand Valley, Basalt Deltas, Wastes) aynı kırmızı görünüm; End'de yeni atmosfer. Ekran görüntüsüyle kontrol.
 
-## Faz 2 — Kırmızı şimşek
+## Faz 2 — Kırmızı şimşek ✅ (tamamlandı)
 - Ters Dünya'da her **7 sn**'de bir kırmızı şimşek: gökyüzü flaşı + görsel kırmızı yıldırım + ses.
 - Sunucu tetikler, istemcilere paket gider (çok oyunculuda senkron). **Hasar yok, yangın yok, mob dönüşümü yok.**
 
