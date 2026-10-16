@@ -1,0 +1,362 @@
+{
+	"entity.enderman.ambient": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demogorgon.ambient",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.enderman.ambient"
+	},
+	"entity.enderman.scream": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demogorgon.scream",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.enderman.scream"
+	},
+	"entity.enderman.stare": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demogorgon.stare",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.enderman.stare"
+	},
+	"entity.enderman.hurt": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demogorgon.hurt",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.enderman.hurt"
+	},
+	"entity.enderman.death": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demogorgon.death",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.enderman.death"
+	},
+	"entity.piglin.ambient": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog.ambient",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.piglin.ambient"
+	},
+	"entity.piglin.admiring_item": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog.ambient",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.piglin.admiring_item"
+	},
+	"entity.piglin.celebrate": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog.ambient",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.piglin.celebrate"
+	},
+	"entity.piglin.jealous": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog.angry",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.piglin.jealous"
+	},
+	"entity.piglin.retreat": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog.ambient",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.piglin.retreat"
+	},
+	"entity.piglin.angry": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog.angry",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.piglin.angry"
+	},
+	"entity.piglin.hurt": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog.hurt",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.piglin.hurt"
+	},
+	"entity.piglin.death": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog.death",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.piglin.death"
+	},
+	"entity.zombified_piglin.ambient": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog.ambient",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.zombified_piglin.ambient"
+	},
+	"entity.zombified_piglin.angry": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog.angry",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.zombified_piglin.angry"
+	},
+	"entity.zombified_piglin.hurt": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog.hurt",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.zombified_piglin.hurt"
+	},
+	"entity.zombified_piglin.death": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog.death",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.zombified_piglin.death"
+	},
+	"entity.piglin_brute.ambient": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog_alpha.ambient",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.piglin_brute.ambient"
+	},
+	"entity.piglin_brute.angry": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog_alpha.angry",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.piglin_brute.angry"
+	},
+	"entity.piglin_brute.hurt": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog_alpha.hurt",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.piglin_brute.hurt"
+	},
+	"entity.piglin_brute.death": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog_alpha.death",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.piglin_brute.death"
+	},
+	"entity.hoglin.ambient": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog_alpha.ambient",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.hoglin.ambient"
+	},
+	"entity.hoglin.angry": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog_alpha.angry",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.hoglin.angry"
+	},
+	"entity.hoglin.retreat": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog_alpha.ambient",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.hoglin.retreat"
+	},
+	"entity.hoglin.attack": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog_alpha.attack",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.hoglin.attack"
+	},
+	"entity.hoglin.hurt": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog_alpha.hurt",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.hoglin.hurt"
+	},
+	"entity.hoglin.death": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog_alpha.death",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.hoglin.death"
+	},
+	"entity.zoglin.ambient": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog_alpha.ambient",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.zoglin.ambient"
+	},
+	"entity.zoglin.angry": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog_alpha.angry",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.zoglin.angry"
+	},
+	"entity.zoglin.attack": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog_alpha.attack",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.zoglin.attack"
+	},
+	"entity.zoglin.hurt": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog_alpha.hurt",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.zoglin.hurt"
+	},
+	"entity.zoglin.death": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog_alpha.death",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.zoglin.death"
+	},
+	"entity.phantom.ambient": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demobat.ambient",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.phantom.ambient"
+	},
+	"entity.phantom.bite": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demobat.bite",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.phantom.bite"
+	},
+	"entity.phantom.hurt": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demobat.hurt",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.phantom.hurt"
+	},
+	"entity.phantom.death": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demobat.death",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.phantom.death"
+	}
+}

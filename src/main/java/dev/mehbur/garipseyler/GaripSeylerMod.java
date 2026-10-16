@@ -7,6 +7,7 @@ import dev.mehbur.garipseyler.dimension.DimensionTitles;
 import dev.mehbur.garipseyler.dimension.RedLightningScheduler;
 import dev.mehbur.garipseyler.effect.ModParticles;
 import dev.mehbur.garipseyler.effect.ModSounds;
+import dev.mehbur.garipseyler.entity.DemobatSpawns;
 import dev.mehbur.garipseyler.entity.ModEntities;
 import dev.mehbur.garipseyler.network.ModNetworking;
 import net.fabricmc.api.ModInitializer;
@@ -27,6 +28,7 @@ public class GaripSeylerMod implements ModInitializer {
 		ModSounds.init();
 		ModParticles.init();
 		ModEntities.init();
+		DemobatSpawns.register();
 		ModNetworking.register();
 		DimensionAtmosphere.register();
 		DimensionTitles.register();

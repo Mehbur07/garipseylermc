@@ -2,6 +2,8 @@ package dev.mehbur.garipseyler.client;
 
 import dev.mehbur.garipseyler.GaripSeylerMod;
 import dev.mehbur.garipseyler.client.hud.RedFlashOverlay;
+import dev.mehbur.garipseyler.client.render.MobReskins;
+import dev.mehbur.garipseyler.client.render.ModModelLayers;
 import dev.mehbur.garipseyler.client.render.RedLightningRenderer;
 import dev.mehbur.garipseyler.client.render.UpsideDownSporeParticle;
 import dev.mehbur.garipseyler.effect.ModParticles;
@@ -18,6 +20,8 @@ public class GaripSeylerClient implements ClientModInitializer {
 	public void onInitializeClient() {
 		ParticleProviderRegistry.getInstance().register(ModParticles.UPSIDE_DOWN_SPORE, UpsideDownSporeParticle.Provider::new);
 		EntityRenderers.register(ModEntities.RED_LIGHTNING, RedLightningRenderer::new);
+		ModModelLayers.register();
+		MobReskins.register();
 		RedFlashOverlay.register();
 		RedLightningClient.register();
 

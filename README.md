@@ -4,7 +4,7 @@
 
 Stranger Things temalı bir Minecraft Java modu: Nether kırmızı **Ters Dünya**'ya, End **En Derin Dünya**'ya dönüşür; Demogorgon, Demodog, Demobat, Vecna ve Mind Flayer gelir.
 
-> Durum: **Faz 2 tamamlandı** (atmosfer + kırmızı şimşek). Özellik fazları için bkz. [ROADMAP.md](ROADMAP.md).
+> Durum: **Faz 3 tamamlandı** (atmosfer, kırmızı şimşek, mob dönüşümleri). Özellik fazları için bkz. [ROADMAP.md](ROADMAP.md).
 
 ## Gereksinimler
 | | Sürüm |
@@ -60,6 +60,9 @@ src/client/java/dev/mehbur/garipseyler/client/   sadece istemci
 | `end` | `titleOnEnter` | `true` | Girişte "En Derin Dünya" başlığı |
 | | `fogColor` / `ambientLightColor` / `skyLightColor` | `"#14070a"` / `"#3a1f22"` / `"#8a2a3a"` | En Derin Dünya renkleri ¹ |
 | | `ashProbability` | `0.004` | Düşen kül partikülü yoğunluğu ¹ |
+| `demobat` | `disableOverworldPhantoms` | `true` | Overworld'de uykusuzluk Phantom/Demobat spawn'ını kapatır |
+| | `netherSpawnWeight` | `10` | Nether biyomlarında doğal spawn ağırlığı (0 = kapalı) ¹ |
+| | `netherMinGroup` / `netherMaxGroup` | `1` / `2` | Grup boyutu ¹ |
 | `vine` | `drainIntervalMinutes` | `10` | Can düşürme aralığı (dk) |
 | | `drainTargetHealth` | `1.0` | Düşürülen can (HP, 2 = 1 kalp) |
 | | `effectRadius` | `32` | Etki yarıçapı (blok) |
@@ -91,11 +94,32 @@ Ayrıntılı liste ve durum: [ROADMAP.md](ROADMAP.md).
 - **Tamamen görsel:** şimşek yalnızca istemcide oluşturulur; sunucuda varlık yoktur → hasar, yangın, mob dönüşümü (domuz→piglin vb.) **olamaz**.
 - Çok oyunculuda yakındaki herkes aynı şimşeği görür.
 
+### Faz 3 — Mob dönüşümleri ✅
+Yalnızca **görünüm** değişir; davranış, can, AI, loot ve vuruş kutuları vanilla kalır (eski dünyalarla uyumlu).
+
+| Vanilla | Görünüm | Ayrım |
+|---|---|---|
+| Enderman | **Demogorgon** | 5 yapraklı ağız; sinirlenince yapraklar açılır, taşıdığı blok görünür |
+| Piglin | **Demodog** | normal boy, koyu |
+| Piglin Brute | **Yaralı Demodog** | ×1.15, daha koyu, yara izli |
+| Zombified Piglin | **Çürümüş Demodog** | ×0.95, soluk yeşil, et lekeli |
+| Hoglin | **Alfa Demodog** | ×1.35, kırmızımsı |
+| Zoglin | **Çürümüş Alfa Demodog** | ×1.35, yeşilimsi-kırmızı |
+| Phantom | **Demobat** | yarasa kanatlı, yaprak ağızlı |
+
+- Bebekler yarım boyda çizilir. Demodog'ların ağız yaprakları saldırırken açılır.
+- İsimler, çağırma yumurtaları, ölüm mesajları ve altyazılar yeni adları kullanır (TR + EN). Sesler kendi ses olaylarımıza yönlendirilir.
+- **Demobat** yalnızca Nether'da doğal spawn olur; Overworld'deki uykusuzluk spawn'ı kapalıdır. Nether tavanı yüzünden takılmasınlar diye, tavanı olan boyutlarda dönme noktaları mağara tavanının altında tutulur.
+
 ## Placeholder dosyaları (değiştirmek için)
 Aynı isimle üzerine yaz, `gradlew build` / `run.bat` ile yeniden derle.
 
 | Dosya | Ne | Not |
 |---|---|---|
+| `src/main/resources/assets/garipseylermc/textures/entity/demogorgon/demogorgon.png` | Demogorgon dokusu | 64×64 |
+| `src/main/resources/assets/garipseylermc/textures/entity/demodog/demodog*.png` | 5 Demodog varyantı (`demodog`, `_brute`, `_rotten`, `_alpha`, `_alpha_rotten`) | 64×64, aynı UV düzeni |
+| `src/main/resources/assets/garipseylermc/textures/entity/demobat/demobat.png` | Demobat dokusu | 64×64 |
+| `src/client/java/dev/mehbur/garipseyler/client/render/*/…Model.java` → `createBodyLayer()` | Mob modelleri | Blockbench → *File → Export → Export Java Entity* (Mojang mappings); kutuları `createBodyLayer()` içine taşı, **parça isimlerini koru** (`head`, `body`, `petal_holder_N`…) |
 | `src/main/resources/assets/garipseylermc/textures/particle/upside_down_spore_0..2.png` | Ters Dünya spor partikülü | Şeffaf PNG, 8×8 veya 16×16; kare sayısı `particles/upside_down_spore.json`'da |
 | `src/main/resources/assets/minecraft/textures/environment/end_sky.png` | En Derin Dünya gökyüzü | Oyun bu dokuyu ~%16 parlaklıkla çarpar → **parlak** çiz, döşenebilir (tileable) olsun |
-| `src/main/resources/assets/garipseylermc/sounds.json` | Ambiyans/müzik/şimşek sesleri | Şu an vanilla seslerine bağlı. Kendi sesin için `.ogg` dosyasını `assets/garipseylermc/sounds/` altına koy ve `"name"`i `"garipseylermc:<dosya_adı>"` yap (uzantısız) |
+| `src/main/resources/assets/garipseylermc/sounds.json` | Ambiyans/müzik/şimşek/mob sesleri (`entity.demogorgon.*`, `entity.demodog.*`, `entity.demodog_alpha.*`, `entity.demobat.*`) | Şu an vanilla seslerine bağlı. Kendi sesin için `.ogg` dosyasını `assets/garipseylermc/sounds/` altına koy ve `"name"`i `"garipseylermc:<dosya_adı>"` yap (uzantısız) |

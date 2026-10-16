@@ -7,6 +7,7 @@ package dev.mehbur.garipseyler.config;
 public class ModConfig {
 	public Nether nether = new Nether();
 	public End end = new End();
+	public Demobat demobat = new Demobat();
 	public Vine vine = new Vine();
 	public Vecna vecna = new Vecna();
 	public MindFlayer mindFlayer = new MindFlayer();
@@ -41,6 +42,16 @@ public class ModConfig {
 		public String skyLightColor = "#8a2a3a";
 		/** Chance per ambient particle tick that falling ash spawns. */
 		public double ashProbability = 0.004;
+	}
+
+	/** Demobat (re-skinned Phantom) spawning. Spawn weights apply on world/server start. */
+	public static class Demobat {
+		/** Disables the vanilla insomnia spawner, so Phantoms never appear in the Overworld. */
+		public boolean disableOverworldPhantoms = true;
+		/** Natural spawn weight in every Nether biome (vanilla Nether Wastes: zombified piglin 100, ghast 50). */
+		public int netherSpawnWeight = 10;
+		public int netherMinGroup = 1;
+		public int netherMaxGroup = 2;
 	}
 
 	/** Upside Down vine that grows on lit Nether portals. */
@@ -81,6 +92,7 @@ public class ModConfig {
 	public void validate() {
 		if (nether == null) nether = new Nether();
 		if (end == null) end = new End();
+		if (demobat == null) demobat = new Demobat();
 		if (vine == null) vine = new Vine();
 		if (vecna == null) vecna = new Vecna();
 		if (mindFlayer == null) mindFlayer = new MindFlayer();
@@ -102,6 +114,10 @@ public class ModConfig {
 		end.ambientLightColor = validColor(end.ambientLightColor, endDefaults.ambientLightColor);
 		end.skyLightColor = validColor(end.skyLightColor, endDefaults.skyLightColor);
 		end.ashProbability = clamp(end.ashProbability, 0.0, 1.0);
+
+		demobat.netherSpawnWeight = clamp(demobat.netherSpawnWeight, 0, 1000);
+		demobat.netherMinGroup = clamp(demobat.netherMinGroup, 1, 16);
+		demobat.netherMaxGroup = clamp(demobat.netherMaxGroup, demobat.netherMinGroup, 16);
 
 		vine.drainIntervalMinutes = clamp(vine.drainIntervalMinutes, 1, 1440);
 		vine.drainTargetHealth = clamp(vine.drainTargetHealth, 0.5, 1024.0);

@@ -52,7 +52,7 @@ Stranger Things temalı Minecraft modu (telif nedeniyle adı **Garip Şeyler MC*
 
 **Test:** 7 sn aralık, hasar/yangın olmadığı, Overworld'de çakmadığı.
 
-## Faz 3 — Mob görünümleri
+## Faz 3 — Mob görünümleri ✅ (tamamlandı; Piglin Brute ve Zoglin de Demodog varyantı oldu)
 | Vanilla | Yeni görünüm | Not |
 |---|---|---|
 | Enderman | **Demogorgon** | Davranış, can, ses mantığı aynı; yeni model/doku/ses |
