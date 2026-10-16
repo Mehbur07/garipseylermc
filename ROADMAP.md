@@ -40,7 +40,7 @@ Stranger Things temalı Minecraft modu (telif nedeniyle adı **Garip Şeyler MC*
 
 **Test:** `gradlew build` başarılı, sunucu açılıyor, mod listede görünüyor.
 
-## Faz 1 — Boyut atmosferi
+## Faz 1 — Boyut atmosferi ✅ (tamamlandı)
 - **Nether → "Ters Dünya" (Upside Down):** tüm biyomlar *görsel olarak* tek kırmızı ton (gökyüzü, sis, su/ambiyans rengi); arazi çeşitliliği korunur. Havada süzülen spor partikülleri, kasvetli ambiyans sesi.
 - **End → "En Derin Dünya":** isim, gökyüzü/sis tonu, ambiyans; Ters Dünya'nın da altındaki katman teması.
 

@@ -19,6 +19,13 @@ loom {
 			sourceSet sourceSets.client
 		}
 	}
+
+	runs {
+		// Separate directory so runClient and runServer can run side by side for multiplayer tests.
+		server {
+			runDir "run/server"
+		}
+	}
 }
 
 dependencies {

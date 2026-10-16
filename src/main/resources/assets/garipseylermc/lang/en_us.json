@@ -1,3 +1,19 @@
 {
-	"commands.garipseylermc.reload": "Garip Şeyler MC config reloaded."
+	"commands.garipseylermc.reload": "Garip Şeyler MC config reloaded.",
+
+	"title.garipseylermc.upside_down": "The Upside Down",
+	"subtitle.garipseylermc.upside_down": "Nothing here is what it seems...",
+	"title.garipseylermc.deepest_world": "The Deepest World",
+	"subtitle.garipseylermc.deepest_world": "Beneath even the Upside Down...",
+
+	"subtitles.garipseylermc.ambient.upside_down.mood": "Something stirs in the Upside Down",
+	"subtitles.garipseylermc.ambient.upside_down.additions": "Whispers",
+	"subtitles.garipseylermc.ambient.deepest_world.mood": "The deep rumbles",
+
+	"advancements.nether.root.title": "The Upside Down",
+	"advancements.nether.root.description": "Bring a flashlight",
+	"advancements.story.enter_the_nether.title": "Into the Upside Down",
+	"advancements.end.root.title": "The Deepest World",
+	"advancements.end.root.description": "Beneath even the Upside Down",
+	"advancements.story.enter_the_end.title": "Deeper Still?"
 }

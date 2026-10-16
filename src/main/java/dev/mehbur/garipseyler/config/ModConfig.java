@@ -6,16 +6,34 @@ package dev.mehbur.garipseyler.config;
  */
 public class ModConfig {
 	public Nether nether = new Nether();
+	public End end = new End();
 	public Vine vine = new Vine();
 	public Vecna vecna = new Vecna();
 	public MindFlayer mindFlayer = new MindFlayer();
 	public Glove glove = new Glove();
 
-	/** Upside Down (Nether) atmosphere. */
+	/** Upside Down (Nether) atmosphere. Colors and fog apply on world/server start. */
 	public static class Nether {
+		public boolean titleOnEnter = true;
+		public String fogColor = "#3d0a0d";
+		public String ambientLightColor = "#3a1414";
+		public double fogStartDistance = 4.0;
+		public double fogEndDistance = 72.0;
+		/** Chance per ambient particle tick that a spore spawns (vanilla crimson forest: 0.025). */
+		public double sporeProbability = 0.03;
 		public boolean redLightningEnabled = true;
 		public int redLightningIntervalSeconds = 7;
 		public boolean redLightningSound = true;
+	}
+
+	/** Deepest World (End) atmosphere. Colors apply on world/server start. */
+	public static class End {
+		public boolean titleOnEnter = true;
+		public String fogColor = "#14070a";
+		public String ambientLightColor = "#3a1f22";
+		public String skyLightColor = "#8a2a3a";
+		/** Chance per ambient particle tick that falling ash spawns. */
+		public double ashProbability = 0.004;
 	}
 
 	/** Upside Down vine that grows on lit Nether portals. */
@@ -55,12 +73,25 @@ public class ModConfig {
 	/** Fills missing sections and clamps values into sane ranges. */
 	public void validate() {
 		if (nether == null) nether = new Nether();
+		if (end == null) end = new End();
 		if (vine == null) vine = new Vine();
 		if (vecna == null) vecna = new Vecna();
 		if (mindFlayer == null) mindFlayer = new MindFlayer();
 		if (glove == null) glove = new Glove();
 
+		Nether netherDefaults = new Nether();
+		nether.fogColor = validColor(nether.fogColor, netherDefaults.fogColor);
+		nether.ambientLightColor = validColor(nether.ambientLightColor, netherDefaults.ambientLightColor);
+		nether.fogStartDistance = clamp(nether.fogStartDistance, -64.0, 1024.0);
+		nether.fogEndDistance = clamp(nether.fogEndDistance, 1.0, 1024.0);
+		nether.sporeProbability = clamp(nether.sporeProbability, 0.0, 1.0);
 		nether.redLightningIntervalSeconds = clamp(nether.redLightningIntervalSeconds, 1, 3600);
+
+		End endDefaults = new End();
+		end.fogColor = validColor(end.fogColor, endDefaults.fogColor);
+		end.ambientLightColor = validColor(end.ambientLightColor, endDefaults.ambientLightColor);
+		end.skyLightColor = validColor(end.skyLightColor, endDefaults.skyLightColor);
+		end.ashProbability = clamp(end.ashProbability, 0.0, 1.0);
 
 		vine.drainIntervalMinutes = clamp(vine.drainIntervalMinutes, 1, 1440);
 		vine.drainTargetHealth = clamp(vine.drainTargetHealth, 0.5, 1024.0);
@@ -78,6 +109,15 @@ public class ModConfig {
 		glove.range = clamp(glove.range, 1, 128);
 		glove.cooldownSeconds = clamp(glove.cooldownSeconds, 0, 3600);
 		glove.throwStrength = clamp(glove.throwStrength, 0.0, 10.0);
+	}
+
+	/** Parses {@code #RRGGBB} into an opaque ARGB int. Call only on validated values. */
+	public static int parseColor(String hex) {
+		return 0xFF000000 | Integer.parseInt(hex.substring(1), 16);
+	}
+
+	private static String validColor(String value, String fallback) {
+		return value != null && value.matches("#[0-9a-fA-F]{6}") ? value : fallback;
 	}
 
 	private static int clamp(int value, int min, int max) {

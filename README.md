@@ -4,7 +4,7 @@
 
 Stranger Things temalı bir Minecraft Java modu: Nether kırmızı **Ters Dünya**'ya, End **En Derin Dünya**'ya dönüşür; Demogorgon, Demodog, Demobat, Vecna ve Mind Flayer gelir.
 
-> Durum: **Faz 0 tamamlandı** (altyapı). Özellik fazları için bkz. [ROADMAP.md](ROADMAP.md).
+> Durum: **Faz 1 tamamlandı** (Ters Dünya / En Derin Dünya atmosferi). Özellik fazları için bkz. [ROADMAP.md](ROADMAP.md).
 
 ## Gereksinimler
 | | Sürüm |
@@ -47,9 +47,17 @@ src/client/java/dev/mehbur/garipseyler/client/   sadece istemci
 
 | Bölüm | Anahtar | Varsayılan | Açıklama |
 |---|---|---|---|
-| `nether` | `redLightningEnabled` | `true` | Kırmızı şimşek açık/kapalı |
+| `nether` | `titleOnEnter` | `true` | Girişte "Ters Dünya" başlığı |
+| | `fogColor` | `"#3d0a0d"` | Ters Dünya sis rengi ¹ |
+| | `ambientLightColor` | `"#3a1414"` | Ortam ışığı tonu ¹ |
+| | `fogStartDistance` / `fogEndDistance` | `4.0` / `72.0` | Sis başlangıç/bitiş mesafesi ¹ |
+| | `sporeProbability` | `0.03` | Spor partikülü yoğunluğu (0–1) ¹ |
+| | `redLightningEnabled` | `true` | Kırmızı şimşek açık/kapalı |
 | | `redLightningIntervalSeconds` | `7` | Şimşek aralığı (sn) |
 | | `redLightningSound` | `true` | Şimşek sesi |
+| `end` | `titleOnEnter` | `true` | Girişte "En Derin Dünya" başlığı |
+| | `fogColor` / `ambientLightColor` / `skyLightColor` | `"#14070a"` / `"#3a1f22"` / `"#8a2a3a"` | En Derin Dünya renkleri ¹ |
+| | `ashProbability` | `0.004` | Düşen kül partikülü yoğunluğu ¹ |
 | `vine` | `drainIntervalMinutes` | `10` | Can düşürme aralığı (dk) |
 | | `drainTargetHealth` | `1.0` | Düşürülen can (HP, 2 = 1 kalp) |
 | | `effectRadius` | `32` | Etki yarıçapı (blok) |
@@ -62,7 +70,24 @@ src/client/java/dev/mehbur/garipseyler/client/   sadece istemci
 | | `fullRegenSeconds` | `60` | 0 → tam can süresi |
 | `glove` | `range` / `cooldownSeconds` / `throwStrength` | `20` / `5` / `2.0` | Telekinezi ayarları |
 
-> Not: Ayarların çoğu ilgili faz tamamlandıkça etkin hale gelir.
+¹ Biyom verisine yazıldığı için dünya/sunucu **yeniden başlatılınca** geçerli olur (`/garipseyler reload` yetmez).
+Renkler `#RRGGBB` biçiminde; hatalı renk yazılırsa varsayılan kullanılır.
+
+> Not: Ayarların bir kısmı ilgili faz tamamlandıkça etkin hale gelir.
 
 ## Özellikler
 Ayrıntılı liste ve durum: [ROADMAP.md](ROADMAP.md).
+
+### Faz 1 — Ters Dünya ve En Derin Dünya ✅
+- Nether'ın **tüm biyomları** (Crimson, Warped, Soul Sand Valley, Basalt Deltas, Wastes ve modlu Nether biyomları) tek bir kırmızı Ters Dünya gibi görünür: sis, ortam ışığı, spor partikülleri, ambiyans sesi, fısıltılar, müzik. Arazi, yapılar ve mob spawn'ları değişmez.
+- End **En Derin Dünya** olur: kan kırmızısı-siyah gökyüzü, kırmızı ışık tonu, düşen kül, alçak uğultu ambiyansı.
+- Boyuta girerken başlık kartı ("Ters Dünya" / "En Derin Dünya"), ilgili başarım adları değişir (TR + EN).
+
+## Placeholder dosyaları (değiştirmek için)
+Aynı isimle üzerine yaz, `gradlew build` / `run.bat` ile yeniden derle.
+
+| Dosya | Ne | Not |
+|---|---|---|
+| `src/main/resources/assets/garipseylermc/textures/particle/upside_down_spore_0..2.png` | Ters Dünya spor partikülü | Şeffaf PNG, 8×8 veya 16×16; kare sayısı `particles/upside_down_spore.json`'da |
+| `src/main/resources/assets/minecraft/textures/environment/end_sky.png` | En Derin Dünya gökyüzü | Oyun bu dokuyu ~%16 parlaklıkla çarpar → **parlak** çiz, döşenebilir (tileable) olsun |
+| `src/main/resources/assets/garipseylermc/sounds.json` | Ambiyans/müzik sesleri | Şu an vanilla seslerine bağlı. Kendi sesin için `.ogg` dosyasını `assets/garipseylermc/sounds/` altına koy ve `"name"`i `"garipseylermc:<dosya_adı>"` yap (uzantısız) |

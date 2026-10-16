@@ -1,3 +1,19 @@
 {
-	"commands.garipseylermc.reload": "Garip Şeyler MC ayarları yeniden yüklendi."
+	"commands.garipseylermc.reload": "Garip Şeyler MC ayarları yeniden yüklendi.",
+
+	"title.garipseylermc.upside_down": "Ters Dünya",
+	"subtitle.garipseylermc.upside_down": "Burada hiçbir şey göründüğü gibi değil...",
+	"title.garipseylermc.deepest_world": "En Derin Dünya",
+	"subtitle.garipseylermc.deepest_world": "Ters Dünya'nın da altında...",
+
+	"subtitles.garipseylermc.ambient.upside_down.mood": "Ters Dünya'da bir şey kıpırdıyor",
+	"subtitles.garipseylermc.ambient.upside_down.additions": "Fısıltılar",
+	"subtitles.garipseylermc.ambient.deepest_world.mood": "Derinlik gürlüyor",
+
+	"advancements.nether.root.title": "Ters Dünya",
+	"advancements.nether.root.description": "Yanına bir el feneri al",
+	"advancements.story.enter_the_nether.title": "Ters Dünya'ya Giriş",
+	"advancements.end.root.title": "En Derin Dünya",
+	"advancements.end.root.description": "Ters Dünya'nın da altında",
+	"advancements.story.enter_the_end.title": "Daha da Derine mi?"
 }
