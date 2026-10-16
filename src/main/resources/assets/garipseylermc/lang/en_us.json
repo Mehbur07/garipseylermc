@@ -74,5 +74,11 @@
 	"subtitles.entity.zombified_piglin.ambient": "Rotten Demodog growls",
 	"subtitles.entity.zombified_piglin.angry": "Rotten Demodog growls angrily",
 	"subtitles.entity.zombified_piglin.death": "Rotten Demodog dies",
-	"subtitles.entity.zombified_piglin.hurt": "Rotten Demodog hurts"
+	"subtitles.entity.zombified_piglin.hurt": "Rotten Demodog hurts",
+	"block.garipseylermc.upside_down_vine": "Upside Down Vine",
+	"message.garipseylermc.vine.warning": "The vines are tightening around you... (%s s)",
+	"message.garipseylermc.vine.drained": "The Upside Down vine drained your life!",
+	"subtitles.garipseylermc.block.upside_down_vine.warning": "Clock tolls",
+	"subtitles.garipseylermc.block.upside_down_vine.drain": "Vines drain life",
+	"commands.garipseylermc.vine.status": "%s: vine timer %s/%s s, vined portals in Nether: %s, nearest: %s blocks"
 }

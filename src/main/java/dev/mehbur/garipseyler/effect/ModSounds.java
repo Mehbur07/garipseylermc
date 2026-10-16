@@ -18,6 +18,8 @@ public final class ModSounds {
 	public static final Holder.Reference<SoundEvent> DEEPEST_WORLD_LOOP = register("ambient.deepest_world.loop");
 	public static final Holder.Reference<SoundEvent> DEEPEST_WORLD_MOOD = register("ambient.deepest_world.mood");
 	public static final Holder.Reference<SoundEvent> RED_LIGHTNING_THUNDER = register("weather.red_lightning.thunder");
+	public static final Holder.Reference<SoundEvent> VINE_WARNING = register("block.upside_down_vine.warning");
+	public static final Holder.Reference<SoundEvent> VINE_DRAIN = register("block.upside_down_vine.drain");
 
 	private ModSounds() {
 	}

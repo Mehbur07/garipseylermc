@@ -4,7 +4,7 @@
 
 Stranger Things temalı bir Minecraft Java modu: Nether kırmızı **Ters Dünya**'ya, End **En Derin Dünya**'ya dönüşür; Demogorgon, Demodog, Demobat, Vecna ve Mind Flayer gelir.
 
-> Durum: **Faz 3 tamamlandı** (atmosfer, kırmızı şimşek, mob dönüşümleri). Özellik fazları için bkz. [ROADMAP.md](ROADMAP.md).
+> Durum: **Faz 4 tamamlandı** (atmosfer, kırmızı şimşek, mob dönüşümleri, portal sarmaşığı). Özellik fazları için bkz. [ROADMAP.md](ROADMAP.md).
 
 ## Gereksinimler
 | | Sürüm |
@@ -63,7 +63,10 @@ src/client/java/dev/mehbur/garipseyler/client/   sadece istemci
 | `demobat` | `disableOverworldPhantoms` | `true` | Overworld'de uykusuzluk Phantom/Demobat spawn'ını kapatır |
 | | `netherSpawnWeight` | `10` | Nether biyomlarında doğal spawn ağırlığı (0 = kapalı) ¹ |
 | | `netherMinGroup` / `netherMaxGroup` | `1` / `2` | Grup boyutu ¹ |
-| `vine` | `drainIntervalMinutes` | `10` | Can düşürme aralığı (dk) |
+| `vine` | `growOnLitPortals` / `growOnGeneratedPortals` | `true` / `true` | Oyuncunun yaktığı / oyunun karşı tarafta ürettiği portallarda büyüsün |
+| | `coverage` | `0.65` | Çerçevedeki boş obsidyen yüzlerinin sarmaşıkla kaplanma oranı (0–1) |
+| | `growthDurationTicks` | `120` | Alttan üste çıkış animasyonunun süresi (tick, 20 = 1 sn) |
+| | `drainIntervalMinutes` | `10` | Can düşürme aralığı (dk) |
 | | `drainTargetHealth` | `1.0` | Düşürülen can (HP, 2 = 1 kalp) |
 | | `effectRadius` | `32` | Etki yarıçapı (blok) |
 | | `warningEnabled` / `warningSeconds` | `true` / `30` | Önceden uyarı |
@@ -111,6 +114,14 @@ Yalnızca **görünüm** değişir; davranış, can, AI, loot ve vuruş kutular�
 - İsimler, çağırma yumurtaları, ölüm mesajları ve altyazılar yeni adları kullanır (TR + EN). Sesler kendi ses olaylarımıza yönlendirilir.
 - **Demobat** yalnızca Nether'da doğal spawn olur; Overworld'deki uykusuzluk spawn'ı kapalıdır. Nether tavanı yüzünden takılmasınlar diye, tavanı olan boyutlarda dönme noktaları mağara tavanının altında tutulur.
 
+### Faz 4 — Ters Dünya sarmaşığı ✅
+- Nether portalı **yakıldığında** ve oyun karşı tarafta **portal ürettiğinde** çerçevenin obsidyenlerine **Ters Dünya Sarmaşığı** büyür.
+- Çıkış efekti Warden'ın topraktan çıkışı gibidir: `warden.emerge` sesi çalar, sarmaşıklar alttan üste sırayla filizlenir (filiz → genç → tam), her birinde obsidyen parçacıkları saçılır ve Warden kazma sesi gelir.
+- **Lanet:** Nether'da, sarmaşıklı bir portalın `effectRadius` (32) blok yakınında geçirilen her `drainIntervalMinutes` (10) dakikada can `drainTargetHealth`'e (1 HP) iner, emicilik kalpleri silinir, kısa bir karanlık gelir. `warningSeconds` (30) önce ekranda uyarı + saat sesi. Asla öldürmez; yaratıcı/izleyici modu etkilenmez.
+- Süre oyuncuya kaydedilir (çıkıp girince sıfırlanmaz, ölünce sıfırlanır); yarıçap dışında durur.
+- **Karşı hamle:** sarmaşıklar kırılabilir (hiçbir şey düşürmez). Bir portalın tüm sarmaşıkları kırılınca o portalın laneti kalkar.
+- Yönetici komutu: `/garipseyler vine <oyuncu>` → sayaç, sarmaşıklı portal sayısı, en yakın mesafe.
+
 ## Placeholder dosyaları (değiştirmek için)
 Aynı isimle üzerine yaz, `gradlew build` / `run.bat` ile yeniden derle.
 
@@ -122,4 +133,5 @@ Aynı isimle üzerine yaz, `gradlew build` / `run.bat` ile yeniden derle.
 | `src/client/java/dev/mehbur/garipseyler/client/render/*/…Model.java` → `createBodyLayer()` | Mob modelleri | Blockbench → *File → Export → Export Java Entity* (Mojang mappings); kutuları `createBodyLayer()` içine taşı, **parça isimlerini koru** (`head`, `body`, `petal_holder_N`…) |
 | `src/main/resources/assets/garipseylermc/textures/particle/upside_down_spore_0..2.png` | Ters Dünya spor partikülü | Şeffaf PNG, 8×8 veya 16×16; kare sayısı `particles/upside_down_spore.json`'da |
 | `src/main/resources/assets/minecraft/textures/environment/end_sky.png` | En Derin Dünya gökyüzü | Oyun bu dokuyu ~%16 parlaklıkla çarpar → **parlak** çiz, döşenebilir (tileable) olsun |
-| `src/main/resources/assets/garipseylermc/sounds.json` | Ambiyans/müzik/şimşek/mob sesleri (`entity.demogorgon.*`, `entity.demodog.*`, `entity.demodog_alpha.*`, `entity.demobat.*`) | Şu an vanilla seslerine bağlı. Kendi sesin için `.ogg` dosyasını `assets/garipseylermc/sounds/` altına koy ve `"name"`i `"garipseylermc:<dosya_adı>"` yap (uzantısız) |
+| `src/main/resources/assets/garipseylermc/textures/block/upside_down_vine_0..2.png` | Sarmaşık büyüme evreleri (filiz, genç, tam) | 16×16, şeffaf arka plan |
+| `src/main/resources/assets/garipseylermc/sounds.json` | Ambiyans/müzik/şimşek/mob/sarmaşık (`block.upside_down_vine.warning`, `.drain`) sesleri (`entity.demogorgon.*`, `entity.demodog.*`, `entity.demodog_alpha.*`, `entity.demobat.*`) | Şu an vanilla seslerine bağlı. Kendi sesin için `.ogg` dosyasını `assets/garipseylermc/sounds/` altına koy ve `"name"`i `"garipseylermc:<dosya_adı>"` yap (uzantısız) |

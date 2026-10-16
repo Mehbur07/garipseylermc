@@ -74,5 +74,11 @@
 	"subtitles.entity.zombified_piglin.ambient": "Çürümüş Demodog hırlıyor",
 	"subtitles.entity.zombified_piglin.angry": "Çürümüş Demodog öfkeyle hırlıyor",
 	"subtitles.entity.zombified_piglin.death": "Çürümüş Demodog öldü",
-	"subtitles.entity.zombified_piglin.hurt": "Çürümüş Demodog hasar aldı"
+	"subtitles.entity.zombified_piglin.hurt": "Çürümüş Demodog hasar aldı",
+	"block.garipseylermc.upside_down_vine": "Ters Dünya Sarmaşığı",
+	"message.garipseylermc.vine.warning": "Sarmaşıklar seni sarıyor... (%s sn)",
+	"message.garipseylermc.vine.drained": "Ters Dünya sarmaşığı canını emdi!",
+	"subtitles.garipseylermc.block.upside_down_vine.warning": "Saat çalıyor",
+	"subtitles.garipseylermc.block.upside_down_vine.drain": "Sarmaşık can emiyor",
+	"commands.garipseylermc.vine.status": "%s: sarmaşık sayacı %s/%s sn, Nether'daki sarmaşıklı portal: %s, en yakın: %s blok"
 }

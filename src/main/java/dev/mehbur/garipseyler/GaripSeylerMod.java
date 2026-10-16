@@ -1,12 +1,16 @@
 package dev.mehbur.garipseyler;
 
+import dev.mehbur.garipseyler.block.ModBlocks;
+import dev.mehbur.garipseyler.block.VineGrowth;
 import dev.mehbur.garipseyler.command.ModCommands;
 import dev.mehbur.garipseyler.config.ConfigManager;
 import dev.mehbur.garipseyler.dimension.DimensionAtmosphere;
 import dev.mehbur.garipseyler.dimension.DimensionTitles;
 import dev.mehbur.garipseyler.dimension.RedLightningScheduler;
+import dev.mehbur.garipseyler.effect.ModAttachments;
 import dev.mehbur.garipseyler.effect.ModParticles;
 import dev.mehbur.garipseyler.effect.ModSounds;
+import dev.mehbur.garipseyler.effect.VineDrain;
 import dev.mehbur.garipseyler.entity.DemobatSpawns;
 import dev.mehbur.garipseyler.entity.ModEntities;
 import dev.mehbur.garipseyler.network.ModNetworking;
@@ -27,12 +31,16 @@ public class GaripSeylerMod implements ModInitializer {
 		ConfigManager.load();
 		ModSounds.init();
 		ModParticles.init();
+		ModBlocks.init();
+		ModAttachments.init();
 		ModEntities.init();
 		DemobatSpawns.register();
 		ModNetworking.register();
 		DimensionAtmosphere.register();
 		DimensionTitles.register();
 		RedLightningScheduler.register();
+		VineGrowth.register();
+		VineDrain.register();
 		ModCommands.register();
 
 		LOGGER.info("Garip Şeyler MC initialized — welcome to the Upside Down.");

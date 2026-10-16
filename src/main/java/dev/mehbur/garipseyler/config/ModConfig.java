@@ -56,6 +56,15 @@ public class ModConfig {
 
 	/** Upside Down vine that grows on lit Nether portals. */
 	public static class Vine {
+		/** Grow vines on portals lit by players. */
+		public boolean growOnLitPortals = true;
+		/** Grow vines on portals the game builds on the other side when someone travels. */
+		public boolean growOnGeneratedPortals = true;
+		/** Share of free obsidian faces that get a vine, 0–1. */
+		public double coverage = 0.65;
+		/** How long the bottom-to-top emergence takes (Warden emerge animation: 134 ticks). */
+		public int growthDurationTicks = 120;
+		/** Minutes spent in the Nether near a vined portal before health is dropped. */
 		public int drainIntervalMinutes = 10;
 		/** Health (in HP, 2 HP = 1 heart) players are dropped to. */
 		public double drainTargetHealth = 1.0;
@@ -119,10 +128,12 @@ public class ModConfig {
 		demobat.netherMinGroup = clamp(demobat.netherMinGroup, 1, 16);
 		demobat.netherMaxGroup = clamp(demobat.netherMaxGroup, demobat.netherMinGroup, 16);
 
+		vine.coverage = clamp(vine.coverage, 0.0, 1.0);
+		vine.growthDurationTicks = clamp(vine.growthDurationTicks, 1, 1200);
 		vine.drainIntervalMinutes = clamp(vine.drainIntervalMinutes, 1, 1440);
 		vine.drainTargetHealth = clamp(vine.drainTargetHealth, 0.5, 1024.0);
 		vine.effectRadius = clamp(vine.effectRadius, 1, 512);
-		vine.warningSeconds = clamp(vine.warningSeconds, 0, 3600);
+		vine.warningSeconds = clamp(vine.warningSeconds, 0, vine.drainIntervalMinutes * 60 - 1);
 
 		vecna.maxHealth = clamp(vecna.maxHealth, 1.0, 1_000_000.0);
 		vecna.spawnDelayMinutes = clamp(vecna.spawnDelayMinutes, 0, 100_000);

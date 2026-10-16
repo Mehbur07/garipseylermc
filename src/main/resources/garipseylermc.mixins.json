@@ -4,7 +4,9 @@
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
 		"PhantomMixin",
-		"PhantomSpawnerMixin"
+		"PhantomSpawnerMixin",
+		"PortalForcerMixin",
+		"PortalShapeMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

@@ -65,7 +65,7 @@ Yalnızca renderer değişir → eski dünyalar bozulmaz.
 
 **Test:** Her mob yeni görünümde; Overworld'de Phantom/Demobat çıkmıyor; Nether'da Demobat spawn oluyor.
 
-## Faz 4 — Ters Dünya sarmaşığı
+## Faz 4 — Ters Dünya sarmaşığı ✅ (tamamlandı)
 - Nether portalı yakıldığında çerçevedeki obsidyenlerde **Ters Dünya Sarmaşığı** büyür.
 - Çıkış efekti Warden'ın topraktan çıkışı gibi: yükselme animasyonu + blok kırılma partikülleri + `warden.emerge` sesi.
 - Etki: sarmaşığın **yarıçapı içindeki** oyuncuların (Nether'da) canı **10 dk**'da bir **1 HP**'ye düşer.

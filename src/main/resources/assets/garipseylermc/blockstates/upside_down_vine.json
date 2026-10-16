@@ -1,0 +1,196 @@
+{
+	"multipart": [
+		{
+			"when": {
+				"north": "true",
+				"age": "0"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_0"
+			}
+		},
+		{
+			"when": {
+				"east": "true",
+				"age": "0"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_0",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"south": "true",
+				"age": "0"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_0",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"west": "true",
+				"age": "0"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_0",
+				"y": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "true",
+				"age": "0"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_0",
+				"x": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"down": "true",
+				"age": "0"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_0",
+				"x": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"north": "true",
+				"age": "1"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_1"
+			}
+		},
+		{
+			"when": {
+				"east": "true",
+				"age": "1"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_1",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"south": "true",
+				"age": "1"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_1",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"west": "true",
+				"age": "1"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_1",
+				"y": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "true",
+				"age": "1"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_1",
+				"x": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"down": "true",
+				"age": "1"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_1",
+				"x": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"north": "true",
+				"age": "2"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_2"
+			}
+		},
+		{
+			"when": {
+				"east": "true",
+				"age": "2"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_2",
+				"y": 90,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"south": "true",
+				"age": "2"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_2",
+				"y": 180,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"west": "true",
+				"age": "2"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_2",
+				"y": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"up": "true",
+				"age": "2"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_2",
+				"x": 270,
+				"uvlock": true
+			}
+		},
+		{
+			"when": {
+				"down": "true",
+				"age": "2"
+			},
+			"apply": {
+				"model": "garipseylermc:block/upside_down_vine_2",
+				"x": 90,
+				"uvlock": true
+			}
+		}
+	]
+}
