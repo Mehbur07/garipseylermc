@@ -3,8 +3,10 @@
 	"package": "dev.mehbur.garipseyler.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
+		"AbstractArrowMixin",
 		"EndSpikeFeatureMixin",
 		"EnderDragonFightMixin",
+		"EnderManMixin",
 		"FoodDataMixin",
 		"LivingEntityMixin",
 		"PhantomMixin",

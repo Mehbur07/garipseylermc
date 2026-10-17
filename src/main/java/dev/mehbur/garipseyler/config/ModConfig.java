@@ -11,6 +11,7 @@ public class ModConfig {
 	public Menu menu = new Menu();
 	public Nether nether = new Nether();
 	public End end = new End();
+	public Demogorgon demogorgon = new Demogorgon();
 	public Demobat demobat = new Demobat();
 	public Vine vine = new Vine();
 	public Vecna vecna = new Vecna();
@@ -58,6 +59,15 @@ public class ModConfig {
 		public boolean dripstoneBlocks = true;
 		/** Client-side: extra block ids (e.g. "minecraft:crafting_table") that keep their own texture in the End. */
 		public List<String> keepOriginalTexture = new ArrayList<>();
+	}
+
+	/** Demogorgon (re-skinned Enderman). */
+	public static class Demogorgon {
+		/**
+		 * Vanilla Enderman teleporting. Off: no teleporting at all, arrows and other projectiles hit them
+		 * normally, and water/rain no longer hurts them (they could not escape it).
+		 */
+		public boolean canTeleport = false;
 	}
 
 	/** Demobat (re-skinned Phantom) spawning. Spawn weights apply on world/server start. */
@@ -160,6 +170,7 @@ public class ModConfig {
 		if (menu == null) menu = new Menu();
 		if (nether == null) nether = new Nether();
 		if (end == null) end = new End();
+		if (demogorgon == null) demogorgon = new Demogorgon();
 		if (demobat == null) demobat = new Demobat();
 		if (vine == null) vine = new Vine();
 		if (vecna == null) vecna = new Vecna();

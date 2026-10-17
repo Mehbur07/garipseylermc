@@ -70,6 +70,7 @@ src/client/java/dev/mehbur/garipseyler/client/   sadece istemci
 | | `upsideDownStoneSpikes` | `true` | Yeni üretilen End kuleleri obsidyen yerine Ters Dünya Taşı'ndan |
 | | `dripstoneBlocks` | `true` | End'de End taşı hariç blokları dikit renginde çiz ² ³ |
 | | `keepOriginalTexture` | `[]` | End'de kendi dokusunu koruyacak ek bloklar, ör. `["minecraft:torch"]` ² ³ |
+| `demogorgon` | `canTeleport` | `false` | Demogorgon (Enderman) ışınlanması. Kapalıyken hiç ışınlanmaz, oklar isabet eder, su/yağmur hasar vermez |
 | `demobat` | `disableOverworldPhantoms` | `true` | Overworld'de uykusuzluk Phantom/Demobat spawn'ını kapatır |
 | | `netherOnly` | `true` | Demobat (Phantom + Ghast) yalnızca Nether'da: Overworld/End'e giren veya orada doğan silinir |
 | | `netherSpawnWeight` | `10` | Nether biyomlarında doğal spawn ağırlığı (0 = kapalı) ¹ |
@@ -132,7 +133,7 @@ Yalnızca **görünüm** değişir; davranış, can, AI, loot ve vuruş kutular�
 
 | Vanilla | Görünüm | Ayrım |
 |---|---|---|
-| Enderman | **Demogorgon** | 5 yapraklı ağız; sinirlenince yapraklar açılır, taşıdığı blok görünür |
+| Enderman | **Demogorgon** | 5 yapraklı ağız; sinirlenince yapraklar açılır, taşıdığı blok görünür. **Işınlanamaz** (aşağıya bakın) |
 | Piglin | **Demodog** | normal boy, koyu |
 | Piglin Brute | **Yaralı Demodog** | ×1.15, daha koyu, yara izli |
 | Zombified Piglin | **Çürümüş Demodog** | ×0.95, soluk yeşil, et lekeli |
@@ -145,6 +146,7 @@ Yalnızca **görünüm** değişir; davranış, can, AI, loot ve vuruş kutular�
 
 - Bebekler yarım boyda çizilir. Demodog'ların ağız yaprakları saldırırken açılır.
 - İsimler, çağırma yumurtaları, ölüm mesajları ve altyazılar yeni adları kullanır (TR + EN). Sesler kendi ses olaylarımıza yönlendirilir.
+- **Demogorgonlar ışınlanmaz** (`demogorgon.canTeleport: false`): hasar alınca, suda/güneşte ya da oyuncuya doğru ışınlanmazlar; yürüyerek kovalarlar. Oklardan kaçamadıkları için oklar ve mermiler normal isabet eder (alevli ok yakar); kaçamayacakları için su ve yağmur onlara hasar vermez.
 - **Ateşten korkarlar:** Alevden Çehre I'li kılıçla yakın dövüş vuruşu bu yaratıklara (Demogorgon, Demodog, Demobat, Vecna, Mind Flayer) **2 kat**, Alevden Çehre II ile **4 kat** hasar verir (zırhtan önce). Liste `data/garipseylermc/tags/entity_type/upside_down_creatures.json`.
 - **Demobat** ve **Dev Demobat** yalnızca Nether'da bulunur: Overworld'deki uykusuzluk spawn'ı kapalıdır; Overworld'e ya da End'e herhangi bir yolla (portal, komut, eski dünya) gelen Phantom/Ghast bir sonraki tick'te silinir. Bu yüzden "Huzursuz İttifak" başarımı alınamaz. Nether tavanı yüzünden takılmasınlar diye, tavanı olan boyutlarda dönme noktaları mağara tavanının altında tutulur.
 
@@ -241,15 +243,16 @@ Projede verilen ve ROADMAP'te açıkça yazmayan kararlar:
 1. **Ad ve telif:** mod "Garip Şeyler MC" adını taşır; dizinin adı, logosu, müziği veya dokuları kullanılmaz. Tüm dokular/modeller modla birlikte üretildi, sesler vanilla seslerinin yeniden kullanımıdır.
 2. **Ters Dünya kırmızısı yalnızca görseldir:** Nether biyomları, arazi, yapılar ve spawn'lar değişmez; kırmızı şimşek hasar/yangın/mob dönüşümü yapmaz.
 3. **Mob dönüşümleri yalnızca görünümdür:** davranış, can, ganimet, ses mantığı vanilla kalır. İstek dışında eklenenler: Piglin Brute ve Zoglin de Demodog varyantı oldu; Ghast **Dev Demobat**, Blaze **Ateş Demobatı**, tüm iskelet türleri **Demogorgon** varyantı (Happy Ghast değişmez).
-4. **Demobat yalnızca Nether'da:** Phantom ve Ghast Overworld/End'de silinir (Blaze silinmez). Sonuç: "Huzursuz İttifak" başarımı alınamaz.
-5. **Sarmaşık laneti** yalnızca yarıçap içindeki oyunculara işler, 1 HP'ye düşürür ama asla öldürmez; sarmaşıklı çerçeve portal sönükken de lanetler.
-6. **En Derin Dünya'da** End taşı dışındaki her blok (meşale, End çubuğu, cam dahil) dikit renginde görünür; sandıklar, blok-varlıklı ve işlevsel bloklar hariç.
-7. **Ters Dünya Taşı kuleleri** yalnızca yeni üretilen End'de; eski dünyalardaki obsidyen kuleler değişmez.
-8. **Vecna:** her dünyada bir kez, bir oyuncunun Nether'daki toplam süresi 15 dk'yı geçince doğar; yalnızca %0.1 şansla Telekinezi Eldiveni düşürür, XP vermez. "Kemik kırma" yerine can azaltan lanet kullanıldı.
-9. **Telekinezi Eldiveni** yalnızca sol eldeyken çalışır; boss'lar ve oyuncular yakalanamaz.
-10. **Mind Flayer** End savaşının bossudur: ejderhanın yerini her yerde alır (eski dünyalardaki yaşayan savaş ejderhası dahil; komutla çağrılanlar hariç). Dev boyut (~50 blok) ve yakın dövüşte 110 hasar (Demir Golem tek vuruş) kullanıcı isteğidir. Vanilla sonu (portal, gateway, yumurta, XP) korunur.
-11. **Alevden Çehre bonusu** yalnızca **kılıçla yakın dövüşte** ve yalnızca Ters Dünya yaratıkları etiketindekilere işler ("demoit" Demodog olarak yorumlandı).
-12. **Diller:** Türkçe ve İngilizce; diğer dillerde vanilla adlar görünür.
+4. **Demogorgonlar ışınlanmaz** (kullanıcı isteği); bu yüzden oklar onlara isabet eder ve su/yağmur hasar vermez.
+5. **Demobat yalnızca Nether'da:** Phantom ve Ghast Overworld/End'de silinir (Blaze silinmez). Sonuç: "Huzursuz İttifak" başarımı alınamaz.
+6. **Sarmaşık laneti** yalnızca yarıçap içindeki oyunculara işler, 1 HP'ye düşürür ama asla öldürmez; sarmaşıklı çerçeve portal sönükken de lanetler.
+7. **En Derin Dünya'da** End taşı dışındaki her blok (meşale, End çubuğu, cam dahil) dikit renginde görünür; sandıklar, blok-varlıklı ve işlevsel bloklar hariç.
+8. **Ters Dünya Taşı kuleleri** yalnızca yeni üretilen End'de; eski dünyalardaki obsidyen kuleler değişmez.
+9. **Vecna:** her dünyada bir kez, bir oyuncunun Nether'daki toplam süresi 15 dk'yı geçince doğar; yalnızca %0.1 şansla Telekinezi Eldiveni düşürür, XP vermez. "Kemik kırma" yerine can azaltan lanet kullanıldı.
+10. **Telekinezi Eldiveni** yalnızca sol eldeyken çalışır; boss'lar ve oyuncular yakalanamaz.
+11. **Mind Flayer** End savaşının bossudur: ejderhanın yerini her yerde alır (eski dünyalardaki yaşayan savaş ejderhası dahil; komutla çağrılanlar hariç). Dev boyut (~50 blok) ve yakın dövüşte 110 hasar (Demir Golem tek vuruş) kullanıcı isteğidir. Vanilla sonu (portal, gateway, yumurta, XP) korunur.
+12. **Alevden Çehre bonusu** yalnızca **kılıçla yakın dövüşte** ve yalnızca Ters Dünya yaratıkları etiketindekilere işler ("demoit" Demodog olarak yorumlandı).
+13. **Diller:** Türkçe ve İngilizce; diğer dillerde vanilla adlar görünür.
 
 ## Bilinen sınırlamalar
 - "You Need a Mint" (ejderha nefesi) başarımı alınamaz: Mind Flayer nefes saçmaz.
