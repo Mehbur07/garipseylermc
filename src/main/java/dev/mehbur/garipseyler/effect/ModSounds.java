@@ -20,6 +20,14 @@ public final class ModSounds {
 	public static final Holder.Reference<SoundEvent> RED_LIGHTNING_THUNDER = register("weather.red_lightning.thunder");
 	public static final Holder.Reference<SoundEvent> VINE_WARNING = register("block.upside_down_vine.warning");
 	public static final Holder.Reference<SoundEvent> VINE_DRAIN = register("block.upside_down_vine.drain");
+	public static final Holder.Reference<SoundEvent> VECNA_AMBIENT = register("entity.vecna.ambient");
+	public static final Holder.Reference<SoundEvent> VECNA_HURT = register("entity.vecna.hurt");
+	public static final Holder.Reference<SoundEvent> VECNA_DEATH = register("entity.vecna.death");
+	public static final Holder.Reference<SoundEvent> VECNA_SPAWN = register("entity.vecna.spawn");
+	public static final Holder.Reference<SoundEvent> VECNA_CAST = register("entity.vecna.cast");
+	public static final Holder.Reference<SoundEvent> VECNA_CLOCK = register("entity.vecna.clock");
+	public static final Holder.Reference<SoundEvent> VECNA_PSYCHIC_BLAST = register("entity.vecna.psychic_blast");
+	public static final Holder.Reference<SoundEvent> VECNA_SHIELDED = register("entity.vecna.shielded");
 
 	private ModSounds() {
 	}

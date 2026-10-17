@@ -1,5 +1,6 @@
 package dev.mehbur.garipseyler.item;
 
+import dev.mehbur.garipseyler.GaripSeylerMod;
 import dev.mehbur.garipseyler.block.ModBlocks;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.core.Registry;
@@ -10,6 +11,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
 
 /**
@@ -17,8 +19,16 @@ import net.minecraft.world.level.block.Block;
  */
 public final class ModItems {
 	public static final Item UPSIDE_DOWN_STONE = registerBlock(ModBlocks.UPSIDE_DOWN_STONE);
+	/** Vecna's only drop (0.1 %). Its telekinesis power is added in phase 7; for now it is a trophy. */
+	public static final Item TELEKINESIS_GLOVE = register("telekinesis_glove",
+			new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant());
 
 	private ModItems() {
+	}
+
+	private static Item register(String name, Item.Properties properties) {
+		ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, GaripSeylerMod.id(name));
+		return Registry.register(BuiltInRegistries.ITEM, key, new Item(properties.setId(key)));
 	}
 
 	private static Item registerBlock(Block block) {

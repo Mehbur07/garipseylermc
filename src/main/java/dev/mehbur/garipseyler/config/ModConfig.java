@@ -91,6 +91,21 @@ public class ModConfig {
 		public int spawnDelayMinutes = 15;
 		/** 0.001 = 0.1 %. */
 		public double gloveDropChance = 0.001;
+		public double attackDamage = 12.0;
+		public double armor = 10.0;
+		/** Seconds between two abilities (phase 2, under 50 % health, uses 70 % of it). */
+		public int abilityCooldownSeconds = 6;
+		/** Curse: 1 damage every this many seconds (twice as fast while levitating); natural regeneration stops. */
+		public int curseDamageIntervalSeconds = 2;
+		public int curseDurationSeconds = 20;
+		public int levitationSeconds = 4;
+		public int mindControlSeconds = 3;
+		public int vineBindSeconds = 3;
+		public double psychicBlastDamage = 8.0;
+		/** Most minions (Demodogs + Demobats) alive at once. */
+		public int maxMinions = 6;
+		/** A playing jukebox this close, or a music disc in hand, protects from levitation and the curse. */
+		public int musicProtectionRadius = 12;
 	}
 
 	/** Mind Flayer (stone form) — replaces the Ender Dragon. */
@@ -150,6 +165,17 @@ public class ModConfig {
 		vecna.maxHealth = clamp(vecna.maxHealth, 1.0, 1_000_000.0);
 		vecna.spawnDelayMinutes = clamp(vecna.spawnDelayMinutes, 0, 100_000);
 		vecna.gloveDropChance = clamp(vecna.gloveDropChance, 0.0, 1.0);
+		vecna.attackDamage = clamp(vecna.attackDamage, 0.0, 2048.0);
+		vecna.armor = clamp(vecna.armor, 0.0, 30.0);
+		vecna.abilityCooldownSeconds = clamp(vecna.abilityCooldownSeconds, 1, 600);
+		vecna.curseDamageIntervalSeconds = clamp(vecna.curseDamageIntervalSeconds, 1, 60);
+		vecna.curseDurationSeconds = clamp(vecna.curseDurationSeconds, 1, 600);
+		vecna.levitationSeconds = clamp(vecna.levitationSeconds, 1, 30);
+		vecna.mindControlSeconds = clamp(vecna.mindControlSeconds, 1, 30);
+		vecna.vineBindSeconds = clamp(vecna.vineBindSeconds, 1, 30);
+		vecna.psychicBlastDamage = clamp(vecna.psychicBlastDamage, 0.0, 2048.0);
+		vecna.maxMinions = clamp(vecna.maxMinions, 0, 32);
+		vecna.musicProtectionRadius = clamp(vecna.musicProtectionRadius, 0, 32);
 
 		mindFlayer.maxHealth = clamp(mindFlayer.maxHealth, 1.0, 1_000_000.0);
 		mindFlayer.regenDelaySeconds = clamp(mindFlayer.regenDelaySeconds, 0, 3600);

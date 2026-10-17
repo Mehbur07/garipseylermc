@@ -8,11 +8,14 @@ import dev.mehbur.garipseyler.dimension.DimensionAtmosphere;
 import dev.mehbur.garipseyler.dimension.DimensionTitles;
 import dev.mehbur.garipseyler.dimension.RedLightningScheduler;
 import dev.mehbur.garipseyler.effect.ModAttachments;
+import dev.mehbur.garipseyler.effect.ModEffects;
 import dev.mehbur.garipseyler.effect.ModParticles;
 import dev.mehbur.garipseyler.effect.ModSounds;
 import dev.mehbur.garipseyler.effect.VineDrain;
 import dev.mehbur.garipseyler.entity.DemobatSpawns;
 import dev.mehbur.garipseyler.entity.ModEntities;
+import dev.mehbur.garipseyler.entity.vecna.PlayerHolds;
+import dev.mehbur.garipseyler.entity.vecna.VecnaSpawning;
 import dev.mehbur.garipseyler.item.ModItems;
 import dev.mehbur.garipseyler.network.ModNetworking;
 import net.fabricmc.api.ModInitializer;
@@ -35,6 +38,7 @@ public class GaripSeylerMod implements ModInitializer {
 		ModBlocks.init();
 		ModItems.init();
 		ModAttachments.init();
+		ModEffects.init();
 		ModEntities.init();
 		DemobatSpawns.register();
 		ModNetworking.register();
@@ -43,6 +47,8 @@ public class GaripSeylerMod implements ModInitializer {
 		RedLightningScheduler.register();
 		VineGrowth.register();
 		VineDrain.register();
+		VecnaSpawning.register();
+		PlayerHolds.register();
 		ModCommands.register();
 
 		LOGGER.info("Garip Şeyler MC initialized — welcome to the Upside Down.");

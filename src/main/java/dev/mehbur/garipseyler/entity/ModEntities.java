@@ -1,6 +1,9 @@
 package dev.mehbur.garipseyler.entity;
 
 import dev.mehbur.garipseyler.GaripSeylerMod;
+import dev.mehbur.garipseyler.entity.vecna.PsychicBlast;
+import dev.mehbur.garipseyler.entity.vecna.Vecna;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
@@ -22,6 +25,23 @@ public final class ModEntities {
 					.clientTrackingRange(16)
 					.updateInterval(Integer.MAX_VALUE));
 
+	/** Boss; only ever spawned by {@code VecnaSpawning} (no spawn egg, {@code /summon} refused). */
+	public static final EntityType<Vecna> VECNA = register("vecna",
+			EntityType.Builder.<Vecna>of(Vecna::new, MobCategory.MONSTER)
+					.noLootTable()
+					.noSummon()
+					.fireImmune()
+					.sized(0.9F, 2.9F)
+					.eyeHeight(2.6F)
+					.clientTrackingRange(10));
+
+	public static final EntityType<PsychicBlast> PSYCHIC_BLAST = register("psychic_blast",
+			EntityType.Builder.<PsychicBlast>of(PsychicBlast::new, MobCategory.MISC)
+					.noLootTable()
+					.sized(0.5F, 0.5F)
+					.clientTrackingRange(4)
+					.updateInterval(10));
+
 	private ModEntities() {
 	}
 
@@ -32,5 +52,6 @@ public final class ModEntities {
 
 	/** Forces class loading so the static fields are registered. */
 	public static void init() {
+		FabricDefaultAttributeRegistry.register(VECNA, Vecna.createAttributes());
 	}
 }

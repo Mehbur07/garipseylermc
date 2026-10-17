@@ -3,6 +3,7 @@
 	"package": "dev.mehbur.garipseyler.client.mixin",
 	"compatibilityLevel": "JAVA_25",
 	"client": [
+		"KeyboardInputMixin",
 		"SpriteContentsAccessor"
 	],
 	"injectors": {

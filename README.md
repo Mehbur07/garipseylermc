@@ -4,7 +4,7 @@
 
 Stranger Things temalı bir Minecraft Java modu: Nether kırmızı **Ters Dünya**'ya, End **En Derin Dünya**'ya dönüşür; Demogorgon, Demodog, Demobat, Vecna ve Mind Flayer gelir.
 
-> Durum: **Faz 5 tamamlandı** (atmosfer, kırmızı şimşek, mob dönüşümleri, portal sarmaşığı, Ters Dünya Taşı ve dikit renkli En Derin Dünya). Özellik fazları için bkz. [ROADMAP.md](ROADMAP.md).
+> Durum: **Faz 6 tamamlandı** (atmosfer, kırmızı şimşek, mob dönüşümleri, portal sarmaşığı, Ters Dünya Taşı, dikit renkli En Derin Dünya, Vecna boss'u). Özellik fazları için bkz. [ROADMAP.md](ROADMAP.md).
 
 ## Gereksinimler
 | | Sürüm |
@@ -12,11 +12,12 @@ Stranger Things temalı bir Minecraft Java modu: Nether kırmızı **Ters Dünya
 | Minecraft Java | 26.2 |
 | Fabric Loader | 0.19.5+ |
 | Fabric API | 0.161.0+26.2 |
+| GeckoLib | 5.5.5+ (Fabric 26.2) |
 | Java | 25 |
 
 ## Kurulum (oyuncu)
 1. Minecraft 26.2 için Fabric Loader kur.
-2. `mods` klasörüne **Fabric API** ve `garipseylermc-<sürüm>.jar` dosyasını koy.
+2. `mods` klasörüne **Fabric API**, **GeckoLib** (Fabric 26.2, [Modrinth](https://modrinth.com/mod/geckolib)) ve `garipseylermc-<sürüm>.jar` dosyasını koy. Sunucuda da üçü gerekir.
 3. Oyunu Fabric profiliyle başlat.
 
 ## Geliştirme
@@ -77,6 +78,13 @@ src/client/java/dev/mehbur/garipseyler/client/   sadece istemci
 | `vecna` | `maxHealth` | `2000` | Can |
 | | `spawnDelayMinutes` | `15` | Nether'da geçen süre sonrası tek seferlik spawn |
 | | `gloveDropChance` | `0.001` | Eldiven düşme şansı (%0.1) |
+| | `attackDamage` / `armor` | `12` / `10` | Yakın dövüş hasarı, zırh ¹ |
+| | `abilityCooldownSeconds` | `6` | İki yetenek arası (2. fazda %70'i) |
+| | `curseDamageIntervalSeconds` / `curseDurationSeconds` | `2` / `20` | Lanet: kaç sn'de 1 hasar (havadayken 2 kat hızlı), süre |
+| | `levitationSeconds` / `mindControlSeconds` / `vineBindSeconds` | `4` / `3` / `3` | Havada tutma, zihin kontrolü, sarmaşık bağı süreleri |
+| | `psychicBlastDamage` | `8` | Psişik patlama hasarı (zorluğa göre ölçeklenir) |
+| | `maxMinions` | `6` | Aynı anda en fazla Demodog + Demobat minyonu |
+| | `musicProtectionRadius` | `12` | Çalan müzik kutusunun koruma yarıçapı (blok, 0 = kapalı) |
 | `mindFlayer` | `maxHealth` | `1500` | Can |
 | | `regenDelaySeconds` | `10` | Hasarsız geçmesi gereken süre |
 | | `fullRegenSeconds` | `60` | 0 → tam can süresi |
@@ -134,6 +142,28 @@ Yalnızca **görünüm** değişir; davranış, can, AI, loot ve vuruş kutular�
 - **En Derin Dünya'da End taşı hariç her blok dikit renginde görünür** (purpur, End taşı tuğlası, obsidyen, koro bitkisi, End çubuğu, oyuncunun koyduğu bloklar…). Sandıklar ve blok-varlıklı bloklar (varil, fırın, demlik, shulker kutusu, yatak, tabela…) ile çalışma masaları, örsler, kazanlar, ateş ve portal kendi görünüşünü korur.
   - Tamamen **görsel / istemci tarafı**: dünya verisi değişmez, Overworld ve Nether vanilla görünür. Kopyalar oyun açılırken her `textures/block` dokusundan üretilir (kaynak paketleri ve diğer modlar dahil), mod içinde Mojang dokusu yoktur.
 
+### Faz 6 — Vecna ✅
+- **Doğuş:** her oyuncunun Nether'da geçirdiği süre sayılır (oyuncuya kaydedilir). Biri `spawnDelayMinutes` (15 dk) dolduğunda Vecna 10–18 blok yakınında doğar: saat çalar, karanlık çöker. **Her dünyada yalnızca 1 kez** (bayrak dünya kaydında). Çağırma yumurtası yok, `/summon` reddedilir, Nether'dan çıkamaz (portal kullanmaz), **despawn olmaz** (Barışçıl'da bile).
+- **2000 can** (vanilla'nın 1024 can sınırı mod tarafından yükseltilir), 10 zırh, geri tepmeye bağışık, ateşe/düşmeye dayanıklı. Boss bar **mor**; can %50'nin altına inince **kırmızı** olur (2. faz: "Vecna'nın öfkesi uyanıyor!").
+- **Yetenekler** (birkaç saniyede bir, rastgele, her birinin kendi bekleme süresi var):
+  1. **Lanet** — 20 sn boyunca 2 sn'de 1 hasar; açlıkla gelen doğal can yenilenmesi durur (iksir/altın elma çalışır).
+  2. **Havaya kaldırma** — oyuncu 4 blok yükselir, 4 sn havada donar; bu sırada lanet 2 kat hızlı işler.
+  3. **Zihin kontrolü** — kamera Vecna'ya çekilir, 3 sn hareket tuşları ters çalışır, mide bulantısı + karanlık.
+  4. **Vizyonlar** — havaya kaldırma ve zihin kontrolünden önce 4 sn: 4 kez saat çanı, nabız gibi atan kırmızı kenar karartması, orada olmayan moblardan sahte sesler (yalnızca hedef oyuncu duyar).
+  5. **Telekinezi** — yakındaki oyuncuyu fırlatır, uzaktakini kendine çeker.
+  6. **Sarmaşık bağı** — 3 sn yerinde sabitler (yürüyemez, zıplayamaz; bakabilir ve vurabilir).
+  7. **Psişik patlama** — uzaktan enerji topu: büyü hasarı + kısa karanlık; blok kırmaz, yangın çıkarmaz.
+  8. **Minyon çağırma** — 2 Çürümüş Demodog + 1 Demobat (en fazla `maxMinions`); minyonlar Vecna'ya saldırmaz.
+  9. **Kısa ışınlanma** — yalnızca 2. fazda: hedefin 5–10 blok yakınına; vurulunca da bazen kaçar.
+  10. **Karşı mekanik (müzik)** — elinde **müzik diski** tutan ya da **12 blok** içinde **çalan bir müzik kutusu** olan oyuncu havaya kaldırılamaz ve lanetlenemez (aktif lanet de kalkar): "Müzik seni Vecna'dan koruyor...".
+- **Ganimet:** yalnızca **%0.1** şansla **Telekinezi Eldiveni**; başka eşya ve XP düşmez. (Eldivenin gücü Faz 7'de gelecek; şimdilik ödül eşyası.)
+- Model ve animasyonlar **GeckoLib** ile (boşta, yürüme, büyü, havaya kaldırma, çağırma, vuruş, ölüm); gözler ve göğüsteki damarlar karanlıkta parlar.
+- Yönetici komutları (OP):
+  - `/garipseyler vecna status` → doğdu mu / yenildi mi, senin Nether süren
+  - `/garipseyler vecna spawn [oyuncu]` → tek seferlik doğuşu hemen yap (zaten doğduysa reddedilir; oyuncu Nether'da olmalı)
+  - `/garipseyler vecna reset` → bayrağı sıfırla (test için)
+  - `/garipseyler vecna ability <curse|levitate|mind_control|vision|telekinesis|vine_bind|psychic_blast|summon|teleport> [oyuncu]` → en yakın Vecna o yeteneği hemen kullanır
+
 ## Placeholder dosyaları (değiştirmek için)
 Aynı isimle üzerine yaz, `gradlew build` / `run.bat` ile yeniden derle.
 
@@ -148,4 +178,9 @@ Aynı isimle üzerine yaz, `gradlew build` / `run.bat` ile yeniden derle.
 | `src/main/resources/assets/garipseylermc/textures/particle/upside_down_spore_0..2.png` | Ters Dünya spor partikülü | Şeffaf PNG, 8×8 veya 16×16; kare sayısı `particles/upside_down_spore.json`'da |
 | `src/main/resources/assets/minecraft/textures/environment/end_sky.png` | En Derin Dünya gökyüzü | Oyun bu dokuyu ~%16 parlaklıkla çarpar → **parlak** çiz, döşenebilir (tileable) olsun |
 | `src/main/resources/assets/garipseylermc/textures/block/upside_down_vine_0..2.png` | Sarmaşık büyüme evreleri (filiz, genç, tam) | 16×16, şeffaf arka plan |
-| `src/main/resources/assets/garipseylermc/sounds.json` | Ambiyans/müzik/şimşek/mob/sarmaşık (`block.upside_down_vine.warning`, `.drain`) sesleri (`entity.demogorgon.*`, `entity.demodog.*`, `entity.demodog_alpha.*`, `entity.demobat.*`) | Şu an vanilla seslerine bağlı. Kendi sesin için `.ogg` dosyasını `assets/garipseylermc/sounds/` altına koy ve `"name"`i `"garipseylermc:<dosya_adı>"` yap (uzantısız) |
+| `src/main/resources/assets/garipseylermc/geckolib/models/entity/vecna.geo.json` | Vecna modeli | Blockbench → *GeckoLib Animated Model* (Bedrock geometri); kemik adlarını koru: `root`, `body`, `head`, `left_arm`, `right_arm`, `left_hand`, `right_hand`, `left_leg`, `right_leg`, `tendrils` |
+| `src/main/resources/assets/garipseylermc/geckolib/animations/entity/vecna.animation.json` | Vecna animasyonları | Adlar: `misc.idle`, `move.walk`, `attack.cast`, `attack.levitate`, `attack.summon`, `attack.swing`, `misc.die` |
+| `src/main/resources/assets/garipseylermc/textures/entity/vecna.png` + `vecna_glowmask.png` | Vecna dokusu + parlayan kısımlar | 128×128; glowmask'ta yalnızca parlayacak pikseller dolu, gerisi şeffaf |
+| `src/main/resources/assets/garipseylermc/textures/item/telekinesis_glove.png` | Telekinezi Eldiveni | 16×16 |
+| `src/main/resources/assets/garipseylermc/textures/mob_effect/vecna_curse.png` | Lanet efekti simgesi | 18×18 |
+| `src/main/resources/assets/garipseylermc/sounds.json` | Ambiyans/müzik/şimşek/mob/sarmaşık (`block.upside_down_vine.warning`, `.drain`) sesleri (`entity.demogorgon.*`, `entity.demodog.*`, `entity.demodog_alpha.*`, `entity.demobat.*`, `entity.demobat_giant.*`, `entity.vecna.*`: ambient, hurt, death, spawn, cast, clock, psychic_blast, shielded) | Şu an vanilla seslerine bağlı. Kendi sesin için `.ogg` dosyasını `assets/garipseylermc/sounds/` altına koy ve `"name"`i `"garipseylermc:<dosya_adı>"` yap (uzantısız) |

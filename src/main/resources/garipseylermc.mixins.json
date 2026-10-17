@@ -4,10 +4,12 @@
 	"compatibilityLevel": "JAVA_25",
 	"mixins": [
 		"EndSpikeFeatureMixin",
+		"FoodDataMixin",
 		"PhantomMixin",
 		"PhantomSpawnerMixin",
 		"PortalForcerMixin",
-		"PortalShapeMixin"
+		"PortalShapeMixin",
+		"RangedAttributeMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1

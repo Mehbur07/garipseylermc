@@ -11,5 +11,7 @@ public final class ModNetworking {
 
 	public static void register() {
 		PayloadTypeRegistry.clientboundPlay().register(RedLightningPayload.TYPE, RedLightningPayload.CODEC);
+		PayloadTypeRegistry.clientboundPlay().register(VecnaVisionPayload.TYPE, VecnaVisionPayload.CODEC);
+		PayloadTypeRegistry.clientboundPlay().register(VecnaMindControlPayload.TYPE, VecnaMindControlPayload.CODEC);
 	}
 }

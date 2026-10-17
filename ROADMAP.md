@@ -83,7 +83,7 @@ Yalnızca renderer değişir → eski dünyalar bozulmaz.
 
 **Test:** Yeni dünyada kuleler yeni bloktan; kazma/patlama dayanıklılığı obsidyenle aynı.
 
-## Faz 6 — Vecna (boss)
+## Faz 6 — Vecna (boss) ✅ (tamamlandı; GeckoLib 5.5.5 eklendi)
 - **Can: 2000**, mor-kırmızı boss bar.
 - **Spawn:** her dünyada **sadece 1 kez**, Ters Dünya'da. Başka hiçbir yolla spawn olmaz (spawn egg / ritüel yok). Despawn olmaz.
 - **Yetenekler:**

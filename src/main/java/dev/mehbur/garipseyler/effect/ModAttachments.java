@@ -17,6 +17,11 @@ public final class ModAttachments {
 			GaripSeylerMod.id("vine_drain_ticks"),
 			builder -> builder.persistent(Codec.INT).initializer(() -> 0));
 
+	/** Total ticks a player has spent in the Nether; Vecna spawns once someone reaches {@code spawnDelayMinutes}. */
+	public static final AttachmentType<Integer> NETHER_TICKS = AttachmentRegistry.create(
+			GaripSeylerMod.id("nether_ticks"),
+			builder -> builder.persistent(Codec.INT).initializer(() -> 0).copyOnDeath());
+
 	private ModAttachments() {
 	}
 

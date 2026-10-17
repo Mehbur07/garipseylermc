@@ -19,6 +19,10 @@ if not exist "%MODS%" mkdir "%MODS%"
 del /q "%MODS%\garipseylermc-*.jar" 2>nul
 copy /y "build\libs\garipseylermc-*.jar" "%MODS%\" >nul
 if not exist "%MODS%\fabric-api-*.jar" echo UYARI: Fabric API test profilinde yok! Modrinth'ten fabric-api 26.2 surumunu mods klasorune koy.
+if not exist "%MODS%\geckolib-*.jar" (
+	echo GeckoLib indiriliyor...
+	curl -sL -o "%MODS%\geckolib-fabric-26.2-5.5.5.jar" "https://cdn.modrinth.com/data/8BmcQJ2H/versions/7gaQHok7/geckolib-fabric-26.2-5.5.5.jar"
+)
 
 echo [3/3] MehburMC Launcher aciliyor - "Garip Seyler Test" profilini sec.
 start "" "%LAUNCHER%"

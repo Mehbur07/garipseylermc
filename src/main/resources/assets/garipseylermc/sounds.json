@@ -597,5 +597,145 @@
 				"volume": 1.6
 			}
 		]
+	},
+	"entity.vecna.ambient": {
+		"sounds": [
+			{
+				"name": "minecraft:mob/warden/ambient_1",
+				"pitch": 0.55,
+				"volume": 1.4
+			},
+			{
+				"name": "minecraft:mob/warden/ambient_2",
+				"pitch": 0.55,
+				"volume": 1.4
+			},
+			{
+				"name": "minecraft:mob/warden/ambient_3",
+				"pitch": 0.55,
+				"volume": 1.4
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.entity.vecna.ambient"
+	},
+	"entity.vecna.hurt": {
+		"sounds": [
+			{
+				"name": "minecraft:mob/warden/hurt_1",
+				"pitch": 0.6,
+				"volume": 1.2
+			},
+			{
+				"name": "minecraft:mob/warden/hurt_2",
+				"pitch": 0.6,
+				"volume": 1.2
+			},
+			{
+				"name": "minecraft:mob/warden/hurt_3",
+				"pitch": 0.6,
+				"volume": 1.2
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.entity.vecna.hurt"
+	},
+	"entity.vecna.death": {
+		"sounds": [
+			{
+				"name": "minecraft:mob/warden/death_1",
+				"pitch": 0.5,
+				"volume": 2.0
+			},
+			{
+				"name": "minecraft:mob/warden/death_2",
+				"pitch": 0.5,
+				"volume": 2.0
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.entity.vecna.death"
+	},
+	"entity.vecna.spawn": {
+		"sounds": [
+			{
+				"name": "minecraft:mob/warden/emerge",
+				"pitch": 0.7,
+				"volume": 2.0
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.entity.vecna.spawn"
+	},
+	"entity.vecna.cast": {
+		"sounds": [
+			{
+				"name": "minecraft:mob/evocation_illager/prepare_attack1",
+				"pitch": 0.6,
+				"volume": 1.4
+			},
+			{
+				"name": "minecraft:mob/evocation_illager/prepare_attack2",
+				"pitch": 0.6,
+				"volume": 1.4
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.entity.vecna.cast"
+	},
+	"entity.vecna.clock": {
+		"sounds": [
+			{
+				"name": "minecraft:block/bell/bell_use01",
+				"pitch": 0.45,
+				"volume": 1.4
+			},
+			{
+				"name": "minecraft:block/bell/bell_use02",
+				"pitch": 0.45,
+				"volume": 1.4
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.entity.vecna.clock"
+	},
+	"entity.vecna.psychic_blast": {
+		"sounds": [
+			{
+				"name": "minecraft:mob/warden/sonic_charge1",
+				"pitch": 1.3,
+				"volume": 1.0
+			},
+			{
+				"name": "minecraft:mob/warden/sonic_charge2",
+				"pitch": 1.3,
+				"volume": 1.0
+			},
+			{
+				"name": "minecraft:mob/warden/sonic_charge3",
+				"pitch": 1.3,
+				"volume": 1.0
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.entity.vecna.psychic_blast"
+	},
+	"entity.vecna.shielded": {
+		"sounds": [
+			{
+				"name": "minecraft:block/amethyst/resonate1",
+				"pitch": 1.2,
+				"volume": 1.0
+			},
+			{
+				"name": "minecraft:block/amethyst/resonate2",
+				"pitch": 1.2,
+				"volume": 1.0
+			},
+			{
+				"name": "minecraft:block/amethyst/resonate3",
+				"pitch": 1.2,
+				"volume": 1.0
+			},
+			{
+				"name": "minecraft:block/amethyst/resonate4",
+				"pitch": 1.2,
+				"volume": 1.0
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.entity.vecna.shielded"
 	}
 }
