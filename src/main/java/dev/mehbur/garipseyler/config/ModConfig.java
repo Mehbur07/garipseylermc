@@ -118,9 +118,16 @@ public class ModConfig {
 
 	/** Telekinesis glove (offhand item). */
 	public static class Glove {
+		/** How far (blocks) a mob can be grabbed. */
 		public int range = 20;
+		/** Starts when a mob is thrown or dropped. */
 		public int cooldownSeconds = 5;
+		/** Throw speed in blocks per tick (2.0 = 40 blocks/s). */
 		public double throwStrength = 2.0;
+		/** A held mob is dropped after this long. */
+		public int maxHoldSeconds = 15;
+		/** Thrown mobs that slam into a wall take this much damage per block/tick of speed. */
+		public double impactDamage = 5.0;
 	}
 
 	/** Fills missing sections and clamps values into sane ranges. */
@@ -184,6 +191,8 @@ public class ModConfig {
 		glove.range = clamp(glove.range, 1, 128);
 		glove.cooldownSeconds = clamp(glove.cooldownSeconds, 0, 3600);
 		glove.throwStrength = clamp(glove.throwStrength, 0.0, 10.0);
+		glove.maxHoldSeconds = clamp(glove.maxHoldSeconds, 1, 3600);
+		glove.impactDamage = clamp(glove.impactDamage, 0.0, 100.0);
 	}
 
 	/** Parses {@code #RRGGBB} into an opaque ARGB int. Call only on validated values. */

@@ -4,7 +4,7 @@
 
 Stranger Things temalı bir Minecraft Java modu: Nether kırmızı **Ters Dünya**'ya, End **En Derin Dünya**'ya dönüşür; Demogorgon, Demodog, Demobat, Vecna ve Mind Flayer gelir.
 
-> Durum: **Faz 6 tamamlandı** (atmosfer, kırmızı şimşek, mob dönüşümleri, portal sarmaşığı, Ters Dünya Taşı, dikit renkli En Derin Dünya, Vecna boss'u). Özellik fazları için bkz. [ROADMAP.md](ROADMAP.md).
+> Durum: **Faz 7 tamamlandı** (atmosfer, kırmızı şimşek, mob dönüşümleri, portal sarmaşığı, Ters Dünya Taşı, dikit renkli En Derin Dünya, Vecna boss'u, Telekinezi Eldiveni). Özellik fazları için bkz. [ROADMAP.md](ROADMAP.md).
 
 ## Gereksinimler
 | | Sürüm |
@@ -88,7 +88,11 @@ src/client/java/dev/mehbur/garipseyler/client/   sadece istemci
 | `mindFlayer` | `maxHealth` | `1500` | Can |
 | | `regenDelaySeconds` | `10` | Hasarsız geçmesi gereken süre |
 | | `fullRegenSeconds` | `60` | 0 → tam can süresi |
-| `glove` | `range` / `cooldownSeconds` / `throwStrength` | `20` / `5` / `2.0` | Telekinezi ayarları |
+| `glove` | `range` | `20` | Yakalama menzili (blok) |
+| | `cooldownSeconds` | `5` | Mob fırlatılınca/bırakılınca bekleme |
+| | `throwStrength` | `2.0` | Fırlatma hızı (blok/tick) |
+| | `maxHoldSeconds` | `15` | En uzun tutma süresi |
+| | `impactDamage` | `5.0` | Fırlatılan mob bir yere çarpınca hız başına hasar |
 
 ¹ Biyom verisine yazıldığı için dünya/sunucu **yeniden başlatılınca** geçerli olur (`/garipseyler reload` yetmez).
 ² İstemci ayarı: her oyuncunun kendi `config/garipseylermc.json` dosyasından okunur. Flaş ayrıca vanilla **Erişilebilirlik → "Şimşek Flaşlarını Gizle"** seçeneğine uyar.
@@ -156,13 +160,23 @@ Yalnızca **görünüm** değişir; davranış, can, AI, loot ve vuruş kutular�
   8. **Minyon çağırma** — 2 Çürümüş Demodog + 1 Demobat (en fazla `maxMinions`); minyonlar Vecna'ya saldırmaz.
   9. **Kısa ışınlanma** — yalnızca 2. fazda: hedefin 5–10 blok yakınına; vurulunca da bazen kaçar.
   10. **Karşı mekanik (müzik)** — elinde **müzik diski** tutan ya da **12 blok** içinde **çalan bir müzik kutusu** olan oyuncu havaya kaldırılamaz ve lanetlenemez (aktif lanet de kalkar): "Müzik seni Vecna'dan koruyor...".
-- **Ganimet:** yalnızca **%0.1** şansla **Telekinezi Eldiveni**; başka eşya ve XP düşmez. (Eldivenin gücü Faz 7'de gelecek; şimdilik ödül eşyası.)
+- **Ganimet:** yalnızca **%0.1** şansla **Telekinezi Eldiveni**; başka eşya ve XP düşmez.
 - Model ve animasyonlar **GeckoLib** ile (boşta, yürüme, büyü, havaya kaldırma, çağırma, vuruş, ölüm); gözler ve göğüsteki damarlar karanlıkta parlar.
 - Yönetici komutları (OP):
   - `/garipseyler vecna status` → doğdu mu / yenildi mi, senin Nether süren
   - `/garipseyler vecna spawn [oyuncu]` → tek seferlik doğuşu hemen yap (zaten doğduysa reddedilir; oyuncu Nether'da olmalı)
   - `/garipseyler vecna reset` → bayrağı sıfırla (test için)
   - `/garipseyler vecna ability <curse|levitate|mind_control|vision|telekinesis|vine_bind|psychic_blast|summon|teleport> [oyuncu]` → en yakın Vecna o yeteneği hemen kullanır
+
+### Faz 7 — Telekinezi Eldiveni ✅
+- Yalnızca **sol elde (ikinci el)** çalışır; ana eldeyken tuşa basınca uyarı verir.
+- **V** (Ayarlar → Kontroller → *Garip Şeyler MC* altında değiştirilebilir):
+  1. Baktığın moba basınca (en fazla `range` = 20 blok, duvarların arkası olmaz) mob havaya kalkar, önünde asılı kalır ve **bakışını takip eder**. Tutulurken yapay zekâsı durur.
+  2. Tekrar basınca baktığın yöne **fırlatılır**; duvara ya da tavana sert çarparsa hız kadar hasar alır (sana atfedilir). Normal düşme hasarı da işler.
+- Mob elden çıkınca `cooldownSeconds` (5 sn) bekleme başlar; eldivende vanilla bekleme göstergesi ve "Eldiven dinleniyor..." yazısı çıkar.
+- **Boss'lar etkilenmez:** Vecna, Wither, Ender Dragon, Warden, Elder Guardian ("… telekineziye karşı koyuyor!"). Liste `data/garipseylermc/tags/entity_type/telekinesis_immune.json` etiketinde (Mind Flayer Faz 8'de eklenecek). Oyuncular yakalanamaz.
+- Mob güvenle bırakılır (fırlatmadan) eğer: eldiveni sol elden çıkarırsan, ölürsen, çıkış yaparsan, mob menzilden kaçarsa, `maxHoldSeconds` dolarsa ya da sunucu kapanırsa (mob asla yapay zekâsız kaydedilmez).
+- Hesaplar sunucuda yapılır → çok oyunculuda hile ile menzil/bekleme aşılamaz.
 
 ## Placeholder dosyaları (değiştirmek için)
 Aynı isimle üzerine yaz, `gradlew build` / `run.bat` ile yeniden derle.
@@ -183,4 +197,4 @@ Aynı isimle üzerine yaz, `gradlew build` / `run.bat` ile yeniden derle.
 | `src/main/resources/assets/garipseylermc/textures/entity/vecna.png` + `vecna_glowmask.png` | Vecna dokusu + parlayan kısımlar | 128×128; glowmask'ta yalnızca parlayacak pikseller dolu, gerisi şeffaf |
 | `src/main/resources/assets/garipseylermc/textures/item/telekinesis_glove.png` | Telekinezi Eldiveni | 16×16 |
 | `src/main/resources/assets/garipseylermc/textures/mob_effect/vecna_curse.png` | Lanet efekti simgesi | 18×18 |
-| `src/main/resources/assets/garipseylermc/sounds.json` | Ambiyans/müzik/şimşek/mob/sarmaşık (`block.upside_down_vine.warning`, `.drain`) sesleri (`entity.demogorgon.*`, `entity.demodog.*`, `entity.demodog_alpha.*`, `entity.demobat.*`, `entity.demobat_giant.*`, `entity.vecna.*`: ambient, hurt, death, spawn, cast, clock, psychic_blast, shielded) | Şu an vanilla seslerine bağlı. Kendi sesin için `.ogg` dosyasını `assets/garipseylermc/sounds/` altına koy ve `"name"`i `"garipseylermc:<dosya_adı>"` yap (uzantısız) |
+| `src/main/resources/assets/garipseylermc/sounds.json` | Ambiyans/müzik/şimşek/mob/sarmaşık (`block.upside_down_vine.warning`, `.drain`) sesleri (`entity.demogorgon.*`, `entity.demodog.*`, `entity.demodog_alpha.*`, `entity.demobat.*`, `entity.demobat_giant.*`, `entity.vecna.*`: ambient, hurt, death, spawn, cast, clock, psychic_blast, shielded; `item.telekinesis_glove.grab` / `.throw`) | Şu an vanilla seslerine bağlı. Kendi sesin için `.ogg` dosyasını `assets/garipseylermc/sounds/` altına koy ve `"name"`i `"garipseylermc:<dosya_adı>"` yap (uzantısız) |

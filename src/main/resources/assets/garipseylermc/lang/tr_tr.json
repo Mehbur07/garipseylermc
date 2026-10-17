@@ -114,5 +114,14 @@
 	"commands.garipseylermc.vecna.status": "Vecna doğdu: %s, yenildi: %s, Nether süren: %s / %s sn",
 	"commands.garipseylermc.vecna.unknown_ability": "Bilinmeyen yetenek: %s",
 	"commands.garipseylermc.vecna.none_nearby": "64 blok içinde Vecna yok.",
-	"commands.garipseylermc.vecna.ability": "Vecna '%s' yeteneğini %s üzerinde kullanıyor"
+	"commands.garipseylermc.vecna.ability": "Vecna '%s' yeteneğini %s üzerinde kullanıyor",
+	"key.category.garipseylermc.main": "Garip Şeyler MC",
+	"key.garipseylermc.telekinesis": "Telekinezi (eldiven sol elde)",
+	"item.garipseylermc.telekinesis_glove.tooltip.offhand": "Sol ele (ikinci el) takılınca çalışır",
+	"item.garipseylermc.telekinesis_glove.tooltip.use": "V: baktığın mobu yakala, tekrar V: fırlat",
+	"message.garipseylermc.glove.offhand_only": "Telekinezi Eldiveni yalnızca sol elde çalışır.",
+	"message.garipseylermc.glove.immune": "%s telekineziye karşı koyuyor!",
+	"message.garipseylermc.glove.cooldown": "Eldiven dinleniyor...",
+	"subtitles.garipseylermc.item.telekinesis_glove.grab": "Telekinezi yakaladı",
+	"subtitles.garipseylermc.item.telekinesis_glove.throw": "Telekinezi fırlattı"
 }

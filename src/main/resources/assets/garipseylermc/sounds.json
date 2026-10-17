@@ -737,5 +737,25 @@
 			}
 		],
 		"subtitle": "subtitles.garipseylermc.entity.vecna.shielded"
+	},
+	"item.telekinesis_glove.grab": {
+		"sounds": [
+			{
+				"name": "minecraft:block/beacon/activate",
+				"pitch": 1.8,
+				"volume": 0.8
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.item.telekinesis_glove.grab"
+	},
+	"item.telekinesis_glove.throw": {
+		"sounds": [
+			{
+				"name": "minecraft:mob/breeze/shoot",
+				"pitch": 0.7,
+				"volume": 1.0
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.item.telekinesis_glove.throw"
 	}
 }

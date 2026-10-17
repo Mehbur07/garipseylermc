@@ -114,5 +114,14 @@
 	"commands.garipseylermc.vecna.status": "Vecna spawned: %s, defeated: %s, your Nether time: %s / %s s",
 	"commands.garipseylermc.vecna.unknown_ability": "Unknown ability: %s",
 	"commands.garipseylermc.vecna.none_nearby": "No Vecna within 64 blocks.",
-	"commands.garipseylermc.vecna.ability": "Vecna uses '%s' on %s"
+	"commands.garipseylermc.vecna.ability": "Vecna uses '%s' on %s",
+	"key.category.garipseylermc.main": "Garip Şeyler MC",
+	"key.garipseylermc.telekinesis": "Telekinesis (glove in offhand)",
+	"item.garipseylermc.telekinesis_glove.tooltip.offhand": "Works when worn in the offhand",
+	"item.garipseylermc.telekinesis_glove.tooltip.use": "V: grab the mob you look at, V again: throw",
+	"message.garipseylermc.glove.offhand_only": "The Telekinesis Glove only works in your offhand.",
+	"message.garipseylermc.glove.immune": "%s resists telekinesis!",
+	"message.garipseylermc.glove.cooldown": "The glove is recovering...",
+	"subtitles.garipseylermc.item.telekinesis_glove.grab": "Telekinesis grabs",
+	"subtitles.garipseylermc.item.telekinesis_glove.throw": "Telekinesis throws"
 }

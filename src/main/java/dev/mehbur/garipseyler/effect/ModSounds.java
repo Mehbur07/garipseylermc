@@ -28,6 +28,8 @@ public final class ModSounds {
 	public static final Holder.Reference<SoundEvent> VECNA_CLOCK = register("entity.vecna.clock");
 	public static final Holder.Reference<SoundEvent> VECNA_PSYCHIC_BLAST = register("entity.vecna.psychic_blast");
 	public static final Holder.Reference<SoundEvent> VECNA_SHIELDED = register("entity.vecna.shielded");
+	public static final Holder.Reference<SoundEvent> GLOVE_GRAB = register("item.telekinesis_glove.grab");
+	public static final Holder.Reference<SoundEvent> GLOVE_THROW = register("item.telekinesis_glove.throw");
 
 	private ModSounds() {
 	}

@@ -14,21 +14,23 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.block.Block;
 
+import java.util.function.Function;
+
 /**
  * Items of the mod.
  */
 public final class ModItems {
 	public static final Item UPSIDE_DOWN_STONE = registerBlock(ModBlocks.UPSIDE_DOWN_STONE);
-	/** Vecna's only drop (0.1 %). Its telekinesis power is added in phase 7; for now it is a trophy. */
-	public static final Item TELEKINESIS_GLOVE = register("telekinesis_glove",
+	/** Vecna's only drop (0.1 %); grabs and throws mobs from the offhand. */
+	public static final Item TELEKINESIS_GLOVE = register("telekinesis_glove", TelekinesisGloveItem::new,
 			new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant());
 
 	private ModItems() {
 	}
 
-	private static Item register(String name, Item.Properties properties) {
+	private static Item register(String name, Function<Item.Properties, Item> factory, Item.Properties properties) {
 		ResourceKey<Item> key = ResourceKey.create(Registries.ITEM, GaripSeylerMod.id(name));
-		return Registry.register(BuiltInRegistries.ITEM, key, new Item(properties.setId(key)));
+		return Registry.register(BuiltInRegistries.ITEM, key, factory.apply(properties.setId(key)));
 	}
 
 	private static Item registerBlock(Block block) {

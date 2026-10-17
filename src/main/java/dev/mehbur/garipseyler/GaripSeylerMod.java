@@ -17,6 +17,7 @@ import dev.mehbur.garipseyler.entity.ModEntities;
 import dev.mehbur.garipseyler.entity.vecna.PlayerHolds;
 import dev.mehbur.garipseyler.entity.vecna.VecnaSpawning;
 import dev.mehbur.garipseyler.item.ModItems;
+import dev.mehbur.garipseyler.item.Telekinesis;
 import dev.mehbur.garipseyler.network.ModNetworking;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.resources.Identifier;
@@ -49,6 +50,7 @@ public class GaripSeylerMod implements ModInitializer {
 		VineDrain.register();
 		VecnaSpawning.register();
 		PlayerHolds.register();
+		Telekinesis.register();
 		ModCommands.register();
 
 		LOGGER.info("Garip Şeyler MC initialized — welcome to the Upside Down.");

@@ -3,6 +3,7 @@ package dev.mehbur.garipseyler.client;
 import dev.mehbur.garipseyler.GaripSeylerMod;
 import dev.mehbur.garipseyler.client.hud.RedFlashOverlay;
 import dev.mehbur.garipseyler.client.hud.VecnaOverlay;
+import dev.mehbur.garipseyler.client.input.TelekinesisKey;
 import dev.mehbur.garipseyler.client.render.MobReskins;
 import dev.mehbur.garipseyler.client.render.ModModelLayers;
 import dev.mehbur.garipseyler.client.render.RedLightningRenderer;
@@ -33,6 +34,7 @@ public class GaripSeylerClient implements ClientModInitializer {
 		EndTint.register();
 		VecnaOverlay.register();
 		VecnaClient.register();
+		TelekinesisKey.register();
 
 		GaripSeylerMod.LOGGER.info("Garip Şeyler MC client initialized.");
 	}

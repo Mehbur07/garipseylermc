@@ -101,7 +101,7 @@ Yalnızca renderer değişir → eski dünyalar bozulmaz.
 
 **Test:** Tek seferlik spawn bayrağı (dünya kaydında), boss bar, her yeteneğin tek tek tetiklenmesi, loot tablosu.
 
-## Faz 7 — Telekinezi Eldiveni
+## Faz 7 — Telekinezi Eldiveni ✅ (tamamlandı)
 - **Sol ele (offhand)** takılınca aktif.
 - Tuş (varsayılan **V**): bakılan mobu yakala → havada tut, bakışla taşı → tekrar basınca fırlat.
 - Bekleme süresi, menzil, fırlatma gücü config'de. Boss'larda (Vecna, Mind Flayer) çalışmaz.
