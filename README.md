@@ -4,7 +4,7 @@
 
 Stranger Things temalı bir Minecraft Java modu: Nether kırmızı **Ters Dünya**'ya, End **En Derin Dünya**'ya dönüşür; Demogorgon, Demodog, Demobat, Vecna ve Mind Flayer gelir.
 
-> Durum: **Faz 7 tamamlandı** (atmosfer, kırmızı şimşek, mob dönüşümleri, portal sarmaşığı, Ters Dünya Taşı, dikit renkli En Derin Dünya, Vecna boss'u, Telekinezi Eldiveni). Özellik fazları için bkz. [ROADMAP.md](ROADMAP.md).
+> Durum: **Faz 8 tamamlandı** (atmosfer, kırmızı şimşek, mob dönüşümleri, portal sarmaşığı, Ters Dünya Taşı, dikit renkli En Derin Dünya, Vecna boss'u, Telekinezi Eldiveni, dev Mind Flayer). Özellik fazları için bkz. [ROADMAP.md](ROADMAP.md).
 
 ## Gereksinimler
 | | Sürüm |
@@ -85,9 +85,17 @@ src/client/java/dev/mehbur/garipseyler/client/   sadece istemci
 | | `psychicBlastDamage` | `8` | Psişik patlama hasarı (zorluğa göre ölçeklenir) |
 | | `maxMinions` | `6` | Aynı anda en fazla Demodog + Demobat minyonu |
 | | `musicProtectionRadius` | `12` | Çalan müzik kutusunun koruma yarıçapı (blok, 0 = kapalı) |
-| `mindFlayer` | `maxHealth` | `1500` | Can |
-| | `regenDelaySeconds` | `10` | Hasarsız geçmesi gereken süre |
-| | `fullRegenSeconds` | `60` | 0 → tam can süresi |
+| `mindFlayer` | `replaceEnderDragon` | `true` | End savaşında Ender Dragon yerine Mind Flayer |
+| | `maxHealth` | `1500` | Can |
+| | `regenDelaySeconds` | `10` | Rejenerasyondan önce hasarsız geçmesi gereken süre |
+| | `fullRegenSeconds` | `60` | 0 → tam can süresi (1500 / 60 = 25 can/sn) |
+| | `attackDamage` | `110` | Yakın dövüş vuruşu (Demir Golem'i tek vuruşta öldürür) |
+| | `armor` | `12` | Zırh |
+| | `attackCooldownSeconds` | `4` | İki özel saldırı arası (2. fazda %70'i) |
+| | `stompDamage` / `stompRadius` | `20` / `20` | Yere vurma şok dalgası hasarı / yarıçapı |
+| | `rockDamage` | `16` | Kaya isabeti (3,5 blok çevreye yarısı) |
+| | `roarRadius` / `roarSlownessSeconds` | `40` / `5` | Kükreme yarıçapı / Yavaşlık III süresi |
+| | `arenaRadius` | `70` | End merkezinden en fazla uzaklaşma |
 | `glove` | `range` | `20` | Yakalama menzili (blok) |
 | | `cooldownSeconds` | `5` | Mob fırlatılınca/bırakılınca bekleme |
 | | `throwStrength` | `2.0` | Fırlatma hızı (blok/tick) |
@@ -127,12 +135,16 @@ Yalnızca **görünüm** değişir; davranış, can, AI, loot ve vuruş kutular�
 | Zoglin | **Çürümüş Alfa Demodog** | ×1.35, yeşilimsi-kırmızı |
 | Phantom | **Demobat** | yarasa kanatlı, yaprak ağızlı |
 | Ghast | **Dev Demobat** | ×2.75 Demobat, koyu kırmızı; ateş topu hazırlarken ağzı açılır (Happy Ghast değişmez) |
+| Blaze | **Ateş Demobatı** | küçük, kor renkli Demobat, tam aydınlık; ateşlenince ağzı açılır (Faz 8'de eklendi) |
+| Skeleton / Stray / Bogged / Parched / Wither Skeleton | **Demogorgon** / **Donmuş** / **Bataklık** / **Kavrulmuş** / **Kara Demogorgon** | Demogorgon modeli, renk varyantları (Kara ×1.2); saldırırken yaprak ağız açılır, yay çizilmez ama oklar atılır (Faz 8'de eklendi) |
 
 - Bebekler yarım boyda çizilir. Demodog'ların ağız yaprakları saldırırken açılır.
 - İsimler, çağırma yumurtaları, ölüm mesajları ve altyazılar yeni adları kullanır (TR + EN). Sesler kendi ses olaylarımıza yönlendirilir.
+- **Ateşten korkarlar:** Alevden Çehre I'li kılıçla yakın dövüş vuruşu bu yaratıklara (Demogorgon, Demodog, Demobat, Vecna, Mind Flayer) **2 kat**, Alevden Çehre II ile **4 kat** hasar verir (zırhtan önce). Liste `data/garipseylermc/tags/entity_type/upside_down_creatures.json`.
 - **Demobat** ve **Dev Demobat** yalnızca Nether'da bulunur: Overworld'deki uykusuzluk spawn'ı kapalıdır; Overworld'e ya da End'e herhangi bir yolla (portal, komut, eski dünya) gelen Phantom/Ghast bir sonraki tick'te silinir. Bu yüzden "Huzursuz İttifak" başarımı alınamaz. Nether tavanı yüzünden takılmasınlar diye, tavanı olan boyutlarda dönme noktaları mağara tavanının altında tutulur.
 
 ### Faz 4 — Ters Dünya sarmaşığı ✅
+- Görünüm: Stranger Things'teki gibi kalın, etli, parlak damarlı koyu kızıl dokunaçlar (Faz 8'de yenilendi).
 - Nether portalı **yakıldığında** ve oyun karşı tarafta **portal ürettiğinde** çerçevenin obsidyenlerine **Ters Dünya Sarmaşığı** büyür.
 - Çıkış efekti Warden'ın topraktan çıkışı gibidir: `warden.emerge` sesi çalar, sarmaşıklar alttan üste sırayla filizlenir (filiz → genç → tam), her birinde obsidyen parçacıkları saçılır ve Warden kazma sesi gelir.
 - **Lanet:** Nether'da, sarmaşıklı bir portalın `effectRadius` (32) blok yakınında geçirilen her `drainIntervalMinutes` (10) dakikada can `drainTargetHealth`'e (1 HP) iner, emicilik kalpleri silinir, kısa bir karanlık gelir. `warningSeconds` (30) önce ekranda uyarı + saat sesi. Asla öldürmez; yaratıcı/izleyici modu etkilenmez.
@@ -174,9 +186,30 @@ Yalnızca **görünüm** değişir; davranış, can, AI, loot ve vuruş kutular�
   1. Baktığın moba basınca (en fazla `range` = 20 blok, duvarların arkası olmaz) mob havaya kalkar, önünde asılı kalır ve **bakışını takip eder**. Tutulurken yapay zekâsı durur.
   2. Tekrar basınca baktığın yöne **fırlatılır**; duvara ya da tavana sert çarparsa hız kadar hasar alır (sana atfedilir). Normal düşme hasarı da işler.
 - Mob elden çıkınca `cooldownSeconds` (5 sn) bekleme başlar; eldivende vanilla bekleme göstergesi ve "Eldiven dinleniyor..." yazısı çıkar.
-- **Boss'lar etkilenmez:** Vecna, Wither, Ender Dragon, Warden, Elder Guardian ("… telekineziye karşı koyuyor!"). Liste `data/garipseylermc/tags/entity_type/telekinesis_immune.json` etiketinde (Mind Flayer Faz 8'de eklenecek). Oyuncular yakalanamaz.
+- **Boss'lar etkilenmez:** Vecna, Wither, Ender Dragon, Warden, Elder Guardian ("… telekineziye karşı koyuyor!"). Mind Flayer de etkilenmez. Liste `data/garipseylermc/tags/entity_type/telekinesis_immune.json` etiketinde. Oyuncular yakalanamaz.
 - Mob güvenle bırakılır (fırlatmadan) eğer: eldiveni sol elden çıkarırsan, ölürsen, çıkış yaparsan, mob menzilden kaçarsa, `maxHoldSeconds` dolarsa ya da sunucu kapanırsa (mob asla yapay zekâsız kaydedilmez).
 - Hesaplar sunucuda yapılır → çok oyunculuda hile ile menzil/bekleme aşılamaz.
+
+### Faz 8 — Mind Flayer ✅
+- End'de **Ender Dragon yerine Mind Flayer (Taş Form)** gelir: ilk girişte ve End kristalleriyle yeniden çağrıldığında. Eski dünyada yaşayan bir savaş ejderhası varsa yerine Mind Flayer gelir (komutla çağrılan ejderhalara dokunulmaz). Config: `replaceEnderDragon`.
+- **Dev:** model ~**50 blok** boyunda (End kulelerinden uzun), örümcek gibi 8 bacak (dizler gövdenin üstünde, ~58 blok açıklık), yere uzanan 2 ön kol, açılan çene yaprakları, sırt dikenleri; kahverengi kaya-et dokusu ve **karanlıkta parlayan turuncu çatlaklar / boğaz**.
+- **Hitbox** gövdeye göre 16×44 blok; ayrıca 5 blok dışından (bacak/kafa çevresi) nişan alınabilir. Gövdenin altında durup vurulabilir, oyuncuları itmez.
+- **1500 can**, 12 zırh, geri tepmeye bağışık, ateşe/düşmeye/boğulmaya dayanıklı; **uçamaz**, havaya kaldırılamaz (Levitation işlemez), telekinezi etkilemez. Boşluğa düşerse arenanın ortasına döner.
+- **Rejenerasyon:** End kristalleri **iyileştirmez**. `regenDelaySeconds` (10 sn) hasar almazsa can dolar: 0 → 1500 `fullRegenSeconds`'da (60 sn = 25 can/sn), kırmızı-turuncu parçacık + ses.
+- **Hareket:** dev gövde için kendi yürüyüşü: hedefe yavaş döner, 6 bloğa kadar engelleri adımlar, kulelere çarpınca yandan dolaşır, uçurum kenarında durur (boşluğa yürümez). Oyuncuları ve **Demir Golemleri** hedef alır; diğer Ters Dünya yaratıklarını (Demogorgon vb.) müttefik sayar.
+- **Saldırılar:**
+  1. **Yakın dövüş** — `attackDamage` 110: Demir Golem tek vuruşta ölür (korumasız oyuncular, tam netherite zırhla bile tek vuruşta ölür; Koruma büyüleri hayatta tutar).
+  2. **Yere vurma şok dalgası** — kollarını kaldırıp yere vurur; yerde 20 bloğa yayılan halka, geçtiği yerdeki her şeye hasar verip dışarı fırlatır. **Zıplayarak kaçılır.**
+  3. **Taş fırlatma** — 34 blok yükseklikten hedefe yay çizen dev Ters Dünya kayası (2. fazda 3 kaya); blok kırmaz.
+  4. **Kükreme** — 40 blok içindeki oyunculara 5 sn **Yavaşlık III** + itme.
+- %50 can altında 2. faz: "Mind Flayer kükrüyor: taşlar yağmaya başladı!", saldırılar hızlanır.
+- **Ölüm (vanilla sonu korunur):** 5 sn ufalanarak yere gömülür; **çıkış portalı** açılır, yeni **End Gateway** oluşur, ilk ölümde **ejderha yumurtası** konur, **XP** ejderhanınki gibi (ilk 12000, sonra 500). Boss bar ("Mind Flayer", kırmızı), boss müziği ve sis End savaşından gelir.
+- Başarımlar: "En Derin Dünya'yı Özgürleştir" Mind Flayer'ı öldürünce, "Bitti mi? Tekrar..." kristallerle yeniden çağırınca alınır. "You Need a Mint" (ejderha nefesi) alınamaz (Mind Flayer nefes saçmaz).
+- Yönetici komutları (OP):
+  - `/garipseyler mindflayer status` → savaş durumu, can, konum, son hasardan beri geçen süre, rejenerasyon
+  - `/garipseyler mindflayer respawn` → kristal ritüelini senin yerine yapar (yalnızca boss yenikken)
+  - `/garipseyler mindflayer attack <stomp|rock|roar> [oyuncu]` → en yakın Mind Flayer o saldırıyı hemen yapar
+- Config'te değiştirilen can/hasar/zırh, var olan Mind Flayer'a dünya yeniden yüklenince uygulanır.
 
 ## Placeholder dosyaları (değiştirmek için)
 Aynı isimle üzerine yaz, `gradlew build` / `run.bat` ile yeniden derle.
@@ -187,14 +220,19 @@ Aynı isimle üzerine yaz, `gradlew build` / `run.bat` ile yeniden derle.
 | `src/main/resources/assets/garipseylermc/textures/entity/demodog/demodog*.png` | 5 Demodog varyantı (`demodog`, `_brute`, `_rotten`, `_alpha`, `_alpha_rotten`) | 64×64, aynı UV düzeni |
 | `src/main/resources/assets/garipseylermc/textures/entity/demobat/demobat.png` | Demobat dokusu | 64×64 |
 | `src/main/resources/assets/garipseylermc/textures/entity/demobat/demobat_giant.png` | Dev Demobat (Ghast) dokusu | 64×64, Demobat ile aynı UV düzeni |
+| `src/main/resources/assets/garipseylermc/textures/entity/demobat/demobat_blaze.png` | Ateş Demobatı (Blaze) dokusu | 64×64, Demobat ile aynı UV düzeni |
+| `src/main/resources/assets/garipseylermc/textures/entity/demogorgon/demogorgon_{frozen,bog,parched,wither}.png` | İskelet Demogorgon varyantları | 64×64, Demogorgon ile aynı UV düzeni |
 | `src/main/resources/assets/garipseylermc/textures/block/upside_down_stone.png` | Ters Dünya Taşı | 16×16 |
 | `src/client/java/dev/mehbur/garipseyler/client/render/*/…Model.java` → `createBodyLayer()` | Mob modelleri | Blockbench → *File → Export → Export Java Entity* (Mojang mappings); kutuları `createBodyLayer()` içine taşı, **parça isimlerini koru** (`head`, `body`, `petal_holder_N`…) |
 | `src/main/resources/assets/garipseylermc/textures/particle/upside_down_spore_0..2.png` | Ters Dünya spor partikülü | Şeffaf PNG, 8×8 veya 16×16; kare sayısı `particles/upside_down_spore.json`'da |
 | `src/main/resources/assets/minecraft/textures/environment/end_sky.png` | En Derin Dünya gökyüzü | Oyun bu dokuyu ~%16 parlaklıkla çarpar → **parlak** çiz, döşenebilir (tileable) olsun |
-| `src/main/resources/assets/garipseylermc/textures/block/upside_down_vine_0..2.png` | Sarmaşık büyüme evreleri (filiz, genç, tam) | 16×16, şeffaf arka plan |
+| `src/main/resources/assets/garipseylermc/textures/block/upside_down_vine_0..2.png` | Sarmaşık büyüme evreleri (filiz, genç, tam) | 32×32 (16×16 de olur), şeffaf arka plan |
 | `src/main/resources/assets/garipseylermc/geckolib/models/entity/vecna.geo.json` | Vecna modeli | Blockbench → *GeckoLib Animated Model* (Bedrock geometri); kemik adlarını koru: `root`, `body`, `head`, `left_arm`, `right_arm`, `left_hand`, `right_hand`, `left_leg`, `right_leg`, `tendrils` |
 | `src/main/resources/assets/garipseylermc/geckolib/animations/entity/vecna.animation.json` | Vecna animasyonları | Adlar: `misc.idle`, `move.walk`, `attack.cast`, `attack.levitate`, `attack.summon`, `attack.swing`, `misc.die` |
 | `src/main/resources/assets/garipseylermc/textures/entity/vecna.png` + `vecna_glowmask.png` | Vecna dokusu + parlayan kısımlar | 128×128; glowmask'ta yalnızca parlayacak pikseller dolu, gerisi şeffaf |
+| `src/main/resources/assets/garipseylermc/geckolib/models/entity/mind_flayer.geo.json` | Mind Flayer modeli | GeckoLib; renderer 8× büyütür (1 birim = yarım blok, ~100 birim ≈ 50 blok). Kemik adlarını koru: `root`, `body`, `spines`, `head`, `jaw_top`, `jaw_bottom`, `jaw_left`, `jaw_right`, `arm_left`, `arm_right`, `leg_{left,right}_{1..4}` (+ `_lower`) |
+| `src/main/resources/assets/garipseylermc/geckolib/animations/entity/mind_flayer.animation.json` | Mind Flayer animasyonları | Adlar: `misc.idle`, `move.walk`, `attack.stomp`, `attack.throw`, `attack.roar`, `attack.swing`, `misc.die` |
+| `src/main/resources/assets/garipseylermc/textures/entity/mind_flayer.png` + `mind_flayer_glowmask.png` | Mind Flayer dokusu + parlayan çatlaklar | Model 256×512 bildirir, PNG 512×1024 (2×) |
 | `src/main/resources/assets/garipseylermc/textures/item/telekinesis_glove.png` | Telekinezi Eldiveni | 16×16 |
 | `src/main/resources/assets/garipseylermc/textures/mob_effect/vecna_curse.png` | Lanet efekti simgesi | 18×18 |
-| `src/main/resources/assets/garipseylermc/sounds.json` | Ambiyans/müzik/şimşek/mob/sarmaşık (`block.upside_down_vine.warning`, `.drain`) sesleri (`entity.demogorgon.*`, `entity.demodog.*`, `entity.demodog_alpha.*`, `entity.demobat.*`, `entity.demobat_giant.*`, `entity.vecna.*`: ambient, hurt, death, spawn, cast, clock, psychic_blast, shielded; `item.telekinesis_glove.grab` / `.throw`) | Şu an vanilla seslerine bağlı. Kendi sesin için `.ogg` dosyasını `assets/garipseylermc/sounds/` altına koy ve `"name"`i `"garipseylermc:<dosya_adı>"` yap (uzantısız) |
+| `src/main/resources/assets/garipseylermc/sounds.json` | Ambiyans/müzik/şimşek/mob/sarmaşık (`block.upside_down_vine.warning`, `.drain`) sesleri (`entity.demogorgon.*`, `entity.demodog.*`, `entity.demodog_alpha.*`, `entity.demobat.*`, `entity.demobat_giant.*`, `entity.vecna.*`: ambient, hurt, death, spawn, cast, clock, psychic_blast, shielded; `entity.mind_flayer.*`: ambient, hurt, death, step, roar, stomp, throw, rock_impact, regen; `item.telekinesis_glove.grab` / `.throw`) | Şu an vanilla seslerine bağlı. Kendi sesin için `.ogg` dosyasını `assets/garipseylermc/sounds/` altına koy ve `"name"`i `"garipseylermc:<dosya_adı>"` yap (uzantısız) |

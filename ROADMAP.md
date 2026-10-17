@@ -108,12 +108,14 @@ Yalnızca renderer değişir → eski dünyalar bozulmaz.
 
 **Test:** Sadece offhand'de çalışıyor; yakala/taşı/fırlat; cooldown.
 
-## Faz 8 — Mind Flayer (Ender Dragon yerine)
-- End'de Ender Dragon yerine **Mind Flayer (Taş Form)**: **uçamaz**, yerde savaşır, **1500 can**.
+## Faz 8 — Mind Flayer (Ender Dragon yerine) ✅ (tamamlandı; dev boyut ~50 blok, + Blaze/İskelet görünümleri, Alevden Çehre bonusu, yeni sarmaşıklar)
+- End'de Ender Dragon yerine **Mind Flayer (Taş Form)**: **uçamaz**, yerde savaşır, **1500 can**, End kulelerinden uzun dev model, yakın dövüşü Demir Golem'i tek vuruşta öldürür.
 - End kristalleri **iyileştirmez**.
 - **Rejenerasyon:** **10 sn** hasar almazsa can dolmaya başlar; 0 → 1500 **60 sn**'de (25 can/sn).
 - Saldırılar: yere vurma şok dalgası, taş fırlatma, kükreme (yavaşlatma).
 - Öldüğünde vanilla sonu korunur: çıkış portalı, End Gateway, yumurta, XP.
+
+- Ek: Blaze → **Ateş Demobatı**, iskeletler → **Demogorgon** varyantları; Alevden Çehre I/II kılıç Ters Dünya yaratıklarına 2×/4× hasar; sarmaşıklar Stranger Things tarzı etli dokunaçlara çevrildi.
 
 **Test:** Yeni dünyada boss spawn, uçmama, rejenerasyon zamanlaması, ölüm sonrası portal.
 
@@ -137,6 +139,7 @@ Yalnızca renderer değişir → eski dünyalar bozulmaz.
 | `vecnaSpawnDelayMinutes` | 15 (Nether'da toplam süre) |
 | `vecnaGloveDropChance` | 0.001 |
 | `mindFlayerMaxHealth` | 1500 |
+| `mindFlayerAttackDamage` | 110 (Demir Golem tek vuruş) |
 | `mindFlayerRegenDelaySeconds` | 10 |
 | `mindFlayerFullRegenSeconds` | 60 |
 | `gloveRange` / `gloveCooldownSeconds` | 20 / 5 |

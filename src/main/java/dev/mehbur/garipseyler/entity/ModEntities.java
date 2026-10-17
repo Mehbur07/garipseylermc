@@ -1,6 +1,8 @@
 package dev.mehbur.garipseyler.entity;
 
 import dev.mehbur.garipseyler.GaripSeylerMod;
+import dev.mehbur.garipseyler.entity.mindflayer.MindFlayer;
+import dev.mehbur.garipseyler.entity.mindflayer.MindFlayerRock;
 import dev.mehbur.garipseyler.entity.vecna.PsychicBlast;
 import dev.mehbur.garipseyler.entity.vecna.Vecna;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
@@ -42,6 +44,23 @@ public final class ModEntities {
 					.clientTrackingRange(4)
 					.updateInterval(10));
 
+	/** Ender Dragon replacement; only ever spawned by the End fight (no spawn egg, {@code /summon} refused). */
+	public static final EntityType<MindFlayer> MIND_FLAYER = register("mind_flayer",
+			EntityType.Builder.<MindFlayer>of(MindFlayer::new, MobCategory.MONSTER)
+					.noLootTable()
+					.noSummon()
+					.fireImmune()
+					.sized(16.0F, 44.0F)
+					.eyeHeight(36.0F)
+					.clientTrackingRange(16));
+
+	public static final EntityType<MindFlayerRock> MIND_FLAYER_ROCK = register("mind_flayer_rock",
+			EntityType.Builder.<MindFlayerRock>of(MindFlayerRock::new, MobCategory.MISC)
+					.noLootTable()
+					.sized(2.0F, 2.0F)
+					.clientTrackingRange(8)
+					.updateInterval(10));
+
 	private ModEntities() {
 	}
 
@@ -53,5 +72,6 @@ public final class ModEntities {
 	/** Forces class loading so the static fields are registered. */
 	public static void init() {
 		FabricDefaultAttributeRegistry.register(VECNA, Vecna.createAttributes());
+		FabricDefaultAttributeRegistry.register(MIND_FLAYER, MindFlayer.createAttributes());
 	}
 }

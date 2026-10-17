@@ -28,6 +28,15 @@ public final class ModSounds {
 	public static final Holder.Reference<SoundEvent> VECNA_CLOCK = register("entity.vecna.clock");
 	public static final Holder.Reference<SoundEvent> VECNA_PSYCHIC_BLAST = register("entity.vecna.psychic_blast");
 	public static final Holder.Reference<SoundEvent> VECNA_SHIELDED = register("entity.vecna.shielded");
+	public static final Holder.Reference<SoundEvent> MIND_FLAYER_AMBIENT = register("entity.mind_flayer.ambient");
+	public static final Holder.Reference<SoundEvent> MIND_FLAYER_HURT = register("entity.mind_flayer.hurt");
+	public static final Holder.Reference<SoundEvent> MIND_FLAYER_DEATH = register("entity.mind_flayer.death");
+	public static final Holder.Reference<SoundEvent> MIND_FLAYER_STEP = register("entity.mind_flayer.step");
+	public static final Holder.Reference<SoundEvent> MIND_FLAYER_ROAR = register("entity.mind_flayer.roar");
+	public static final Holder.Reference<SoundEvent> MIND_FLAYER_STOMP = register("entity.mind_flayer.stomp");
+	public static final Holder.Reference<SoundEvent> MIND_FLAYER_THROW = register("entity.mind_flayer.throw");
+	public static final Holder.Reference<SoundEvent> MIND_FLAYER_ROCK_IMPACT = register("entity.mind_flayer.rock_impact");
+	public static final Holder.Reference<SoundEvent> MIND_FLAYER_REGEN = register("entity.mind_flayer.regen");
 	public static final Holder.Reference<SoundEvent> GLOVE_GRAB = register("item.telekinesis_glove.grab");
 	public static final Holder.Reference<SoundEvent> GLOVE_THROW = register("item.telekinesis_glove.throw");
 

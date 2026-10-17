@@ -757,5 +757,210 @@
 			}
 		],
 		"subtitle": "subtitles.garipseylermc.item.telekinesis_glove.throw"
+	},
+	"entity.mind_flayer.ambient": {
+		"sounds": [
+			{
+				"name": "minecraft:mob/ravager/idle1",
+				"pitch": 0.45,
+				"volume": 2.0
+			},
+			{
+				"name": "minecraft:mob/ravager/idle2",
+				"pitch": 0.45,
+				"volume": 2.0
+			},
+			{
+				"name": "minecraft:mob/ravager/idle3",
+				"pitch": 0.45,
+				"volume": 2.0
+			},
+			{
+				"name": "minecraft:mob/ravager/idle4",
+				"pitch": 0.45,
+				"volume": 2.0
+			},
+			{
+				"name": "minecraft:mob/ravager/idle5",
+				"pitch": 0.45,
+				"volume": 2.0
+			},
+			{
+				"name": "minecraft:mob/ravager/idle6",
+				"pitch": 0.45,
+				"volume": 2.0
+			},
+			{
+				"name": "minecraft:mob/ravager/idle7",
+				"pitch": 0.45,
+				"volume": 2.0
+			},
+			{
+				"name": "minecraft:mob/ravager/idle8",
+				"pitch": 0.45,
+				"volume": 2.0
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.entity.mind_flayer.ambient"
+	},
+	"entity.mind_flayer.hurt": {
+		"sounds": [
+			{
+				"name": "minecraft:mob/ravager/hurt1",
+				"pitch": 0.5,
+				"volume": 1.6
+			},
+			{
+				"name": "minecraft:mob/ravager/hurt2",
+				"pitch": 0.5,
+				"volume": 1.6
+			},
+			{
+				"name": "minecraft:mob/ravager/hurt3",
+				"pitch": 0.5,
+				"volume": 1.6
+			},
+			{
+				"name": "minecraft:mob/ravager/hurt4",
+				"pitch": 0.5,
+				"volume": 1.6
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.entity.mind_flayer.hurt"
+	},
+	"entity.mind_flayer.death": {
+		"sounds": [
+			{
+				"name": "minecraft:mob/enderdragon/end",
+				"pitch": 0.7,
+				"volume": 1.0
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.entity.mind_flayer.death"
+	},
+	"entity.mind_flayer.step": {
+		"sounds": [
+			{
+				"name": "minecraft:mob/warden/step_1",
+				"pitch": 0.5,
+				"volume": 1.4
+			},
+			{
+				"name": "minecraft:mob/warden/step_2",
+				"pitch": 0.5,
+				"volume": 1.4
+			},
+			{
+				"name": "minecraft:mob/warden/step_3",
+				"pitch": 0.5,
+				"volume": 1.4
+			},
+			{
+				"name": "minecraft:mob/warden/step_4",
+				"pitch": 0.5,
+				"volume": 1.4
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.entity.mind_flayer.step"
+	},
+	"entity.mind_flayer.roar": {
+		"sounds": [
+			{
+				"name": "minecraft:mob/warden/roar_1",
+				"pitch": 0.55,
+				"volume": 3.0
+			},
+			{
+				"name": "minecraft:mob/warden/roar_2",
+				"pitch": 0.55,
+				"volume": 3.0
+			},
+			{
+				"name": "minecraft:mob/warden/roar_3",
+				"pitch": 0.55,
+				"volume": 3.0
+			},
+			{
+				"name": "minecraft:mob/warden/roar_4",
+				"pitch": 0.55,
+				"volume": 3.0
+			},
+			{
+				"name": "minecraft:mob/warden/roar_5",
+				"pitch": 0.55,
+				"volume": 3.0
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.entity.mind_flayer.roar"
+	},
+	"entity.mind_flayer.stomp": {
+		"sounds": [
+			{
+				"name": "minecraft:random/explode1",
+				"pitch": 0.55,
+				"volume": 2.0
+			},
+			{
+				"name": "minecraft:random/explode2",
+				"pitch": 0.55,
+				"volume": 2.0
+			},
+			{
+				"name": "minecraft:random/explode3",
+				"pitch": 0.55,
+				"volume": 2.0
+			},
+			{
+				"name": "minecraft:random/explode4",
+				"pitch": 0.55,
+				"volume": 2.0
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.entity.mind_flayer.stomp"
+	},
+	"entity.mind_flayer.throw": {
+		"sounds": [
+			{
+				"name": "minecraft:mob/irongolem/throw",
+				"pitch": 0.5,
+				"volume": 2.0
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.entity.mind_flayer.throw"
+	},
+	"entity.mind_flayer.rock_impact": {
+		"sounds": [
+			{
+				"name": "minecraft:mob/warden/attack_impact_1",
+				"pitch": 0.7,
+				"volume": 1.5
+			},
+			{
+				"name": "minecraft:mob/warden/attack_impact_2",
+				"pitch": 0.7,
+				"volume": 1.5
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.entity.mind_flayer.rock_impact"
+	},
+	"entity.mind_flayer.regen": {
+		"sounds": [
+			{
+				"name": "minecraft:block/respawn_anchor/charge1",
+				"pitch": 0.6,
+				"volume": 1.0
+			},
+			{
+				"name": "minecraft:block/respawn_anchor/charge2",
+				"pitch": 0.6,
+				"volume": 1.0
+			},
+			{
+				"name": "minecraft:block/respawn_anchor/charge3",
+				"pitch": 0.6,
+				"volume": 1.0
+			}
+		],
+		"subtitle": "subtitles.garipseylermc.entity.mind_flayer.regen"
 	}
 }

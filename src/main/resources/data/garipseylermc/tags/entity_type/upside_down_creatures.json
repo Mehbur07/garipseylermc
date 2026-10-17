@@ -1,0 +1,20 @@
+{
+	"values": [
+		"minecraft:enderman",
+		"minecraft:skeleton",
+		"minecraft:stray",
+		"minecraft:bogged",
+		"minecraft:wither_skeleton",
+		"minecraft:parched",
+		"minecraft:piglin",
+		"minecraft:piglin_brute",
+		"minecraft:zombified_piglin",
+		"minecraft:hoglin",
+		"minecraft:zoglin",
+		"minecraft:phantom",
+		"minecraft:ghast",
+		"minecraft:blaze",
+		"garipseylermc:vecna",
+		"garipseylermc:mind_flayer"
+	]
+}

@@ -8,6 +8,10 @@ import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import dev.mehbur.garipseyler.block.VineSites;
 import dev.mehbur.garipseyler.config.ConfigManager;
 import dev.mehbur.garipseyler.effect.ModAttachments;
+import dev.mehbur.garipseyler.entity.ModEntities;
+import dev.mehbur.garipseyler.entity.mindflayer.MindFlayer;
+import dev.mehbur.garipseyler.entity.mindflayer.MindFlayerAttack;
+import dev.mehbur.garipseyler.entity.mindflayer.MindFlayerFight;
 import dev.mehbur.garipseyler.entity.vecna.Vecna;
 import dev.mehbur.garipseyler.entity.vecna.VecnaAbility;
 import dev.mehbur.garipseyler.entity.vecna.VecnaSpawning;
@@ -17,10 +21,16 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.SharedSuggestionProvider;
 import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.boss.enderdragon.EndCrystal;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.dimension.end.EnderDragonFight;
+import net.minecraft.world.phys.AABB;
 
 import java.util.Arrays;
 import java.util.Comparator;
@@ -45,6 +55,7 @@ public final class ModCommands {
 						.then(Commands.literal("vine")
 								.then(Commands.argument("player", EntityArgument.player()).executes(ModCommands::vineStatus)))
 						.then(vecnaCommand())
+						.then(mindFlayerCommand())
 		));
 	}
 
@@ -122,6 +133,82 @@ public final class ModCommands {
 		vecna.setTarget(target);
 		vecna.forceAbility(ability, target);
 		context.getSource().sendSuccess(() -> Component.translatable("commands.garipseylermc.vecna.ability", ability.id(), target.getDisplayName()), false);
+		return 1;
+	}
+
+	/**
+	 * {@code /garipseyler mindflayer status} – fight state and the boss's health/regeneration, {@code respawn} – the
+	 * vanilla crystal ritual (four End crystals on the exit portal) done for you, and {@code attack <name> [player]} –
+	 * make the nearest Mind Flayer use an attack now.
+	 */
+	private static LiteralArgumentBuilder<CommandSourceStack> mindFlayerCommand() {
+		RequiredArgumentBuilder<CommandSourceStack, String> attack = Commands.argument("attack", StringArgumentType.word())
+				.suggests((context, builder) -> SharedSuggestionProvider.suggest(Arrays.stream(MindFlayerAttack.values()).map(MindFlayerAttack::id), builder))
+				.executes(context -> mindFlayerAttack(context, context.getSource().getPlayerOrException()))
+				.then(Commands.argument("player", EntityArgument.player())
+						.executes(context -> mindFlayerAttack(context, EntityArgument.getPlayer(context, "player"))));
+		return Commands.literal("mindflayer")
+				.then(Commands.literal("status").executes(ModCommands::mindFlayerStatus))
+				.then(Commands.literal("respawn").executes(ModCommands::mindFlayerRespawn))
+				.then(Commands.literal("attack").then(attack));
+	}
+
+	private static int mindFlayerStatus(CommandContext<CommandSourceStack> context) {
+		ServerLevel end = context.getSource().getServer().getLevel(Level.END);
+		EnderDragonFight fight = end == null ? null : end.getDragonFight();
+		if (!(fight instanceof MindFlayerFight flayerFight)) {
+			context.getSource().sendFailure(Component.translatable("commands.garipseylermc.mind_flayer.no_fight"));
+			return 0;
+		}
+		MindFlayer flayer = end.getEntities(ModEntities.MIND_FLAYER, LivingEntity::isAlive).stream().findFirst().orElse(null);
+		context.getSource().sendSuccess(() -> Component.translatable("commands.garipseylermc.mind_flayer.fight",
+				flayerFight.garipseylermc$isBossKilled(), fight.hasPreviouslyKilledDragon()), false);
+		if (flayer != null) {
+			context.getSource().sendSuccess(() -> Component.translatable("commands.garipseylermc.mind_flayer.status",
+					String.format("%.1f", flayer.getHealth()), String.format("%.0f", flayer.getMaxHealth()),
+					flayer.blockPosition().getX(), flayer.blockPosition().getY(), flayer.blockPosition().getZ(),
+					flayer.ticksSinceDamage() / 20, flayer.isRegenerating()), false);
+		}
+		return flayer == null ? 0 : 1;
+	}
+
+	private static int mindFlayerRespawn(CommandContext<CommandSourceStack> context) {
+		ServerLevel end = context.getSource().getServer().getLevel(Level.END);
+		EnderDragonFight fight = end == null ? null : end.getDragonFight();
+		BlockPos portal = fight instanceof MindFlayerFight flayerFight ? flayerFight.garipseylermc$exitPortal() : null;
+		if (portal == null || !((MindFlayerFight) fight).garipseylermc$isBossKilled()) {
+			context.getSource().sendFailure(Component.translatable("commands.garipseylermc.mind_flayer.cannot_respawn"));
+			return 0;
+		}
+		BlockPos center = portal.above();
+		for (Direction direction : Direction.Plane.HORIZONTAL) {
+			BlockPos at = center.relative(direction, 3);
+			if (end.getEntitiesOfClass(EndCrystal.class, new AABB(at)).isEmpty()) {
+				EndCrystal crystal = new EndCrystal(end, at.getX() + 0.5, at.getY(), at.getZ() + 0.5);
+				crystal.setShowBottom(false);
+				end.addFreshEntity(crystal);
+			}
+		}
+		fight.tryRespawn();
+		context.getSource().sendSuccess(() -> Component.translatable("commands.garipseylermc.mind_flayer.respawning"), true);
+		return 1;
+	}
+
+	private static int mindFlayerAttack(CommandContext<CommandSourceStack> context, ServerPlayer target) {
+		String name = StringArgumentType.getString(context, "attack");
+		MindFlayerAttack attack = Arrays.stream(MindFlayerAttack.values()).filter(a -> a.id().equals(name)).findFirst().orElse(null);
+		if (attack == null) {
+			context.getSource().sendFailure(Component.translatable("commands.garipseylermc.mind_flayer.unknown_attack", name));
+			return 0;
+		}
+		List<MindFlayer> found = target.level().getEntitiesOfClass(MindFlayer.class, target.getBoundingBox().inflate(64.0), MindFlayer::isAlive);
+		MindFlayer flayer = found.stream().min(Comparator.comparingDouble(f -> f.distanceToSqr(target))).orElse(null);
+		if (flayer == null) {
+			context.getSource().sendFailure(Component.translatable("commands.garipseylermc.mind_flayer.none_nearby"));
+			return 0;
+		}
+		flayer.forceAttack(attack, target);
+		context.getSource().sendSuccess(() -> Component.translatable("commands.garipseylermc.mind_flayer.attack", attack.id(), target.getDisplayName()), false);
 		return 1;
 	}
 

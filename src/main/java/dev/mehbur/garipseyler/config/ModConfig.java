@@ -110,10 +110,28 @@ public class ModConfig {
 
 	/** Mind Flayer (stone form) — replaces the Ender Dragon. */
 	public static class MindFlayer {
+		/** Spawn the Mind Flayer instead of the Ender Dragon (first fight and crystal respawns); a living fight dragon is replaced. */
+		public boolean replaceEnderDragon = true;
 		public double maxHealth = 1500.0;
+		/** Seconds without taking damage before regeneration starts. */
 		public int regenDelaySeconds = 10;
-		/** Seconds to regenerate from 0 to full health. */
+		/** Seconds to regenerate from 0 to full health (1500 HP / 60 s = 25 HP per second). */
 		public int fullRegenSeconds = 60;
+		/** Melee hit; 110 one-shots an Iron Golem (100 HP, no armor). */
+		public double attackDamage = 110.0;
+		public double armor = 12.0;
+		/** Seconds between two special attacks (phase 2, under 50 % health, uses 70 % of it). */
+		public int attackCooldownSeconds = 4;
+		/** Ground slam: a shockwave ring that spreads along the ground; jump over it to dodge. */
+		public double stompDamage = 20.0;
+		public int stompRadius = 20;
+		/** Thrown rock: direct hit damage, splash (radius 3.5) does half. Phase 2 throws three. */
+		public double rockDamage = 16.0;
+		/** Roar: Slowness III for players within the radius. */
+		public int roarRadius = 40;
+		public int roarSlownessSeconds = 5;
+		/** Blocks from the End's center it may wander; it walks back when farther. */
+		public int arenaRadius = 70;
 	}
 
 	/** Telekinesis glove (offhand item). */
@@ -187,6 +205,15 @@ public class ModConfig {
 		mindFlayer.maxHealth = clamp(mindFlayer.maxHealth, 1.0, 1_000_000.0);
 		mindFlayer.regenDelaySeconds = clamp(mindFlayer.regenDelaySeconds, 0, 3600);
 		mindFlayer.fullRegenSeconds = clamp(mindFlayer.fullRegenSeconds, 1, 3600);
+		mindFlayer.attackDamage = clamp(mindFlayer.attackDamage, 0.0, 2048.0);
+		mindFlayer.armor = clamp(mindFlayer.armor, 0.0, 30.0);
+		mindFlayer.attackCooldownSeconds = clamp(mindFlayer.attackCooldownSeconds, 1, 600);
+		mindFlayer.stompDamage = clamp(mindFlayer.stompDamage, 0.0, 2048.0);
+		mindFlayer.stompRadius = clamp(mindFlayer.stompRadius, 2, 64);
+		mindFlayer.rockDamage = clamp(mindFlayer.rockDamage, 0.0, 2048.0);
+		mindFlayer.roarRadius = clamp(mindFlayer.roarRadius, 1, 96);
+		mindFlayer.roarSlownessSeconds = clamp(mindFlayer.roarSlownessSeconds, 0, 60);
+		mindFlayer.arenaRadius = clamp(mindFlayer.arenaRadius, 16, 256);
 
 		glove.range = clamp(glove.range, 1, 128);
 		glove.cooldownSeconds = clamp(glove.cooldownSeconds, 0, 3600);
