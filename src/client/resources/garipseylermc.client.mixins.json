@@ -4,6 +4,7 @@
 	"compatibilityLevel": "JAVA_25",
 	"client": [
 		"KeyboardInputMixin",
+		"LogoRendererMixin",
 		"SpriteContentsAccessor"
 	],
 	"injectors": {

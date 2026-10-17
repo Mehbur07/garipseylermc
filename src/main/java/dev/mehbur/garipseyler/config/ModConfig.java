@@ -8,6 +8,7 @@ import java.util.List;
  * Field defaults are the shipped values; {@link #validate()} clamps hand-edited values into a safe range.
  */
 public class ModConfig {
+	public Menu menu = new Menu();
 	public Nether nether = new Nether();
 	public End end = new End();
 	public Demobat demobat = new Demobat();
@@ -15,6 +16,12 @@ public class ModConfig {
 	public Vecna vecna = new Vecna();
 	public MindFlayer mindFlayer = new MindFlayer();
 	public Glove glove = new Glove();
+
+	/** Client-side menus. */
+	public static class Menu {
+		/** Shows the neon "Garip Şeyler" logo instead of the Minecraft logo on the title screen. */
+		public boolean titleScreenLogo = true;
+	}
 
 	/** Upside Down (Nether) atmosphere. Colors and fog apply on world/server start. */
 	public static class Nether {
@@ -150,6 +157,7 @@ public class ModConfig {
 
 	/** Fills missing sections and clamps values into sane ranges. */
 	public void validate() {
+		if (menu == null) menu = new Menu();
 		if (nether == null) nether = new Nether();
 		if (end == null) end = new End();
 		if (demobat == null) demobat = new Demobat();

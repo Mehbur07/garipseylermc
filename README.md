@@ -4,7 +4,9 @@
 
 Stranger Things temalı bir Minecraft Java modu: Nether kırmızı **Ters Dünya**'ya, End **En Derin Dünya**'ya dönüşür; Demogorgon, Demodog, Demobat, Vecna ve Mind Flayer gelir.
 
-> Durum: **Faz 8 tamamlandı** (atmosfer, kırmızı şimşek, mob dönüşümleri, portal sarmaşığı, Ters Dünya Taşı, dikit renkli En Derin Dünya, Vecna boss'u, Telekinezi Eldiveni, dev Mind Flayer). Özellik fazları için bkz. [ROADMAP.md](ROADMAP.md).
+> Durum: **Tamamlandı — sürüm 0.1.0** (Faz 0–9). Özellikler aşağıda; geliştirme fazları için bkz. [ROADMAP.md](ROADMAP.md).
+
+**Kısaca:** kırmızı Ters Dünya (Nether) ve kırmızı şimşekler · Demogorgon, Demodog, Demobat görünümleri · portallarda can emen sarmaşıklar · dikit renkli En Derin Dünya (End) · tek seferlik boss **Vecna** · Ender Dragon yerine kulelerden uzun **Mind Flayer** · **Telekinezi Eldiveni** · Alevden Çehre ile Ters Dünya yaratıklarına 2×/4× hasar · başlık ekranında neon logo.
 
 ## Gereksinimler
 | | Sürüm |
@@ -17,8 +19,11 @@ Stranger Things temalı bir Minecraft Java modu: Nether kırmızı **Ters Dünya
 
 ## Kurulum (oyuncu)
 1. Minecraft 26.2 için Fabric Loader kur.
-2. `mods` klasörüne **Fabric API**, **GeckoLib** (Fabric 26.2, [Modrinth](https://modrinth.com/mod/geckolib)) ve `garipseylermc-<sürüm>.jar` dosyasını koy. Sunucuda da üçü gerekir.
-3. Oyunu Fabric profiliyle başlat.
+2. `mods` klasörüne **Fabric API**, **GeckoLib** (Fabric 26.2, [Modrinth](https://modrinth.com/mod/geckolib)) ve `garipseylermc-<sürüm>.jar` dosyasını koy.
+3. Oyunu Fabric profiliyle başlat. Başlık ekranında neon "Garip Şeyler" logosu görünüyorsa mod yüklenmiştir.
+
+**Çok oyunculu:** sunucuda da aynı üç dosya gerekir; oyuncuların da modu kurması gerekir (yeni mob/blok/eşyalar ve görünümler istemcide çizilir).
+**Mevcut dünyalar:** mod eski dünyalarda çalışır. End kuleleri yalnızca yeni üretilen End'de Ters Dünya Taşı olur; yaşayan bir ejderha varsa yerine Mind Flayer gelir.
 
 ## Geliştirme
 ```bat
@@ -48,6 +53,7 @@ src/client/java/dev/mehbur/garipseyler/client/   sadece istemci
 
 | Bölüm | Anahtar | Varsayılan | Açıklama |
 |---|---|---|---|
+| `menu` | `titleScreenLogo` | `true` | Başlık ekranında Minecraft logosu yerine neon "Garip Şeyler" logosu ² |
 | `nether` | `titleOnEnter` | `true` | Girişte "Ters Dünya" başlığı |
 | | `fogColor` | `"#3d0a0d"` | Ters Dünya sis rengi ¹ |
 | | `ambientLightColor` | `"#3a1414"` | Ortam ışığı tonu ¹ |
@@ -107,7 +113,6 @@ src/client/java/dev/mehbur/garipseyler/client/   sadece istemci
 ³ Doku yüklemede uygulanır: değiştirdikten sonra oyunda **F3+T** (ya da yeniden başlat).
 Renkler `#RRGGBB` biçiminde; hatalı renk yazılırsa varsayılan kullanılır.
 
-> Not: Ayarların bir kısmı ilgili faz tamamlandıkça etkin hale gelir.
 
 ## Özellikler
 Ayrıntılı liste ve durum: [ROADMAP.md](ROADMAP.md).
@@ -211,6 +216,59 @@ Yalnızca **görünüm** değişir; davranış, can, AI, loot ve vuruş kutular�
   - `/garipseyler mindflayer attack <stomp|rock|roar> [oyuncu]` → en yakın Mind Flayer o saldırıyı hemen yapar
 - Config'te değiştirilen can/hasar/zırh, var olan Mind Flayer'a dünya yeniden yüklenince uygulanır.
 
+### Faz 9 — Cilalama ✅
+- **Başlık ekranı:** Minecraft logosu ve "Java Edition" yazısı yerine neon kırmızı **Garip Şeyler** logosu (jenerik ekranında da). Config: `menu.titleScreenLogo`.
+- README tamamlandı: kurulum, özellikler, ayarlar, komutlar, varsayımlar, bilinen sınırlamalar, sorun giderme, placeholder dosyaları.
+
+## Komutlar (özet)
+Hepsi OP (yetki seviyesi 2) ister.
+
+| Komut | Ne yapar |
+|---|---|
+| `/garipseyler reload` | `config/garipseylermc.json`'u yeniden yükler |
+| `/garipseyler vine <oyuncu>` | Sarmaşık laneti sayacı, sarmaşıklı portal sayısı, en yakın mesafe |
+| `/garipseyler vecna status` | Vecna doğdu/yenildi mi, Nether süren |
+| `/garipseyler vecna spawn [oyuncu]` | Tek seferlik Vecna doğuşunu hemen yap |
+| `/garipseyler vecna reset` | Vecna bayrağını sıfırla (test) |
+| `/garipseyler vecna ability <ad> [oyuncu]` | En yakın Vecna bir yeteneği hemen kullanır |
+| `/garipseyler mindflayer status` | End savaşı durumu, Mind Flayer canı ve rejenerasyonu |
+| `/garipseyler mindflayer respawn` | Kristal ritüelini yap (boss yenikken) |
+| `/garipseyler mindflayer attack <stomp\|rock\|roar> [oyuncu]` | En yakın Mind Flayer bir saldırıyı hemen yapar |
+
+## Varsayımlar
+Projede verilen ve ROADMAP'te açıkça yazmayan kararlar:
+
+1. **Ad ve telif:** mod "Garip Şeyler MC" adını taşır; dizinin adı, logosu, müziği veya dokuları kullanılmaz. Tüm dokular/modeller modla birlikte üretildi, sesler vanilla seslerinin yeniden kullanımıdır.
+2. **Ters Dünya kırmızısı yalnızca görseldir:** Nether biyomları, arazi, yapılar ve spawn'lar değişmez; kırmızı şimşek hasar/yangın/mob dönüşümü yapmaz.
+3. **Mob dönüşümleri yalnızca görünümdür:** davranış, can, ganimet, ses mantığı vanilla kalır. İstek dışında eklenenler: Piglin Brute ve Zoglin de Demodog varyantı oldu; Ghast **Dev Demobat**, Blaze **Ateş Demobatı**, tüm iskelet türleri **Demogorgon** varyantı (Happy Ghast değişmez).
+4. **Demobat yalnızca Nether'da:** Phantom ve Ghast Overworld/End'de silinir (Blaze silinmez). Sonuç: "Huzursuz İttifak" başarımı alınamaz.
+5. **Sarmaşık laneti** yalnızca yarıçap içindeki oyunculara işler, 1 HP'ye düşürür ama asla öldürmez; sarmaşıklı çerçeve portal sönükken de lanetler.
+6. **En Derin Dünya'da** End taşı dışındaki her blok (meşale, End çubuğu, cam dahil) dikit renginde görünür; sandıklar, blok-varlıklı ve işlevsel bloklar hariç.
+7. **Ters Dünya Taşı kuleleri** yalnızca yeni üretilen End'de; eski dünyalardaki obsidyen kuleler değişmez.
+8. **Vecna:** her dünyada bir kez, bir oyuncunun Nether'daki toplam süresi 15 dk'yı geçince doğar; yalnızca %0.1 şansla Telekinezi Eldiveni düşürür, XP vermez. "Kemik kırma" yerine can azaltan lanet kullanıldı.
+9. **Telekinezi Eldiveni** yalnızca sol eldeyken çalışır; boss'lar ve oyuncular yakalanamaz.
+10. **Mind Flayer** End savaşının bossudur: ejderhanın yerini her yerde alır (eski dünyalardaki yaşayan savaş ejderhası dahil; komutla çağrılanlar hariç). Dev boyut (~50 blok) ve yakın dövüşte 110 hasar (Demir Golem tek vuruş) kullanıcı isteğidir. Vanilla sonu (portal, gateway, yumurta, XP) korunur.
+11. **Alevden Çehre bonusu** yalnızca **kılıçla yakın dövüşte** ve yalnızca Ters Dünya yaratıkları etiketindekilere işler ("demoit" Demodog olarak yorumlandı).
+12. **Diller:** Türkçe ve İngilizce; diğer dillerde vanilla adlar görünür.
+
+## Bilinen sınırlamalar
+- "You Need a Mint" (ejderha nefesi) başarımı alınamaz: Mind Flayer nefes saçmaz.
+- Korumasız oyuncular Mind Flayer'ın yakın dövüşünde, tam netherite zırhla bile tek vuruşta ölür; Koruma büyüleri hayatta tutar. `mindFlayer.attackDamage` ile düşürülebilir.
+- Mind Flayer'ın hitbox'ı tek kutudur (16×44 + 5 blok nişan payı); bacak uçlarına vurulamaz. Vanilla'nın çok parçalı hitbox'ı yalnızca Ender Dragon'a özeldir.
+- Mind Flayer yol bulma yerine düz yürür; End kulelerinin etrafından dolaşır ama karmaşık arazide kısa süre takılabilir.
+- Demogorgon görünümlü iskeletlerin yayları çizilmez (oklar yine atılır).
+- End'deki dikit renkleri ve bazı görsel ayarlar doku yeniden yüklenince (F3+T) değişir.
+- Ender Dragon'u değiştiren başka End modlarıyla çakışabilir; o durumda `mindFlayer.replaceEnderDragon: false`.
+
+## Sorun giderme
+| Belirti | Çözüm |
+|---|---|
+| Oyun açılırken GeckoLib hatası | `mods` klasörüne GeckoLib (Fabric 26.2, 5.5.5+) ekle |
+| Ayarlar uygulanmıyor | JSON hatalıysa dosya `garipseylermc.json.broken` olarak yedeklenip varsayılanlar kullanılır — o dosyayı kontrol et; ¹ işaretliler yeniden başlatma, ³ işaretliler F3+T ister |
+| Mind Flayer görünmüyor / doğmadı | End'de merkez adaya git (savaş yalnızca oyuncu yakındayken işler); `/garipseyler mindflayer status` |
+| Vecna doğmuyor | `/garipseyler vecna status` ile Nether süreni gör; zaten bir kez doğduysa tekrar doğmaz (`reset` test içindir) |
+| Başlık ekranında vanilla logo istiyorum | `menu.titleScreenLogo: false` |
+
 ## Placeholder dosyaları (değiştirmek için)
 Aynı isimle üzerine yaz, `gradlew build` / `run.bat` ile yeniden derle.
 
@@ -234,5 +292,7 @@ Aynı isimle üzerine yaz, `gradlew build` / `run.bat` ile yeniden derle.
 | `src/main/resources/assets/garipseylermc/geckolib/animations/entity/mind_flayer.animation.json` | Mind Flayer animasyonları | Adlar: `misc.idle`, `move.walk`, `attack.stomp`, `attack.throw`, `attack.roar`, `attack.swing`, `misc.die` |
 | `src/main/resources/assets/garipseylermc/textures/entity/mind_flayer.png` + `mind_flayer_glowmask.png` | Mind Flayer dokusu + parlayan çatlaklar | Model 256×512 bildirir, PNG 512×1024 (2×) |
 | `src/main/resources/assets/garipseylermc/textures/item/telekinesis_glove.png` | Telekinezi Eldiveni | 16×16 |
+| `src/main/resources/assets/garipseylermc/textures/gui/title_logo.png` | Başlık ekranı logosu | 2:1 oran (512×256), şeffaf arka plan; ekranda 160×80 GUI pikseli çizilir |
+| `src/main/resources/assets/garipseylermc/icon.png` | Mod listesi ikonu | Kare PNG |
 | `src/main/resources/assets/garipseylermc/textures/mob_effect/vecna_curse.png` | Lanet efekti simgesi | 18×18 |
 | `src/main/resources/assets/garipseylermc/sounds.json` | Ambiyans/müzik/şimşek/mob/sarmaşık (`block.upside_down_vine.warning`, `.drain`) sesleri (`entity.demogorgon.*`, `entity.demodog.*`, `entity.demodog_alpha.*`, `entity.demobat.*`, `entity.demobat_giant.*`, `entity.vecna.*`: ambient, hurt, death, spawn, cast, clock, psychic_blast, shielded; `entity.mind_flayer.*`: ambient, hurt, death, step, roar, stomp, throw, rock_impact, regen; `item.telekinesis_glove.grab` / `.throw`) | Şu an vanilla seslerine bağlı. Kendi sesin için `.ogg` dosyasını `assets/garipseylermc/sounds/` altına koy ve `"name"`i `"garipseylermc:<dosya_adı>"` yap (uzantısız) |

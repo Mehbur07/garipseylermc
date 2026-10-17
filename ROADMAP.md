@@ -119,7 +119,7 @@ Yalnızca renderer değişir → eski dünyalar bozulmaz.
 
 **Test:** Yeni dünyada boss spawn, uçmama, rejenerasyon zamanlaması, ölüm sonrası portal.
 
-## Faz 9 — Cilalama ve teslim
+## Faz 9 — Cilalama ve teslim ✅ (tamamlandı; başlık ekranında neon logo)
 - README: kurulum, özellik listesi, config tablosu, **placeholder dosya tablosu** (hangi PNG/model/ses nereye).
 - Varsayımlar listesi.
 - (Opsiyonel) Başlık ekranında logo.
@@ -127,7 +127,7 @@ Yalnızca renderer değişir → eski dünyalar bozulmaz.
 
 ---
 
-## Config (planlanan anahtarlar)
+## Config (ana anahtarlar — tam tablo README'de)
 | Anahtar | Varsayılan |
 |---|---|
 | `redLightningIntervalSeconds` | 7 |
@@ -144,12 +144,5 @@ Yalnızca renderer değişir → eski dünyalar bozulmaz.
 | `mindFlayerFullRegenSeconds` | 60 |
 | `gloveRange` / `gloveCooldownSeconds` | 20 / 5 |
 
-## Placeholder dosyaları (Faz 9'da kesinleşir)
-```
-src/main/resources/assets/garipseylermc/
-├── textures/entity/   demogorgon.png, demodog_*.png, demobat.png, vecna.png, mind_flayer.png
-├── textures/block/    upside_stone.png, upside_vine.png
-├── textures/item/     telekinesis_glove.png
-├── geo/  animations/  vecna.geo.json, mind_flayer.geo.json (+ .animation.json)
-└── sounds/            *.ogg (+ sounds.json)
-```
+## Placeholder dosyaları
+Kesin liste (dokular, GeckoLib modelleri/animasyonları, sesler, logo) için bkz. [README → Placeholder dosyaları](README.md#placeholder-dosyaları-değiştirmek-için).
