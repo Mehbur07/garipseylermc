@@ -13,8 +13,8 @@ import net.minecraft.world.entity.monster.skeleton.AbstractSkeleton;
 
 /**
  * Renders skeletons (Skeleton, Stray, Bogged, Parched, Wither Skeleton) as Demogorgons with the Demogorgon model.
- * The petal mouth opens while the skeleton is aggressive (aiming or attacking). Held bows are not drawn; arrows
- * still fly. Behaviour is untouched.
+ * The petal mouth opens while the skeleton is aggressive (aiming or attacking). Held bows are not drawn; skeletons
+ * melee instead of shooting (see AbstractSkeletonMixin).
  */
 public class SkeletonDemogorgonRenderer<T extends AbstractSkeleton> extends MobRenderer<T, EndermanRenderState, EndermanModel<EndermanRenderState>> {
 	private static final float SHADOW_RADIUS = 0.5F;

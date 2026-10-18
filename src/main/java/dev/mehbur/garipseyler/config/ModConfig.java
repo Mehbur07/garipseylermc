@@ -68,6 +68,8 @@ public class ModConfig {
 		 * normally, and water/rain no longer hurts them (they could not escape it).
 		 */
 		public boolean canTeleport = false;
+		/** Vanilla skeleton archery. Off: every skeleton type (Demogorgon variants) chases and melees instead. */
+		public boolean skeletonsShootArrows = false;
 	}
 
 	/** Demobat (re-skinned Phantom) spawning. Spawn weights apply on world/server start. */
