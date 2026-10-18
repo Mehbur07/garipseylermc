@@ -170,5 +170,10 @@
 	"subtitles.entity.strider.retreat": "Evcil Demodog geri çekiliyor",
 	"stat.minecraft.strider_one_cm": "Evcil Demodog ile Gidilen Mesafe",
 	"advancements.nether.ride_strider.description": "Çarpık mantarlı oltayla bir Evcil Demodog’a binin",
-	"advancements.nether.ride_strider_in_overworld_lava.description": "Bir Evcil Demodog’la Overworld’deki bir lav gölünde uzuuun bir gezintiye çıkın"
+	"advancements.nether.ride_strider_in_overworld_lava.description": "Bir Evcil Demodog’la Overworld’deki bir lav gölünde uzuuun bir gezintiye çıkın",
+	"entity.minecraft.magma_cube": "Magma Demodog",
+	"item.minecraft.magma_cube_spawn_egg": "Magma Demodog Çağırma Yumurtası",
+	"subtitles.entity.magma_cube.death": "Magma Demodog öldü",
+	"subtitles.entity.magma_cube.hurt": "Magma Demodog hasar aldı",
+	"subtitles.entity.magma_cube.squish": "Magma Demodog yere kondu"
 }

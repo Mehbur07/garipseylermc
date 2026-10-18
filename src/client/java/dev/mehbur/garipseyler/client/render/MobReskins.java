@@ -32,6 +32,7 @@ public final class MobReskins {
 		EntityRenderers.register(EntityTypes.HOGLIN, context -> new DemodogRenderer<>(context, DemodogVariant.HOGLIN));
 		EntityRenderers.register(EntityTypes.ZOGLIN, context -> new DemodogRenderer<>(context, DemodogVariant.ZOGLIN));
 		EntityRenderers.register(EntityTypes.STRIDER, context -> new DemodogRenderer<>(context, DemodogVariant.STRIDER));
+		EntityRenderers.register(EntityTypes.MAGMA_CUBE, context -> new DemodogRenderer<>(context, DemodogVariant.MAGMA_CUBE));
 
 		EntityRenderers.register(EntityTypes.PHANTOM, DemobatRenderer::new);
 		EntityRenderers.register(EntityTypes.GHAST, GiantDemobatRenderer::new);

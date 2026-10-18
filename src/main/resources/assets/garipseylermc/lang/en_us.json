@@ -170,5 +170,10 @@
 	"subtitles.entity.strider.retreat": "Pet Demodog retreats",
 	"stat.minecraft.strider_one_cm": "Distance by Pet Demodog",
 	"advancements.nether.ride_strider.description": "Ride a Pet Demodog with a Warped Fungus on a Stick",
-	"advancements.nether.ride_strider_in_overworld_lava.description": "Take a Pet Demodog for a loooong ride on a lava lake in the Overworld"
+	"advancements.nether.ride_strider_in_overworld_lava.description": "Take a Pet Demodog for a loooong ride on a lava lake in the Overworld",
+	"entity.minecraft.magma_cube": "Magma Demodog",
+	"item.minecraft.magma_cube_spawn_egg": "Magma Demodog Spawn Egg",
+	"subtitles.entity.magma_cube.death": "Magma Demodog dies",
+	"subtitles.entity.magma_cube.hurt": "Magma Demodog hurts",
+	"subtitles.entity.magma_cube.squish": "Magma Demodog lands"
 }

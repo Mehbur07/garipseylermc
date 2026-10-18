@@ -12,4 +12,8 @@ public class DemodogRenderState extends LivingEntityRenderState {
 	public boolean saddled;
 	/** Striders out of lava are cold: grey-purple and shivering. */
 	public boolean cold;
+	/** Cube size (1, 2, 4) of a Magma Cube, 0 for every other mob. */
+	public int cubeSize;
+	/** Magma Cube hop squish: positive while launching, negative after landing. */
+	public float squish;
 }

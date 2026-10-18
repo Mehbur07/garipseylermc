@@ -448,5 +448,45 @@
 			}
 		],
 		"subtitle": "subtitles.entity.strider.death"
+	},
+	"entity.magma_cube.hurt": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog.hurt",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.magma_cube.hurt"
+	},
+	"entity.magma_cube.hurt_small": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog.hurt",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.magma_cube.hurt"
+	},
+	"entity.magma_cube.death": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog.death",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.magma_cube.death"
+	},
+	"entity.magma_cube.death_small": {
+		"replace": true,
+		"sounds": [
+			{
+				"name": "garipseylermc:entity.demodog.death",
+				"type": "event"
+			}
+		],
+		"subtitle": "subtitles.entity.magma_cube.death"
 	}
 }

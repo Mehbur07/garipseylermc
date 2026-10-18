@@ -21,7 +21,9 @@ public enum DemodogVariant {
 	 * Strider: a lava-cracked mount, sized so a rider sits on its back. Turns grey-purple and shivers out of lava,
 	 * like the vanilla cold Strider.
 	 */
-	STRIDER("demodog_lava", "demodog_lava_cold", 1.6F);
+	STRIDER("demodog_lava", "demodog_lava_cold", 1.6F),
+	/** Magma Cube: a glowing magma-seamed hopper; its drawn size follows the cube size (see DemodogRenderer). */
+	MAGMA_CUBE("demodog_magma", 1.0F);
 
 	private final Identifier texture;
 	private final Identifier coldTexture;
@@ -48,6 +50,11 @@ public enum DemodogVariant {
 	/** Texture of a Strider out of lava; the normal texture for the other variants. */
 	public Identifier coldTexture() {
 		return this.coldTexture;
+	}
+
+	/** Drawn at full brightness, like the vanilla Magma Cube. */
+	public boolean fullBright() {
+		return this == MAGMA_CUBE;
 	}
 
 	public float scale() {
