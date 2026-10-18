@@ -8,4 +8,8 @@ public class DemodogRenderState extends LivingEntityRenderState {
 	public boolean attacking;
 	/** Piglins and hoglins shake while zombifying in the Overworld. */
 	public boolean converting;
+	/** Saddled Striders show a saddle on the back. */
+	public boolean saddled;
+	/** Striders out of lava are cold: grey-purple and shivering. */
+	public boolean cold;
 }

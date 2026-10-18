@@ -6,12 +6,13 @@ import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.monster.Strider;
 import net.minecraft.world.entity.monster.hoglin.Hoglin;
 import net.minecraft.world.entity.monster.hoglin.HoglinBase;
 import net.minecraft.world.entity.monster.piglin.AbstractPiglin;
 
 /**
- * Renders Piglins, Piglin Brutes, Zombified Piglins, Hoglins and Zoglins as Demodogs. Behaviour, health and
+ * Renders Piglins, Piglin Brutes, Zombified Piglins, Hoglins, Zoglins and Striders as Demodogs. Behaviour, health and
  * hitboxes stay vanilla; only the look changes. Babies are drawn at half size.
  */
 public class DemodogRenderer<T extends Mob> extends MobRenderer<T, DemodogRenderState, DemodogModel> {
@@ -26,7 +27,7 @@ public class DemodogRenderer<T extends Mob> extends MobRenderer<T, DemodogRender
 
 	@Override
 	public Identifier getTextureLocation(DemodogRenderState state) {
-		return this.variant.texture();
+		return state.cold ? this.variant.coldTexture() : this.variant.texture();
 	}
 
 	@Override
@@ -42,6 +43,8 @@ public class DemodogRenderer<T extends Mob> extends MobRenderer<T, DemodogRender
 		state.attacking = headButting || entity.getAttackAnim(partialTicks) > 0.0F;
 		state.converting = (entity instanceof AbstractPiglin piglin && piglin.isConverting())
 				|| (entity instanceof Hoglin hoglin && hoglin.isConverting());
+		state.saddled = entity.isSaddled();
+		state.cold = entity instanceof Strider strider && strider.isSuffocating();
 	}
 
 	@Override
@@ -52,6 +55,6 @@ public class DemodogRenderer<T extends Mob> extends MobRenderer<T, DemodogRender
 
 	@Override
 	protected boolean isShaking(DemodogRenderState state) {
-		return super.isShaking(state) || state.converting;
+		return super.isShaking(state) || state.converting || state.cold;
 	}
 }

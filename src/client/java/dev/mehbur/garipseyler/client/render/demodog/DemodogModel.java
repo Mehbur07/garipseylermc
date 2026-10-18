@@ -21,6 +21,7 @@ public class DemodogModel extends EntityModel<DemodogRenderState> {
 
 	private final ModelPart head;
 	private final ModelPart tail;
+	private final ModelPart saddle;
 	private final ModelPart rightHindLeg;
 	private final ModelPart leftHindLeg;
 	private final ModelPart rightFrontLeg;
@@ -31,6 +32,7 @@ public class DemodogModel extends EntityModel<DemodogRenderState> {
 		super(root);
 		this.head = root.getChild("head");
 		this.tail = root.getChild("tail");
+		this.saddle = root.getChild("saddle");
 		this.rightHindLeg = root.getChild("right_hind_leg");
 		this.leftHindLeg = root.getChild("left_hind_leg");
 		this.rightFrontLeg = root.getChild("right_front_leg");
@@ -60,6 +62,14 @@ public class DemodogModel extends EntityModel<DemodogRenderState> {
 					PartPose.offsetAndRotation(0.0F, -2.5F, 0.0F, PETAL_CLOSED, 0.0F, 0.0F));
 		}
 
+		// Saddle pad on the back with a strap flap on each side; only Strider textures paint it.
+		root.addOrReplaceChild("saddle",
+				CubeListBuilder.create()
+						.texOffs(24, 40).addBox(-4.0F, -4.5F, -4.0F, 8.0F, 1.0F, 8.0F)
+						.texOffs(56, 40).addBox(-4.5F, -3.5F, -1.5F, 1.0F, 4.0F, 3.0F)
+						.texOffs(56, 40).mirror().addBox(3.5F, -3.5F, -1.5F, 1.0F, 4.0F, 3.0F),
+				PartPose.offset(0.0F, 11.0F, 0.0F));
+
 		root.addOrReplaceChild("tail",
 				CubeListBuilder.create().texOffs(0, 36).addBox(-1.0F, -1.0F, 0.0F, 2.0F, 2.0F, 10.0F),
 				PartPose.offsetAndRotation(0.0F, 9.0F, 8.0F, -0.5F, 0.0F, 0.0F));
@@ -88,6 +98,7 @@ public class DemodogModel extends EntityModel<DemodogRenderState> {
 		this.leftHindLeg.xRot = -swing;
 		this.rightFrontLeg.xRot = -swing;
 
+		this.saddle.visible = state.saddled;
 		this.tail.yRot = Mth.sin(state.ageInTicks * 0.15F) * 0.25F;
 
 		float open;

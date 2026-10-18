@@ -159,5 +159,16 @@
 	"item.minecraft.bogged_spawn_egg": "Bog Demogorgon Spawn Egg",
 	"item.minecraft.parched_spawn_egg": "Parched Demogorgon Spawn Egg",
 	"item.minecraft.wither_skeleton_spawn_egg": "Black Demogorgon Spawn Egg",
-	"item.minecraft.blaze_spawn_egg": "Ember Demobat Spawn Egg"
+	"item.minecraft.blaze_spawn_egg": "Ember Demobat Spawn Egg",
+	"entity.minecraft.strider": "Pet Demodog",
+	"item.minecraft.strider_spawn_egg": "Pet Demodog Spawn Egg",
+	"subtitles.entity.strider.death": "Pet Demodog dies",
+	"subtitles.entity.strider.eat": "Pet Demodog eats",
+	"subtitles.entity.strider.happy": "Pet Demodog purrs",
+	"subtitles.entity.strider.hurt": "Pet Demodog hurts",
+	"subtitles.entity.strider.idle": "Pet Demodog growls",
+	"subtitles.entity.strider.retreat": "Pet Demodog retreats",
+	"stat.minecraft.strider_one_cm": "Distance by Pet Demodog",
+	"advancements.nether.ride_strider.description": "Ride a Pet Demodog with a Warped Fungus on a Stick",
+	"advancements.nether.ride_strider_in_overworld_lava.description": "Take a Pet Demodog for a loooong ride on a lava lake in the Overworld"
 }

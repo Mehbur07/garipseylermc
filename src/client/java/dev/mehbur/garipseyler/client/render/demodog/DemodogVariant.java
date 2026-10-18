@@ -16,18 +16,38 @@ public enum DemodogVariant {
 	/** Hoglin: the big alpha. */
 	HOGLIN("demodog_alpha", 1.35F),
 	/** Zoglin (zombified Hoglin): rotten alpha. */
-	ZOGLIN("demodog_alpha_rotten", 1.35F);
+	ZOGLIN("demodog_alpha_rotten", 1.35F),
+	/**
+	 * Strider: a lava-cracked mount, sized so a rider sits on its back. Turns grey-purple and shivers out of lava,
+	 * like the vanilla cold Strider.
+	 */
+	STRIDER("demodog_lava", "demodog_lava_cold", 1.6F);
 
 	private final Identifier texture;
+	private final Identifier coldTexture;
 	private final float scale;
 
 	DemodogVariant(String textureName, float scale) {
-		this.texture = GaripSeylerMod.id("textures/entity/demodog/" + textureName + ".png");
+		this(textureName, textureName, scale);
+	}
+
+	DemodogVariant(String textureName, String coldTextureName, float scale) {
+		this.texture = texture(textureName);
+		this.coldTexture = texture(coldTextureName);
 		this.scale = scale;
+	}
+
+	private static Identifier texture(String name) {
+		return GaripSeylerMod.id("textures/entity/demodog/" + name + ".png");
 	}
 
 	public Identifier texture() {
 		return this.texture;
+	}
+
+	/** Texture of a Strider out of lava; the normal texture for the other variants. */
+	public Identifier coldTexture() {
+		return this.coldTexture;
 	}
 
 	public float scale() {

@@ -140,6 +140,7 @@ Yalnızca **görünüm** değişir; davranış, can, AI, loot ve vuruş kutular�
 | Zombified Piglin | **Çürümüş Demodog** | ×0.95, soluk yeşil, et lekeli |
 | Hoglin | **Alfa Demodog** | ×1.35, kırmızımsı |
 | Zoglin | **Çürümüş Alfa Demodog** | ×1.35, yeşilimsi-kırmızı |
+| Strider (Lav Gezer) | **Evcil Demodog** | ×1.6, kor çatlaklı; eyerlenince sırtında eyer görünür, binen sırtına oturur. Lavdan çıkınca gri-mor olur ve titrer (vanilla üşüme) |
 | Phantom | **Demobat** | yarasa kanatlı, yaprak ağızlı |
 | Ghast | **Dev Demobat** | ×2.75 Demobat, koyu kırmızı; ateş topu hazırlarken ağzı açılır (Happy Ghast değişmez) |
 | Blaze | **Ateş Demobatı** | küçük, kor renkli Demobat, tam aydınlık; ateşlenince ağzı açılır (Faz 8'de eklendi) |
@@ -149,7 +150,7 @@ Yalnızca **görünüm** değişir; davranış, can, AI, loot ve vuruş kutular�
 - İsimler, çağırma yumurtaları, ölüm mesajları ve altyazılar yeni adları kullanır (TR + EN). Sesler kendi ses olaylarımıza yönlendirilir.
 - **Demogorgonlar ışınlanmaz** (`demogorgon.canTeleport: false`): hasar alınca, suda/güneşte ya da oyuncuya doğru ışınlanmazlar; yürüyerek kovalarlar. Oklardan kaçamadıkları için oklar ve mermiler normal isabet eder (alevli ok yakar); kaçamayacakları için su ve yağmur onlara hasar vermez.
 - **Demogorgon iskeletler ok atmaz** (`demogorgon.skeletonsShootArrows: false`): tüm iskelet türleri (Wither Skeleton zaten kılıçlı) oyuncuyu kovalayıp pençeyle vurur. Yay ellerinde kalır (çizilmez), o yüzden yay/ok ganimeti vanilla gibi düşer.
-- **Ateşten korkarlar:** Alevden Çehre I'li kılıçla yakın dövüş vuruşu bu yaratıklara (Demogorgon, Demodog, Demobat, Vecna, Mind Flayer) **2 kat**, Alevden Çehre II ile **4 kat** hasar verir (zırhtan önce). Liste `data/garipseylermc/tags/entity_type/upside_down_creatures.json`.
+- **Ateşten korkarlar:** Alevden Çehre I'li kılıçla yakın dövüş vuruşu bu yaratıklara (Demogorgon, Demodog — Evcil Demodog dahil, Demobat, Vecna, Mind Flayer) **2 kat**, Alevden Çehre II ile **4 kat** hasar verir (zırhtan önce). Liste `data/garipseylermc/tags/entity_type/upside_down_creatures.json`.
 - **Demobat** ve **Dev Demobat** yalnızca Nether'da bulunur: Overworld'deki uykusuzluk spawn'ı kapalıdır; Overworld'e ya da End'e herhangi bir yolla (portal, komut, eski dünya) gelen Phantom/Ghast bir sonraki tick'te silinir. Bu yüzden "Huzursuz İttifak" başarımı alınamaz. Nether tavanı yüzünden takılmasınlar diye, tavanı olan boyutlarda dönme noktaları mağara tavanının altında tutulur.
 
 ### Faz 4 — Ters Dünya sarmaşığı ✅
@@ -244,7 +245,7 @@ Projede verilen ve ROADMAP'te açıkça yazmayan kararlar:
 
 1. **Ad ve telif:** mod "Garip Şeyler MC" adını taşır; dizinin adı, logosu, müziği veya dokuları kullanılmaz. Tüm dokular/modeller modla birlikte üretildi, sesler vanilla seslerinin yeniden kullanımıdır.
 2. **Ters Dünya kırmızısı yalnızca görseldir:** Nether biyomları, arazi, yapılar ve spawn'lar değişmez; kırmızı şimşek hasar/yangın/mob dönüşümü yapmaz.
-3. **Mob dönüşümleri yalnızca görünümdür** (istisnalar: Demogorgonlar ışınlanmaz, Demogorgon iskeletler ok atmaz): davranış, can, ganimet, ses mantığı vanilla kalır. İstek dışında eklenenler: Piglin Brute ve Zoglin de Demodog varyantı oldu; Ghast **Dev Demobat**, Blaze **Ateş Demobatı**, tüm iskelet türleri **Demogorgon** varyantı (Happy Ghast değişmez).
+3. **Mob dönüşümleri yalnızca görünümdür** (istisnalar: Demogorgonlar ışınlanmaz, Demogorgon iskeletler ok atmaz): davranış, can, ganimet, ses mantığı vanilla kalır. İstek dışında eklenenler: Piglin Brute ve Zoglin de Demodog varyantı oldu; Ghast **Dev Demobat**, Blaze **Ateş Demobatı**, tüm iskelet türleri **Demogorgon** varyantı (Happy Ghast değişmez). Strider kullanıcı isteğiyle **Evcil Demodog** oldu; vanilla Strider gibi uysaldır ve binilebilir.
 4. **Demogorgonlar ışınlanmaz** (kullanıcı isteği); bu yüzden oklar onlara isabet eder ve su/yağmur hasar vermez.
 5. **Demobat yalnızca Nether'da:** Phantom ve Ghast Overworld/End'de silinir (Blaze silinmez). Sonuç: "Huzursuz İttifak" başarımı alınamaz.
 6. **Sarmaşık laneti** yalnızca yarıçap içindeki oyunculara işler, 1 HP'ye düşürür ama asla öldürmez; sarmaşıklı çerçeve portal sönükken de lanetler.

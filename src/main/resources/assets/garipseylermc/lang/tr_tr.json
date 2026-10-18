@@ -159,5 +159,16 @@
 	"item.minecraft.bogged_spawn_egg": "Bataklık Demogorgonu Çağırma Yumurtası",
 	"item.minecraft.parched_spawn_egg": "Kavrulmuş Demogorgon Çağırma Yumurtası",
 	"item.minecraft.wither_skeleton_spawn_egg": "Kara Demogorgon Çağırma Yumurtası",
-	"item.minecraft.blaze_spawn_egg": "Ateş Demobatı Çağırma Yumurtası"
+	"item.minecraft.blaze_spawn_egg": "Ateş Demobatı Çağırma Yumurtası",
+	"entity.minecraft.strider": "Evcil Demodog",
+	"item.minecraft.strider_spawn_egg": "Evcil Demodog Çağırma Yumurtası",
+	"subtitles.entity.strider.death": "Evcil Demodog öldü",
+	"subtitles.entity.strider.eat": "Evcil Demodog yemek yiyor",
+	"subtitles.entity.strider.happy": "Evcil Demodog memnun hırlıyor",
+	"subtitles.entity.strider.hurt": "Evcil Demodog hasar aldı",
+	"subtitles.entity.strider.idle": "Evcil Demodog hırlıyor",
+	"subtitles.entity.strider.retreat": "Evcil Demodog geri çekiliyor",
+	"stat.minecraft.strider_one_cm": "Evcil Demodog ile Gidilen Mesafe",
+	"advancements.nether.ride_strider.description": "Çarpık mantarlı oltayla bir Evcil Demodog’a binin",
+	"advancements.nether.ride_strider_in_overworld_lava.description": "Bir Evcil Demodog’la Overworld’deki bir lav gölünde uzuuun bir gezintiye çıkın"
 }

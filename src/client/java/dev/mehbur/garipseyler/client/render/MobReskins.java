@@ -31,6 +31,7 @@ public final class MobReskins {
 		EntityRenderers.register(EntityTypes.ZOMBIFIED_PIGLIN, context -> new DemodogRenderer<>(context, DemodogVariant.ZOMBIFIED_PIGLIN));
 		EntityRenderers.register(EntityTypes.HOGLIN, context -> new DemodogRenderer<>(context, DemodogVariant.HOGLIN));
 		EntityRenderers.register(EntityTypes.ZOGLIN, context -> new DemodogRenderer<>(context, DemodogVariant.ZOGLIN));
+		EntityRenderers.register(EntityTypes.STRIDER, context -> new DemodogRenderer<>(context, DemodogVariant.STRIDER));
 
 		EntityRenderers.register(EntityTypes.PHANTOM, DemobatRenderer::new);
 		EntityRenderers.register(EntityTypes.GHAST, GiantDemobatRenderer::new);
