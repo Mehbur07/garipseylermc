@@ -231,6 +231,11 @@ public class MindFlayer extends Monster implements GeoEntity {
 		return this.ticksSinceDamage;
 	}
 
+	/** Health taken without a damage event (the glove's bone break) still pauses regeneration. */
+	public void resetRegenDelay() {
+		this.ticksSinceDamage = 0;
+	}
+
 	private @Nullable MindFlayerAttack pickAttack(ServerLevel level, LivingEntity player) {
 		ModConfig.MindFlayer config = ConfigManager.get().mindFlayer;
 		double distance = this.distanceTo(player);

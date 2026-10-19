@@ -4,6 +4,7 @@ import dev.mehbur.garipseyler.GaripSeylerMod;
 import dev.mehbur.garipseyler.config.ConfigManager;
 import dev.mehbur.garipseyler.config.ModConfig;
 import dev.mehbur.garipseyler.effect.ModSounds;
+import dev.mehbur.garipseyler.entity.mindflayer.MindFlayer;
 import dev.mehbur.garipseyler.entity.vecna.Vecna;
 import dev.mehbur.garipseyler.network.BoneBreakPayload;
 import dev.mehbur.garipseyler.network.TelekinesisPayload;
@@ -67,8 +68,9 @@ import java.util.UUID;
  * placed again (or drops as an item), so nothing is lost or duplicated. A thrown block hurts every living
  * entity it flies into (attributed to the thrower, never hitting them), then drops.
  * <p>
- * The bone-break key (001 and 011 only) cracks the bones of the looked-at mob: 001 halves its health,
- * 011 kills it. A thrown Vecna catches himself with his own telekinesis and glides down before landing.
+ * The bone-break key (001 and 011 only) cracks the bones of the mob the glove holds in the air: 001 halves its
+ * health (a boss loses a quarter), 011 kills it (a boss loses half). Bosses are the {@link #IMMUNE} tag, the ones
+ * a plain glove cannot lift. A thrown Vecna catches himself with his own telekinesis and glides down before landing.
  */
 public final class Telekinesis {
 	public static final TagKey<EntityType<?>> IMMUNE = TagKey.create(Registries.ENTITY_TYPE, GaripSeylerMod.id("telekinesis_immune"));
@@ -340,15 +342,12 @@ public final class Telekinesis {
 			actionBar(player, Component.translatable("message.garipseylermc.glove.bone_break_cooldown").withStyle(ChatFormatting.GRAY));
 			return;
 		}
-		ModConfig.Glove config = ConfigManager.get().glove;
-		if (!(findTarget(player, tier.range(config)) instanceof LivingEntity victim)) {
+		Hold hold = HOLDS.get(player.getUUID());
+		if (hold == null || !(hold.entity() instanceof LivingEntity victim) || !victim.isAlive()) {
+			actionBar(player, Component.translatable("message.garipseylermc.glove.bone_break_hold").withStyle(ChatFormatting.GRAY));
 			return;
 		}
-		if (!canAffect(tier, victim)) {
-			resists(player, victim);
-			return;
-		}
-		BONE_BREAK_READY.put(player.getUUID(), now + config.boneBreakCooldownSeconds * 20L);
+		BONE_BREAK_READY.put(player.getUUID(), now + ConfigManager.get().glove.boneBreakCooldownSeconds * 20L);
 		player.swing(InteractionHand.OFF_HAND, true);
 		level.playSound(null, victim.getX(), victim.getY(0.5), victim.getZ(), ModSounds.GLOVE_BONE_BREAK, SoundSource.PLAYERS, 1.6F, 1.0F);
 		level.sendParticles(new ItemParticleOption(ParticleTypes.ITEM, Items.BONE), victim.getX(), victim.getY(0.6), victim.getZ(),
@@ -357,17 +356,23 @@ public final class Telekinesis {
 
 		DamageSource source = level.damageSources().indirectMagic(player, player);
 		victim.setLastHurtByPlayer(player, 100);
-		if (tier == GloveTier.TIER_011) {
+		boolean boss = victim.is(IMMUNE);
+		if (tier == GloveTier.TIER_011 && !boss) {
 			kill(level, victim, source);
 			return;
 		}
-		// 001: exactly half of the current health, whatever armor or resistance the mob has.
-		victim.setHealth(victim.getHealth() / 2.0F);
+		// An exact share of the current health, whatever armor or resistance the mob has: 001 takes half from
+		// a mob and a quarter from a boss, 011 half from a boss. Bosses never die from one bone break.
+		float keep = tier == GloveTier.TIER_001 && boss ? 0.75F : 0.5F;
+		victim.setHealth(victim.getHealth() * keep);
 		victim.setLastHurtByMob(player);
 		level.broadcastDamageEvent(victim, source);
+		if (victim instanceof MindFlayer mindFlayer) {
+			mindFlayer.resetRegenDelay();
+		}
 	}
 
-	/** 011: the mob dies, even a boss that shrugs off normal damage (attributed to the player for loot). */
+	/** 011 on a non-boss: the mob dies, even one that shrugs off normal damage (attributed to the player for loot). */
 	private static void kill(ServerLevel level, LivingEntity victim, DamageSource source) {
 		victim.hurtServer(level, source, Float.MAX_VALUE);
 		if (victim.isAlive()) {

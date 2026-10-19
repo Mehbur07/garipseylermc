@@ -181,14 +181,15 @@
 	"item.garipseylermc.telekinesis_glove_011": "Telekinezi Eldiveni 011",
 	"item.garipseylermc.telekinesis_glove.tooltip.combine": "İki tanesini birleştir: Eldiven 001",
 	"item.garipseylermc.telekinesis_glove_001.tooltip.power": "Daha hızlı, daha uzağa; Warden, Wither ve Elder Guardian’ı da tutar",
-	"item.garipseylermc.telekinesis_glove_001.tooltip.bone_break": "B: baktığın mobun kemiklerini kır (canı yarıya iner)",
+	"item.garipseylermc.telekinesis_glove_001.tooltip.bone_break": "B: havaya kaldırdığın mobun kemiklerini kır (canı yarıya; boss’larda çeyreği gider)",
 	"item.garipseylermc.telekinesis_glove_001.tooltip.combine": "İki tanesini birleştir: Eldiven 011",
 	"item.garipseylermc.telekinesis_glove_011.tooltip.power": "En hızlı, en uzağa; bütün mobları tutar, Vecna ve Mind Flayer dahil",
-	"item.garipseylermc.telekinesis_glove_011.tooltip.bone_break": "B: baktığın mobun kemiklerini kır (ölür)",
+	"item.garipseylermc.telekinesis_glove_011.tooltip.bone_break": "B: havaya kaldırdığın mobun kemiklerini kır (ölür; boss’ların canı yarıya iner)",
 	"key.garipseylermc.bone_break": "Kemik kırma (001/011 eldiven sol elde)",
 	"message.garipseylermc.glove.bone_break_tier": "Yalnızca 001 ve 011 eldivenleri kemik kırabilir.",
 	"message.garipseylermc.glove.bone_break_cooldown": "Kemik kırma dinleniyor...",
 	"subtitles.garipseylermc.item.telekinesis_glove.bone_break": "Kemikler kırıldı",
 	"message.garipseylermc.vecna.summoned": "Ruh alevleri söndü... Vecna yerin altından yükseliyor!",
-	"message.garipseylermc.vecna.altar_busy": "Vecna zaten burada."
+	"message.garipseylermc.vecna.altar_busy": "Vecna zaten burada.",
+	"message.garipseylermc.glove.bone_break_hold": "Önce bir mobu havaya kaldır (V)."
 }

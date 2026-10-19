@@ -217,9 +217,9 @@ Yalnızca **görünüm** değişir; davranış, can, AI, loot ve vuruş kutular�
   | Eldiven | Tarif | Menzil / hız | Tutabildikleri | Kemik kırma (**B**) |
   |---|---|---|---|---|
   | Telekinezi Eldiveni | Vecna'dan düşer | 20 / 2.0 | boss'lar hariç | yok |
-  | **001** (koyu netherrack rengi) | 2 Telekinezi Eldiveni | 32 / 3.0 | Warden, Wither, Elder Guardian da (Vecna, Mind Flayer, Ender Dragon hariç; `telekinesis_001_immune` etiketi) | mobun canı **yarıya** iner |
-  | **011** (neredeyse siyah, parıldar) | 2 Eldiven 001 | 48 / 4.0 | **bütün moblar** (Vecna ve Mind Flayer dahil) | mob **ölür** (boss'lar dahil) |
-- **Kemik kırma tuşu** (varsayılan **B**, Ayarlar → Kontroller → *Garip Şeyler MC*): baktığın moba kemik kırılma sesi ve kemik parçacıkları; 001 canı yarıya indirir (zırh/direnç fark etmez), 011 öldürür (ganimet ve ölüm mesajı sana atfedilir). Oyunculara işlemez. Bekleme `boneBreakCooldownSeconds` (10 sn).
+  | **001** (koyu netherrack rengi) | 2 Telekinezi Eldiveni | 32 / 3.0 | Warden, Wither, Elder Guardian da (Vecna, Mind Flayer, Ender Dragon hariç; `telekinesis_001_immune` etiketi) | mobun canı **yarıya** iner; boss'un canının **çeyreği** gider |
+  | **011** (neredeyse siyah, parıldar) | 2 Eldiven 001 | 48 / 4.0 | **bütün moblar** (Vecna ve Mind Flayer dahil) | mob **ölür**; boss'un canı **yarıya** iner |
+- **Kemik kırma tuşu** (varsayılan **B**, Ayarlar → Kontroller → *Garip Şeyler MC*): yalnızca **V ile havaya kaldırdığın** moba işler ("Önce bir mobu havaya kaldır (V)."); kemik kırılma sesi ve kemik parçacıkları çıkar. Normal mob: 001 canını yarıya indirir, 011 öldürür (ganimet ve ölüm mesajı sana atfedilir). **Boss'lar** (normal eldivenin tutamadıkları: Vecna, Mind Flayer, Wither, Ender Dragon, Warden, Elder Guardian) tek kırmada ölmez: 001 canlarının çeyreğini, 011 yarısını alır. Oran o anki cana göredir, zırh/direnç fark etmez; Mind Flayer'ın can yenilemesi de durur. Oyunculara işlemez. Bekleme `boneBreakCooldownSeconds` (10 sn).
 - **Gerçekçilik:** her eldivende güçlü (azami canı yüksek) moblar daha yavaş, dolayısıyla daha yakına fırlatılır: hız × √(40 / azami can). Zombi tam hızda, Demir Golem %63, Wither %37, Warden %28, Vecna ve Mind Flayer %20. Bloklar tam hızda.
 - **Vecna'nın direnci:** 011 ile fırlatılan Vecna yere çarpmak üzereyken (yaklaşık 4 blok kala) kendi telekinezisiyle yavaşlar ve mor bir aura içinde süzülerek iner.
 - Büyük moblar (ör. Mind Flayer) tutulurken bedenlerinin genişliği kadar daha uzakta durur.

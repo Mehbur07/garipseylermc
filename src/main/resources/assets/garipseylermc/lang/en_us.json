@@ -181,14 +181,15 @@
 	"item.garipseylermc.telekinesis_glove_011": "Telekinesis Glove 011",
 	"item.garipseylermc.telekinesis_glove.tooltip.combine": "Craft two together: Glove 001",
 	"item.garipseylermc.telekinesis_glove_001.tooltip.power": "Faster, farther; also grabs the Warden, Wither and Elder Guardian",
-	"item.garipseylermc.telekinesis_glove_001.tooltip.bone_break": "B: break the bones of the mob you look at (half its health)",
+	"item.garipseylermc.telekinesis_glove_001.tooltip.bone_break": "B: break the bones of the mob you hold (half its health, a boss loses a quarter)",
 	"item.garipseylermc.telekinesis_glove_001.tooltip.combine": "Craft two together: Glove 011",
 	"item.garipseylermc.telekinesis_glove_011.tooltip.power": "Fastest, farthest; grabs every mob, Vecna and the Mind Flayer too",
-	"item.garipseylermc.telekinesis_glove_011.tooltip.bone_break": "B: break the bones of the mob you look at (it dies)",
+	"item.garipseylermc.telekinesis_glove_011.tooltip.bone_break": "B: break the bones of the mob you hold (it dies, a boss loses half)",
 	"key.garipseylermc.bone_break": "Bone break (glove 001/011 in offhand)",
 	"message.garipseylermc.glove.bone_break_tier": "Only Glove 001 and 011 can break bones.",
 	"message.garipseylermc.glove.bone_break_cooldown": "Bone break is recovering...",
 	"subtitles.garipseylermc.item.telekinesis_glove.bone_break": "Bones crack",
 	"message.garipseylermc.vecna.summoned": "The soul flames die out... Vecna rises from below!",
-	"message.garipseylermc.vecna.altar_busy": "Vecna is already here."
+	"message.garipseylermc.vecna.altar_busy": "Vecna is already here.",
+	"message.garipseylermc.glove.bone_break_hold": "Lift a mob into the air first (V)."
 }
