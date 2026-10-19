@@ -4,6 +4,7 @@ import dev.mehbur.garipseyler.GaripSeylerMod;
 import dev.mehbur.garipseyler.block.ModBlocks;
 import net.fabricmc.fabric.api.creativetab.v1.CreativeModeTabEvents;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -22,8 +23,14 @@ import java.util.function.Function;
 public final class ModItems {
 	public static final Item UPSIDE_DOWN_STONE = registerBlock(ModBlocks.UPSIDE_DOWN_STONE);
 	/** Vecna's only drop (0.1 %); grabs and throws mobs from the offhand. */
-	public static final Item TELEKINESIS_GLOVE = register("telekinesis_glove", TelekinesisGloveItem::new,
+	public static final Item TELEKINESIS_GLOVE = register("telekinesis_glove", properties -> new TelekinesisGloveItem(properties, GloveTier.BASIC),
 			new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant());
+	/** Crafted from two Telekinesis Gloves (shapeless). */
+	public static final Item TELEKINESIS_GLOVE_001 = register("telekinesis_glove_001", properties -> new TelekinesisGloveItem(properties, GloveTier.TIER_001),
+			new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant());
+	/** Crafted from two 001 gloves (shapeless); always shimmers. */
+	public static final Item TELEKINESIS_GLOVE_011 = register("telekinesis_glove_011", properties -> new TelekinesisGloveItem(properties, GloveTier.TIER_011),
+			new Item.Properties().stacksTo(1).rarity(Rarity.EPIC).fireResistant().component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true));
 
 	private ModItems() {
 	}

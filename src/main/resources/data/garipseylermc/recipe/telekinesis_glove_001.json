@@ -1,0 +1,12 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"category": "equipment",
+	"ingredients": [
+		"garipseylermc:telekinesis_glove",
+		"garipseylermc:telekinesis_glove"
+	],
+	"result": {
+		"count": 1,
+		"id": "garipseylermc:telekinesis_glove_001"
+	}
+}

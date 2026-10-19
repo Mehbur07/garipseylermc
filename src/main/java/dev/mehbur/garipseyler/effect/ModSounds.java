@@ -39,6 +39,7 @@ public final class ModSounds {
 	public static final Holder.Reference<SoundEvent> MIND_FLAYER_REGEN = register("entity.mind_flayer.regen");
 	public static final Holder.Reference<SoundEvent> GLOVE_GRAB = register("item.telekinesis_glove.grab");
 	public static final Holder.Reference<SoundEvent> GLOVE_THROW = register("item.telekinesis_glove.throw");
+	public static final Holder.Reference<SoundEvent> GLOVE_BONE_BREAK = register("item.telekinesis_glove.bone_break");
 
 	private ModSounds() {
 	}

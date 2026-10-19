@@ -14,5 +14,6 @@ public final class ModNetworking {
 		PayloadTypeRegistry.clientboundPlay().register(VecnaVisionPayload.TYPE, VecnaVisionPayload.CODEC);
 		PayloadTypeRegistry.clientboundPlay().register(VecnaMindControlPayload.TYPE, VecnaMindControlPayload.CODEC);
 		PayloadTypeRegistry.serverboundPlay().register(TelekinesisPayload.TYPE, TelekinesisPayload.CODEC);
+		PayloadTypeRegistry.serverboundPlay().register(BoneBreakPayload.TYPE, BoneBreakPayload.CODEC);
 	}
 }

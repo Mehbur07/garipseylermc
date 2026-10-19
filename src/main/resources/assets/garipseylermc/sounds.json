@@ -962,5 +962,15 @@
 			}
 		],
 		"subtitle": "subtitles.garipseylermc.entity.mind_flayer.regen"
+	},
+	"item.telekinesis_glove.bone_break": {
+		"sounds": [
+			{"name": "minecraft:block/bone_block/break1", "pitch": 0.75},
+			{"name": "minecraft:block/bone_block/break2", "pitch": 0.75},
+			{"name": "minecraft:block/bone_block/break3", "pitch": 0.75},
+			{"name": "minecraft:block/bone_block/break4", "pitch": 0.75},
+			{"name": "minecraft:block/bone_block/break5", "pitch": 0.75}
+		],
+		"subtitle": "subtitles.garipseylermc.item.telekinesis_glove.bone_break"
 	}
 }

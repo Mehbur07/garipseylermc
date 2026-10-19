@@ -5,9 +5,11 @@
 	"mixins": [
 		"AbstractArrowMixin",
 		"AbstractSkeletonMixin",
+		"BeaconBlockEntityMixin",
 		"EndSpikeFeatureMixin",
 		"EnderDragonFightMixin",
 		"EnderManMixin",
+		"FallingBlockEntityMixin",
 		"FoodDataMixin",
 		"LivingEntityMixin",
 		"PhantomMixin",

@@ -64,7 +64,7 @@ public final class VecnaSpawning {
 
 	/** Spawns Vecna 10–18 blocks from the player on solid ground (falls back to the player's spot). */
 	public static @Nullable Vecna spawnNear(ServerLevel level, ServerPlayer player) {
-		BlockPos pos = findSpot(level, player.blockPosition(), level.getRandom());
+		BlockPos pos = findSpot(level, player.blockPosition(), level.getRandom(), 10.0, 8.0);
 		Vecna vecna = ModEntities.VECNA.spawn(level, pos, EntitySpawnReason.EVENT);
 		if (vecna == null) {
 			return null;
@@ -81,10 +81,11 @@ public final class VecnaSpawning {
 		return vecna;
 	}
 
-	private static BlockPos findSpot(ServerLevel level, BlockPos origin, RandomSource random) {
+	/** A free 3-block-tall spot on solid ground {@code minDistance} to {@code minDistance + spread} blocks away (else the origin). */
+	static BlockPos findSpot(ServerLevel level, BlockPos origin, RandomSource random, double minDistance, double spread) {
 		for (int attempt = 0; attempt < 48; attempt++) {
 			double angle = random.nextDouble() * Math.PI * 2.0;
-			double distance = 10.0 + random.nextDouble() * 8.0;
+			double distance = minDistance + random.nextDouble() * spread;
 			BlockPos column = origin.offset((int) Math.round(Math.cos(angle) * distance), 0, (int) Math.round(Math.sin(angle) * distance));
 			for (int dy = 6; dy >= -6; dy--) {
 				BlockPos feet = column.above(dy);

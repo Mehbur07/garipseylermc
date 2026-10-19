@@ -125,6 +125,12 @@ public class ModConfig {
 		public int maxMinions = 6;
 		/** A playing jukebox this close, or a music disc in hand, protects from levitation and the curse. */
 		public int musicProtectionRadius = 12;
+		/**
+		 * Summoning altar in the Nether: a beacon in a ring of 8 netherrack on 3x3 netherite blocks, with 4 soul
+		 * torches on the ring. When complete the torches burn out and Vecna emerges from the ground (like the
+		 * Warden), even if he already came once. Only one Vecna at a time.
+		 */
+		public boolean altarEnabled = true;
 	}
 
 	/** Mind Flayer (stone form) — replaces the Ender Dragon. */
@@ -165,6 +171,23 @@ public class ModConfig {
 		public int maxHoldSeconds = 15;
 		/** Thrown mobs that slam into a wall take this much damage per block/tick of speed. */
 		public double impactDamage = 5.0;
+		/** With no mob in sight, the glove lifts the looked-at block instead. */
+		public boolean grabBlocks = true;
+		/** A thrown block hits everyone in its path for this much damage per block/tick of speed. */
+		public double blockHitDamage = 5.0;
+		/** Glove 001 (two gloves crafted together): grab range and throw speed. */
+		public int range001 = 32;
+		public double throwStrength001 = 3.0;
+		/** Glove 011 (two 001 gloves crafted together): grab range and throw speed. */
+		public int range011 = 48;
+		public double throwStrength011 = 4.0;
+		/** Bone break key (001: halves the mob's health, 011: kills it): seconds between two uses. */
+		public int boneBreakCooldownSeconds = 10;
+		/**
+		 * Strong mobs are thrown slower (so not as far): speed is scaled by sqrt(this / max health), at most 1.
+		 * With 40: a zombie flies at full speed, an Iron Golem at 63 %, the Warden at 28 %, Vecna at 20 % (the minimum).
+		 */
+		public double throwWeightHealth = 40.0;
 	}
 
 	/** Fills missing sections and clamps values into sane ranges. */
@@ -241,6 +264,13 @@ public class ModConfig {
 		glove.throwStrength = clamp(glove.throwStrength, 0.0, 10.0);
 		glove.maxHoldSeconds = clamp(glove.maxHoldSeconds, 1, 3600);
 		glove.impactDamage = clamp(glove.impactDamage, 0.0, 100.0);
+		glove.blockHitDamage = clamp(glove.blockHitDamage, 0.0, 100.0);
+		glove.range001 = clamp(glove.range001, 1, 128);
+		glove.throwStrength001 = clamp(glove.throwStrength001, 0.0, 10.0);
+		glove.range011 = clamp(glove.range011, 1, 128);
+		glove.throwStrength011 = clamp(glove.throwStrength011, 0.0, 10.0);
+		glove.boneBreakCooldownSeconds = clamp(glove.boneBreakCooldownSeconds, 0, 3600);
+		glove.throwWeightHealth = clamp(glove.throwWeightHealth, 1.0, 100_000.0);
 	}
 
 	/** Parses {@code #RRGGBB} into an opaque ARGB int. Call only on validated values. */

@@ -19,10 +19,14 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
+import net.minecraft.core.particles.BlockParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundSoundPacket;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -31,6 +35,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.BossEvent;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -55,6 +60,10 @@ import net.minecraft.world.entity.monster.zombie.ZombifiedPiglin;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.RenderShape;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.Vec3;
 import org.jspecify.annotations.Nullable;
 
@@ -68,6 +77,10 @@ import java.util.Map;
  * despawns and cannot leave the Nether. Fights in melee and with the abilities in {@link VecnaAbility};
  * under 50 % health (phase 2) the boss bar turns red, abilities come faster and he teleports. Drops only
  * the Telekinesis Glove, and only with {@code gloveDropChance}.
+ * <p>
+ * Summoned at the Nether altar ({@link VecnaAltar}) he first emerges from the ground like the Warden: for
+ * {@link #EMERGE_TICKS} ticks he rises out of the block below in a shower of its debris, cannot act (NoAI,
+ * saved with him so a restart mid-rise finishes it) and only bypassing damage (such as {@code /kill}) hurts him.
  */
 public class Vecna extends Monster implements GeoEntity {
 	public static final String MINION_TAG = "garipseylermc.vecna_minion";
@@ -79,6 +92,13 @@ public class Vecna extends Monster implements GeoEntity {
 	private static final RawAnimation SUMMON = RawAnimation.begin().thenPlay("attack.summon");
 	private static final RawAnimation SWING = RawAnimation.begin().thenPlay("attack.swing");
 
+	/** Same length as the Warden's emerge animation. */
+	public static final int EMERGE_TICKS = 134;
+	/** The model is fully above ground after this many ticks; the rest is a still moment before he acts. */
+	private static final int RISE_TICKS = 100;
+	/** Debris flies while he is still digging out (the Warden's 4.5 seconds). */
+	private static final int DEBRIS_TICKS = 90;
+	private static final EntityDataAccessor<Integer> DATA_EMERGE_TICKS = SynchedEntityData.defineId(Vecna.class, EntityDataSerializers.INT);
 	private static final int TELEGRAPH_TICKS = 80;
 	private static final int CHIME_INTERVAL_TICKS = 20;
 	private static final double ABILITY_RANGE = 32.0;
@@ -101,6 +121,88 @@ public class Vecna extends Monster implements GeoEntity {
 		this.bossEvent.setDarkenScreen(true);
 		this.xpReward = 0;
 		this.setPersistenceRequired();
+	}
+
+	@Override
+	protected void defineSynchedData(SynchedEntityData.Builder builder) {
+		super.defineSynchedData(builder);
+		builder.define(DATA_EMERGE_TICKS, 0);
+	}
+
+	// ---------------------------------------------------------------- emerging
+
+	/** Starts the Warden-style rise out of the ground (server side, right after spawning). */
+	public void startEmerging() {
+		this.entityData.set(DATA_EMERGE_TICKS, EMERGE_TICKS);
+		this.setNoAi(true);
+		this.getNavigation().stop();
+		this.playSound(SoundEvents.WARDEN_EMERGE, 3.0F, 0.8F);
+	}
+
+	public boolean isEmerging() {
+		return this.entityData.get(DATA_EMERGE_TICKS) > 0;
+	}
+
+	/** How far below his feet the model is drawn while emerging (0 once he is out). */
+	public float emergeDepth(float partialTicks) {
+		float remaining = this.entityData.get(DATA_EMERGE_TICKS);
+		if (remaining <= 0.0F) {
+			return 0.0F;
+		}
+		float progress = Mth.clamp((EMERGE_TICKS - remaining + partialTicks) / RISE_TICKS, 0.0F, 1.0F);
+		// Smoothstep: he struggles out slowly, speeds up, then settles.
+		float eased = progress * progress * (3.0F - 2.0F * progress);
+		return this.getBbHeight() * (1.0F - eased);
+	}
+
+	@Override
+	public void tick() {
+		super.tick();
+		int remaining = this.entityData.get(DATA_EMERGE_TICKS);
+		if (remaining <= 0) {
+			return;
+		}
+		if (this.level().isClientSide()) {
+			if (EMERGE_TICKS - remaining < DEBRIS_TICKS) {
+				this.diggingParticles();
+			}
+		} else {
+			this.entityData.set(DATA_EMERGE_TICKS, remaining - 1);
+			if (remaining == 1) {
+				this.setNoAi(false);
+				this.playSound(ModSounds.VECNA_SPAWN.value(), 4.0F, 1.0F);
+			}
+		}
+	}
+
+	/** The Warden's digging debris: pieces of the block he stands on, around his feet. */
+	private void diggingParticles() {
+		BlockState below = this.getBlockStateOn();
+		if (below.getRenderShape() == RenderShape.INVISIBLE) {
+			return;
+		}
+		for (int i = 0; i < 30; i++) {
+			double x = this.getX() + Mth.randomBetween(this.random, -0.7F, 0.7F);
+			double z = this.getZ() + Mth.randomBetween(this.random, -0.7F, 0.7F);
+			this.level().addParticle(new BlockParticleOption(ParticleTypes.BLOCK, below), x, this.getY(), z, 0.0, 0.0, 0.0);
+		}
+	}
+
+	@Override
+	protected void addAdditionalSaveData(ValueOutput output) {
+		super.addAdditionalSaveData(output);
+		output.putInt("garipseylermc_emerge_ticks", this.entityData.get(DATA_EMERGE_TICKS));
+	}
+
+	@Override
+	protected void readAdditionalSaveData(ValueInput input) {
+		super.readAdditionalSaveData(input);
+		this.entityData.set(DATA_EMERGE_TICKS, input.getIntOr("garipseylermc_emerge_ticks", 0));
+	}
+
+	@Override
+	public boolean isPushable() {
+		return !this.isEmerging() && super.isPushable();
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {
@@ -352,6 +454,9 @@ public class Vecna extends Monster implements GeoEntity {
 
 	@Override
 	public boolean hurtServer(ServerLevel level, DamageSource source, float damage) {
+		if (this.isEmerging() && !source.is(DamageTypeTags.BYPASSES_INVULNERABILITY)) {
+			return false;
+		}
 		boolean hurt = super.hurtServer(level, source, damage);
 		if (hurt && this.isAlive() && this.isPhaseTwo() && source.getEntity() instanceof LivingEntity attacker
 				&& this.readyAt.getOrDefault(VecnaAbility.TELEPORT, 0L) <= level.getGameTime() && this.random.nextFloat() < 0.2F) {

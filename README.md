@@ -6,7 +6,7 @@ Stranger Things temalı bir Minecraft Java modu: Nether kırmızı **Ters Dünya
 
 > Durum: **Tamamlandı — sürüm 0.1.0** (Faz 0–9). Özellikler aşağıda; geliştirme fazları için bkz. [ROADMAP.md](ROADMAP.md).
 
-**Kısaca:** kırmızı Ters Dünya (Nether) ve kırmızı şimşekler · Demogorgon, Demodog, Demobat görünümleri · portallarda can emen sarmaşıklar · dikit renkli En Derin Dünya (End) · tek seferlik boss **Vecna** · Ender Dragon yerine kulelerden uzun **Mind Flayer** · **Telekinezi Eldiveni** · Alevden Çehre ile Ters Dünya yaratıklarına 2×/4× hasar · başlık ekranında neon logo.
+**Kısaca:** kırmızı Ters Dünya (Nether) ve kırmızı şimşekler · Demogorgon, Demodog, Demobat görünümleri · portallarda can emen sarmaşıklar · dikit renkli En Derin Dünya (End) · tek seferlik boss **Vecna** · Ender Dragon yerine kulelerden uzun **Mind Flayer** · Nether sunağıyla yeniden çağrılabilen Vecna · **Telekinezi Eldiveni** (birleştirilince 001 ve 011) · Alevden Çehre ile Ters Dünya yaratıklarına 2×/4× hasar · başlık ekranında neon logo.
 
 ## Gereksinimler
 | | Sürüm |
@@ -86,6 +86,7 @@ src/client/java/dev/mehbur/garipseyler/client/   sadece istemci
 | `vecna` | `maxHealth` | `2000` | Can |
 | | `spawnDelayMinutes` | `15` | Nether'da geçen süre sonrası tek seferlik spawn |
 | | `gloveDropChance` | `0.001` | Eldiven düşme şansı (%0.1) |
+| | `altarEnabled` | `true` | Nether sunağı Vecna'yı yeniden çağırabilir (aşağıya bakın) |
 | | `attackDamage` / `armor` | `12` / `10` | Yakın dövüş hasarı, zırh ¹ |
 | | `abilityCooldownSeconds` | `6` | İki yetenek arası (2. fazda %70'i) |
 | | `curseDamageIntervalSeconds` / `curseDurationSeconds` | `2` / `20` | Lanet: kaç sn'de 1 hasar (havadayken 2 kat hızlı), süre |
@@ -109,6 +110,12 @@ src/client/java/dev/mehbur/garipseyler/client/   sadece istemci
 | | `throwStrength` | `2.0` | Fırlatma hızı (blok/tick) |
 | | `maxHoldSeconds` | `15` | En uzun tutma süresi |
 | | `impactDamage` | `5.0` | Fırlatılan mob bir yere çarpınca hız başına hasar |
+| | `grabBlocks` | `true` | Bakılan yerde mob yoksa eldiven bloğu kaldırır |
+| | `blockHitDamage` | `5.0` | Fırlatılan bloğun çarptığı her canlıya hız başına hasar (tam hızda 10 = 5 kalp) |
+| | `range001` / `throwStrength001` | `32` / `3.0` | Eldiven 001 menzili / fırlatma hızı |
+| | `range011` / `throwStrength011` | `48` / `4.0` | Eldiven 011 menzili / fırlatma hızı |
+| | `boneBreakCooldownSeconds` | `10` | Kemik kırma tuşu bekleme süresi (oyuncu başına) |
+| | `throwWeightHealth` | `40.0` | Ağır mob yavaşlatması: hız × √(40 / azami can), en fazla 1, en az 0.2 |
 
 ¹ Biyom verisine yazıldığı için dünya/sunucu **yeniden başlatılınca** geçerli olur (`/garipseyler reload` yetmez).
 ² İstemci ayarı: her oyuncunun kendi `config/garipseylermc.json` dosyasından okunur. Flaş ayrıca vanilla **Erişilebilirlik → "Şimşek Flaşlarını Gizle"** seçeneğine uyar.
@@ -171,6 +178,12 @@ Yalnızca **görünüm** değişir; davranış, can, AI, loot ve vuruş kutular�
 
 ### Faz 6 — Vecna ✅
 - **Doğuş:** her oyuncunun Nether'da geçirdiği süre sayılır (oyuncuya kaydedilir). Biri `spawnDelayMinutes` (15 dk) dolduğunda Vecna 10–18 blok yakınında doğar: saat çalar, karanlık çöker. **Her dünyada yalnızca 1 kez** (bayrak dünya kaydında). Çağırma yumurtası yok, `/summon` reddedilir, Nether'dan çıkamaz (portal kullanmaz), **despawn olmaz** (Barışçıl'da bile).
+- **Sunak (yeniden çağırma):** Nether'da şu yapı kurulunca Vecna tekrar gelir (ilk gelişinden sonra da çalışır):
+  - altta **3×3 netherite bloğu**,
+  - üstünde ortası **işaret feneri (beacon)** olan 8 **netherrack** halkası,
+  - halkanın üstünde en az **4 ruh meşalesi**.
+
+  Yapı tamamlanınca (fener saniyede bir kontrol eder) meşaleler söner, "Ruh alevleri söndü... Vecna yerin altından yükseliyor!" yazar ve Vecna sunağın 4–7 blok yakınında **Warden gibi topraktan çıkar**: Warden'ın çıkış sesi, ayağının altındaki bloğun parçacıkları, 6,7 sn boyunca yavaşça yükselir; bu sürede hareket etmez ve hasar almaz (`/kill` hariç). Aynı anda yalnızca **bir** Vecna olabilir ("Vecna zaten burada."). Meşaleleri yeniden koyunca sunak tekrar kullanılabilir. `vecna.altarEnabled: false` ile kapatılır.
 - **2000 can** (vanilla'nın 1024 can sınırı mod tarafından yükseltilir), 10 zırh, geri tepmeye bağışık, ateşe/düşmeye dayanıklı. Boss bar **mor**; can %50'nin altına inince **kırmızı** olur (2. faz: "Vecna'nın öfkesi uyanıyor!").
 - **Yetenekler** (birkaç saniyede bir, rastgele, her birinin kendi bekleme süresi var):
   1. **Lanet** — 20 sn boyunca 2 sn'de 1 hasar; açlıkla gelen doğal can yenilenmesi durur (iksir/altın elma çalışır).
@@ -196,8 +209,20 @@ Yalnızca **görünüm** değişir; davranış, can, AI, loot ve vuruş kutular�
 - **V** (Ayarlar → Kontroller → *Garip Şeyler MC* altında değiştirilebilir):
   1. Baktığın moba basınca (en fazla `range` = 20 blok, duvarların arkası olmaz) mob havaya kalkar, önünde asılı kalır ve **bakışını takip eder**. Tutulurken yapay zekâsı durur.
   2. Tekrar basınca baktığın yöne **fırlatılır**; duvara ya da tavana sert çarparsa hız kadar hasar alır (sana atfedilir). Normal düşme hasarı da işler.
+  3. **Bloklar:** bakılan yerde mob yoksa baktığın blok yerinden sökülür ve aynı şekilde tutulur. Fırlatınca yolundaki her oyuncuya/yaratığa çarpıp hız kadar hasar verir (`blockHitDamage`, tam hızda 10 = 5 kalp; seni vurmaz, ölüm mesajında adın geçer), sonra düşer. Blok yere düşünce tekrar blok olarak yerleşir, yerleşemezse eşya olarak düşer; hiçbir şey kaybolmaz ya da kopyalanmaz.
+  4. Kaldırılamayan bloklar ("… yerinden oynamıyor."): kırılamazlar (bedrock, portallar), içi olan bloklar (sandık, fırın, tabela vb. — içerik kaybolmasın diye), iki parçalı bloklar (kapı, yatak, uzun bitkiler) ve açık pistonlar. Çim, ateş gibi yer değiştirebilen bloklar yok sayılır. Spawn koruması, macera modu ve bölge koruma modları kazmadaki gibi geçerlidir.
 - Mob elden çıkınca `cooldownSeconds` (5 sn) bekleme başlar; eldivende vanilla bekleme göstergesi ve "Eldiven dinleniyor..." yazısı çıkar.
-- **Boss'lar etkilenmez:** Vecna, Wither, Ender Dragon, Warden, Elder Guardian ("… telekineziye karşı koyuyor!"). Mind Flayer de etkilenmez. Liste `data/garipseylermc/tags/entity_type/telekinesis_immune.json` etiketinde. Oyuncular yakalanamaz.
+- **Normal eldivende boss'lar etkilenmez:** Vecna, Wither, Ender Dragon, Warden, Elder Guardian ("… telekineziye karşı koyuyor!"). Mind Flayer de etkilenmez. Liste `data/garipseylermc/tags/entity_type/telekinesis_immune.json` etiketinde. Oyuncular hiçbir eldivenle yakalanamaz.
+- **Eldiven seviyeleri** (üretim masasında, şekilsiz tarif):
+  | Eldiven | Tarif | Menzil / hız | Tutabildikleri | Kemik kırma (**B**) |
+  |---|---|---|---|---|
+  | Telekinezi Eldiveni | Vecna'dan düşer | 20 / 2.0 | boss'lar hariç | yok |
+  | **001** (koyu netherrack rengi) | 2 Telekinezi Eldiveni | 32 / 3.0 | Warden, Wither, Elder Guardian da (Vecna, Mind Flayer, Ender Dragon hariç; `telekinesis_001_immune` etiketi) | mobun canı **yarıya** iner |
+  | **011** (neredeyse siyah, parıldar) | 2 Eldiven 001 | 48 / 4.0 | **bütün moblar** (Vecna ve Mind Flayer dahil) | mob **ölür** (boss'lar dahil) |
+- **Kemik kırma tuşu** (varsayılan **B**, Ayarlar → Kontroller → *Garip Şeyler MC*): baktığın moba kemik kırılma sesi ve kemik parçacıkları; 001 canı yarıya indirir (zırh/direnç fark etmez), 011 öldürür (ganimet ve ölüm mesajı sana atfedilir). Oyunculara işlemez. Bekleme `boneBreakCooldownSeconds` (10 sn).
+- **Gerçekçilik:** her eldivende güçlü (azami canı yüksek) moblar daha yavaş, dolayısıyla daha yakına fırlatılır: hız × √(40 / azami can). Zombi tam hızda, Demir Golem %63, Wither %37, Warden %28, Vecna ve Mind Flayer %20. Bloklar tam hızda.
+- **Vecna'nın direnci:** 011 ile fırlatılan Vecna yere çarpmak üzereyken (yaklaşık 4 blok kala) kendi telekinezisiyle yavaşlar ve mor bir aura içinde süzülerek iner.
+- Büyük moblar (ör. Mind Flayer) tutulurken bedenlerinin genişliği kadar daha uzakta durur.
 - Mob güvenle bırakılır (fırlatmadan) eğer: eldiveni sol elden çıkarırsan, ölürsen, çıkış yaparsan, mob menzilden kaçarsa, `maxHoldSeconds` dolarsa ya da sunucu kapanırsa (mob asla yapay zekâsız kaydedilmez).
 - Hesaplar sunucuda yapılır → çok oyunculuda hile ile menzil/bekleme aşılamaz.
 
@@ -252,8 +277,8 @@ Projede verilen ve ROADMAP'te açıkça yazmayan kararlar:
 6. **Sarmaşık laneti** yalnızca yarıçap içindeki oyunculara işler, 1 HP'ye düşürür ama asla öldürmez; sarmaşıklı çerçeve portal sönükken de lanetler.
 7. **En Derin Dünya'da** End taşı dışındaki her blok (meşale, End çubuğu, cam dahil) dikit renginde görünür; sandıklar, blok-varlıklı ve işlevsel bloklar hariç.
 8. **Ters Dünya Taşı kuleleri** yalnızca yeni üretilen End'de; eski dünyalardaki obsidyen kuleler değişmez.
-9. **Vecna:** her dünyada bir kez, bir oyuncunun Nether'daki toplam süresi 15 dk'yı geçince doğar; yalnızca %0.1 şansla Telekinezi Eldiveni düşürür, XP vermez. "Kemik kırma" yerine can azaltan lanet kullanıldı.
-10. **Telekinezi Eldiveni** yalnızca sol eldeyken çalışır; boss'lar ve oyuncular yakalanamaz.
+9. **Vecna:** kendiliğinden her dünyada bir kez, bir oyuncunun Nether'daki toplam süresi 15 dk'yı geçince doğar; Nether sunağıyla (kullanıcı isteği) istenildiği kadar yeniden çağrılabilir ama aynı anda tek Vecna olur. Yalnızca %0.1 şansla Telekinezi Eldiveni düşürür, XP vermez. Vecna'nın kendi saldırılarında "kemik kırma" yerine can azaltan lanet kullanıldı. Sunaktaki yapıyı ekran görüntülerinden şöyle okudum: alt kat netherite bloğu, orta kat netherrack + işaret feneri, üstte ruh meşaleleri.
+10. **Telekinezi Eldiveni** (ve 001/011) yalnızca sol eldeyken çalışır; oyuncular yakalanamaz. Kemik kırma ayrı bir tuşa (B) kondu, çünkü V zaten tutma/fırlatma tuşu ve 011 V ile öldürseydi fırlatacak bir şey kalmazdı. Not: %0.1 düşme şansıyla 001 için 2, 011 için 4 eldiven gerekir.
 11. **Mind Flayer** End savaşının bossudur: ejderhanın yerini her yerde alır (eski dünyalardaki yaşayan savaş ejderhası dahil; komutla çağrılanlar hariç). Dev boyut (~50 blok) ve yakın dövüşte 110 hasar (Demir Golem tek vuruş) kullanıcı isteğidir. Vanilla sonu (portal, gateway, yumurta, XP) korunur.
 12. **Alevden Çehre bonusu** yalnızca **kılıçla yakın dövüşte** ve yalnızca Ters Dünya yaratıkları etiketindekilere işler ("demoit" Demodog olarak yorumlandı).
 13. **Diller:** Türkçe ve İngilizce; diğer dillerde vanilla adlar görünür.
@@ -298,7 +323,8 @@ Aynı isimle üzerine yaz, `gradlew build` / `run.bat` ile yeniden derle.
 | `src/main/resources/assets/garipseylermc/geckolib/animations/entity/mind_flayer.animation.json` | Mind Flayer animasyonları | Adlar: `misc.idle`, `move.walk`, `attack.stomp`, `attack.throw`, `attack.roar`, `attack.swing`, `misc.die` |
 | `src/main/resources/assets/garipseylermc/textures/entity/mind_flayer.png` + `mind_flayer_glowmask.png` | Mind Flayer dokusu + parlayan çatlaklar | Model 256×512 bildirir, PNG 512×1024 (2×) |
 | `src/main/resources/assets/garipseylermc/textures/item/telekinesis_glove.png` | Telekinezi Eldiveni | 16×16 |
+| `src/main/resources/assets/garipseylermc/textures/item/telekinesis_glove_001.png` / `_011.png` | Eldiven 001 / 011 | 16×16 |
 | `src/main/resources/assets/garipseylermc/textures/gui/title_logo.png` | Başlık ekranı logosu | 2:1 oran (512×256), şeffaf arka plan; ekranda 160×80 GUI pikseli çizilir |
 | `src/main/resources/assets/garipseylermc/icon.png` | Mod listesi ikonu | Kare PNG |
 | `src/main/resources/assets/garipseylermc/textures/mob_effect/vecna_curse.png` | Lanet efekti simgesi | 18×18 |
-| `src/main/resources/assets/garipseylermc/sounds.json` | Ambiyans/müzik/şimşek/mob/sarmaşık (`block.upside_down_vine.warning`, `.drain`) sesleri (`entity.demogorgon.*`, `entity.demodog.*`, `entity.demodog_alpha.*`, `entity.demobat.*`, `entity.demobat_giant.*`, `entity.vecna.*`: ambient, hurt, death, spawn, cast, clock, psychic_blast, shielded; `entity.mind_flayer.*`: ambient, hurt, death, step, roar, stomp, throw, rock_impact, regen; `item.telekinesis_glove.grab` / `.throw`) | Şu an vanilla seslerine bağlı. Kendi sesin için `.ogg` dosyasını `assets/garipseylermc/sounds/` altına koy ve `"name"`i `"garipseylermc:<dosya_adı>"` yap (uzantısız) |
+| `src/main/resources/assets/garipseylermc/sounds.json` | Ambiyans/müzik/şimşek/mob/sarmaşık (`block.upside_down_vine.warning`, `.drain`) sesleri (`entity.demogorgon.*`, `entity.demodog.*`, `entity.demodog_alpha.*`, `entity.demobat.*`, `entity.demobat_giant.*`, `entity.vecna.*`: ambient, hurt, death, spawn, cast, clock, psychic_blast, shielded; `entity.mind_flayer.*`: ambient, hurt, death, step, roar, stomp, throw, rock_impact, regen; `item.telekinesis_glove.grab` / `.throw` / `.bone_break`) | Şu an vanilla seslerine bağlı. Kendi sesin için `.ogg` dosyasını `assets/garipseylermc/sounds/` altına koy ve `"name"`i `"garipseylermc:<dosya_adı>"` yap (uzantısız) |
