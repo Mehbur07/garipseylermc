@@ -1,6 +1,7 @@
 package dev.mehbur.garipseyler;
 
 import dev.mehbur.garipseyler.block.ModBlocks;
+import dev.mehbur.garipseyler.block.TorchDispensing;
 import dev.mehbur.garipseyler.block.VineGrowth;
 import dev.mehbur.garipseyler.command.ModCommands;
 import dev.mehbur.garipseyler.config.ConfigManager;
@@ -38,6 +39,7 @@ public class GaripSeylerMod implements ModInitializer {
 		ModParticles.init();
 		ModBlocks.init();
 		ModItems.init();
+		TorchDispensing.register();
 		ModAttachments.init();
 		ModEffects.init();
 		ModEntities.init();

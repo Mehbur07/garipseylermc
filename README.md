@@ -184,6 +184,7 @@ Yalnızca **görünüm** değişir; davranış, can, AI, loot ve vuruş kutular�
   - halkanın üstünde en az **4 ruh meşalesi**.
 
   Yapı tamamlanınca (fener saniyede bir kontrol eder) meşaleler söner, "Ruh alevleri söndü... Vecna yerin altından yükseliyor!" yazar ve Vecna sunağın 4–7 blok yakınında **Warden gibi topraktan çıkar**: Warden'ın çıkış sesi, ayağının altındaki bloğun parçacıkları, 6,7 sn boyunca yavaşça yükselir; bu sürede hareket etmez ve hasar almaz (`/kill` hariç). Aynı anda yalnızca **bir** Vecna olabilir ("Vecna zaten burada."). Meşaleleri yeniden koyunca sunak tekrar kullanılabilir. `vecna.altarEnabled: false` ile kapatılır.
+- **Vecna farmı:** dağıtıcılar (dispenser) normal, ruh ve bakır meşaleyi fırlatmak yerine **önlerine yerleştirir** (aşağı bakan dağıtıcı alttaki bloğun üstüne, yatay olan önündeki zemine ya da duvara). Halkadaki 4 meşale yerinin üstüne aşağı bakan 4 dağıtıcı koyup kızıltaşla tetiklersen sunak yeniden yanar. Vecna yaşarken tetiklenirse meşaleler yerinde bekler ve Vecna ölünce sunak kendiliğinden yeniden çağırır. Önü doluysa dağıtıcı meşaleyi harcamaz. Kızıltaş meşalesi vanilla gibi davranır.
 - **2000 can** (vanilla'nın 1024 can sınırı mod tarafından yükseltilir), 10 zırh, geri tepmeye bağışık, ateşe/düşmeye dayanıklı. Boss bar **mor**; can %50'nin altına inince **kırmızı** olur (2. faz: "Vecna'nın öfkesi uyanıyor!").
 - **Yetenekler** (birkaç saniyede bir, rastgele, her birinin kendi bekleme süresi var):
   1. **Lanet** — 20 sn boyunca 2 sn'de 1 hasar; açlıkla gelen doğal can yenilenmesi durur (iksir/altın elma çalışır).
